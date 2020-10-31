@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhoWantsToBeAMillionaire.Views;
 
 namespace WhoWantsToBeAMillionaire
 {
@@ -23,6 +24,16 @@ namespace WhoWantsToBeAMillionaire
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btToggleVolume_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = null;
+        }
+
+        private void btAdminPanel_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new StartView();
         }
     }
 }

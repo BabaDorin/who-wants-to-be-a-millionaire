@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire"
+        xmlns:viewmodels="clr-namespace:WhoWantsToBeAMillionaire.ViewModels"
+        xmlns:views="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Name="redViewTemplate" DataType="{x:Type views:StartView}">
+            <views:StartView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Meniul de sus-->
+        <StackPanel Name="UpperMenu"  Orientation="Horizontal">
+            <Button Name="btToggleVolume"
+                    Click="btToggleVolume_Click"
+                    Content="VOL ON"/>
+            <Button Name="btAdminPanel"
+                    Click="btAdminPanel_Click"
+                    Content="Admin Panel"/>
+        </StackPanel>
 
+        <ContentControl Grid.Row="1" Content="{Binding}"/>
     </Grid>
 </Window>
