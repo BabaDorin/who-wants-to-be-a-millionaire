@@ -18,7 +18,6 @@
                FontSize="40"
                Foreground="White"
                Content="Vrei sa fii Milionar"
-               
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
 

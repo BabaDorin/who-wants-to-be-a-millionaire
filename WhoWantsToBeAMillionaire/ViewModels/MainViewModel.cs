@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 using WhoWantsToBeAMillionaire.Commands;
 
@@ -14,7 +15,12 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 		public BaseViewModel SelectedViewModel
 		{
 			get { return selectedViewModel; }
-			set { selectedViewModel = value; }
+			set 
+			{
+				selectedViewModel = value;
+				OnPropertyChanged(nameof(selectedViewModel));
+				MessageBox.Show("Selectedviewmodel has been set to " + SelectedViewModel.ToString());
+			}
 		}
 
 		public ICommand UpdateViewCommand{ get; set; }

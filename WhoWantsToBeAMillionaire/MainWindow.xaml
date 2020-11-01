@@ -24,6 +24,6 @@
                     Content="Admin Panel"/>
         </StackPanel>
 
-        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
+        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel, Mode=TwoWay}"/>
     </Grid>
 </Window>

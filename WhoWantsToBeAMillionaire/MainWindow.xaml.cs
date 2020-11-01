@@ -44,7 +44,7 @@ namespace WhoWantsToBeAMillionaire
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateView("Game");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -58,7 +58,6 @@ namespace WhoWantsToBeAMillionaire
 
         public void UpdateView(string parameter)
         {
-            MessageBox.Show("UpdateViewCalled");
             (DataContext as MainViewModel).UpdateViewCommand.Execute(parameter);
         }
     }
