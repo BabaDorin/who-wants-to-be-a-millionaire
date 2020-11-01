@@ -12,28 +12,54 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhoWantsToBeAMillionaire.ViewModels;
 using WhoWantsToBeAMillionaire.Views;
 
 namespace WhoWantsToBeAMillionaire
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        // Singleton pattern
+        private static MainWindow instance;
+        private MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
+        }
+        public static MainWindow GetInstace()
+        {
+            if(instance == null)
+            {
+                instance = new MainWindow();
+            }
+
+            return instance;
         }
 
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = null;
+            UpdateView("Start");
         }
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new StartView();
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        public void StartGame()
+        {
+
+        }
+
+        public void UpdateView(string parameter)
+        {
+            MessageBox.Show("UpdateViewCalled");
+            (DataContext as MainViewModel).UpdateViewCommand.Execute(parameter);
         }
     }
 }

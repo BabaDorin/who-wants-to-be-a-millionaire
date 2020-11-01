@@ -20,3 +20,12 @@ C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsTo
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\StartView.g.cs
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\StartView.baml
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\AdminView.g.cs
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\AskAudienceView.g.cs
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\GameView.g.cs
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\ResultsView.g.cs
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\AdminView.baml
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\AskAudienceView.baml
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\GameView.baml
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\ResultsView.baml
+C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\App.baml

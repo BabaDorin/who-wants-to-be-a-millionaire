@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhoWantsToBeAMillionaire.Models;
+using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
@@ -21,6 +23,16 @@ namespace WhoWantsToBeAMillionaire.Views
         public StartView()
         {
             InitializeComponent();
+        }
+
+        private void btStartGame_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetInstace().UpdateView("Game");
+        }
+
+        private void btShowRules_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Rules here");
         }
     }
 }

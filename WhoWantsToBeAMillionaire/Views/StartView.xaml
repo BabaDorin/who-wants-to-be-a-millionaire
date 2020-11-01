@@ -6,7 +6,31 @@
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-            
+    <Grid Background="Purple">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="Title" Grid.Row="1" 
+               FontSize="40"
+               Foreground="White"
+               Content="Vrei sa fii Milionar"
+               
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+        <Button x:Name="btStartGame" Grid.Row="2"
+                Content="Incepe jocul"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="btStartGame_Click"/>
+        <Button x:Name="btShowRules" Grid.Row="3"
+                Content="Regulamentul"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="btShowRules_Click"/>
     </Grid>
 </UserControl>

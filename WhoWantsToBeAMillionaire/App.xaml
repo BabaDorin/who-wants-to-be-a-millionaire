@@ -2,8 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire"
+             xmlns:viewmodels="clr-namespace:WhoWantsToBeAMillionaire.ViewModels"
+             xmlns:views="clr-namespace:WhoWantsToBeAMillionaire.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type viewmodels:StartViewModel}">
+            <views:StartView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
+            <views:GameView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

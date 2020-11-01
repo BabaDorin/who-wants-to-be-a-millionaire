@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Media\" />
+    <Folder Include="Resources\Styles\" />
+  </ItemGroup>
+
 </Project>
