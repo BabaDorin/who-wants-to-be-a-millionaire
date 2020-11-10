@@ -28,13 +28,10 @@ namespace WhoWantsToBeAMillionaire.Views
         private void btStartGame_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Game");
-            //(this.Parent as MainWindow).UpdateView("Game");
-            //MainWindow.GetInstace().UpdateView("Game");
         }
 
         private void btShowRules_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Rules here");
         }
     }
 }
