@@ -19,24 +19,6 @@ namespace WhoWantsToBeAMillionaire
 {
     public partial class MainWindow : Window
     {
-        // Singleton pattern
-        private static MainWindow instance;
-        private MainWindow()
-        {
-            InitializeComponent();
-
-            DataContext = new MainViewModel();
-        }
-        public static MainWindow GetInstace()
-        {
-            if(instance == null)
-            {
-                instance = new MainWindow();
-            }
-
-            return instance;
-        }
-
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)
         {
             UpdateView("Start");

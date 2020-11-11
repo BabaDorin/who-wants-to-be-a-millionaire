@@ -50,8 +50,6 @@ namespace WhoWantsToBeAMillionaire.Models
             Prizes.Add("250 000");
             Prizes.Add("500 000");
             Prizes.Add("1 000 000"); // SafePoint
-
-            Questions = DBService.GetQuestions();
         }
     }
 }
