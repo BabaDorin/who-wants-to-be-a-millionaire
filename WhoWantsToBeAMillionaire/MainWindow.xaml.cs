@@ -19,6 +19,13 @@ namespace WhoWantsToBeAMillionaire
 {
     public partial class MainWindow : Window
     {
+        private MainWindow()
+        {
+            InitializeComponent();
+
+            DataContext = new MainViewModel();
+        }
+
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)
         {
             UpdateView("Start");
