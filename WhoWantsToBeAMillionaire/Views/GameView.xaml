@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -21,12 +21,12 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Label Content="Lifeline 1" Background="Blue"/>
-                <Label Content="Lifeline 1" Background="Blue"/>
-                <Label Content="Lifeline 1" Background="Blue"/>
+                <Button x:Name="btFiftyFifty" Click="btFiftyFifty_Click"  Content="Lifeline 1" Background="Blue"/>
+                <Button x:Name="btAskAudience" Click="btAskAudience_Click" Content="Lifeline 1" Background="Blue"/>
+                <Button x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
             </StackPanel>
 
-            <Label Grid.Row="1" FontSize="40" Content="Intrebare" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Row="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Intrebare"/>
 
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -47,6 +47,24 @@
             <Label Grid.Row="3" Content="AdditionalInformation" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Background="Azure"/>
         </Grid>
 
-        <Label Grid.Column="1" Content="Prize list" Background="Purple"/>
+        <!--<Label Grid.Column="1" Content="Prize list" Background="Purple"/>-->
+        <StackPanel CanVerticallyScroll="True" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+            <!--<Label Content="1 000 000" FontSize="15" Style="{Binding prizeStyle[0]}"/>-->
+            <Label Content="1 000 000" FontSize="15"/>
+            <Label Content="500 000" FontSize="15"/>
+            <Label Content="250 000" FontSize="15"/>
+            <Label Content="124 000" FontSize="15"/>
+            <Label Content="64 000" FontSize="15"/>
+            <Label Content="32 000" FontSize="15"/>
+            <Label Content="16 000" FontSize="15"/>
+            <Label Content="8 000" FontSize="15"/>
+            <Label Content="4 000" FontSize="15"/>
+            <Label Content="2 000" FontSize="15"/>
+            <Label Content="1 000" FontSize="15"/>
+            <Label Content="500" FontSize="15"/>
+            <Label Content="200" FontSize="15"/>
+            <Label Content="300" FontSize="15"/>
+            <Label Content="100" FontSize="15"/>
+        </StackPanel>
     </Grid>
 </UserControl>
