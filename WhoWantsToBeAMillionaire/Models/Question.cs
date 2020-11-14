@@ -30,6 +30,6 @@ namespace WhoWantsToBeAMillionaire.Models
         // Explicatii suplimentare (In cazul in care jucatorul alege o optiune gresita,
         // va fi afiat care a fost raspunsul corect, impreuna cu o explicatie)
         // Campul este optional
-        public string Explications { get; set; }
+        public string Explanations { get; set; }
     }
 }

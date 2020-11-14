@@ -46,7 +46,12 @@
                 <Button Click="btOption_Click" Grid.Row="1" Grid.Column="1" Tag="3" Content="{Binding CurrentQuestion.Options[3]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
             </Grid>
 
-            <Label Grid.Row="3" Content="AdditionalInformation" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Background="Azure" Visibility="Collapsed"/>
+            <Label Grid.Row="3" Name="lbExplications" 
+                   Content="{Binding Explanations}" 
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                   FontSize="20" 
+                   Background="Azure" 
+                   Visibility="Collapsed"/>
         </Grid>
 
         <!--<Label Grid.Column="1" Content="Prize list" Background="Purple"/>-->

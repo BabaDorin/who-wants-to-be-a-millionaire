@@ -31,7 +31,7 @@ namespace WhoWantsToBeAMillionaire.Services
                 {
                     CorrectOptionIndex = 1,
                     DifficultyLevel = DifficultyLevel.Easy,
-                    Explications = "Explanations goes here",
+                    Explanations = "Explanations goes here",
                     Options = new List<string>() { "op1", "op2", "op3", "op4" },
                     QuestionText = "Text intrebare " + i
                 };

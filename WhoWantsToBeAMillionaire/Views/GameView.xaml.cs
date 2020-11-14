@@ -57,7 +57,17 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btOption_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as GameViewModel).AnswerSubmitted(int.Parse((sender as Button).Tag.ToString()));
+            string feedBack = (DataContext as GameViewModel).AnswerSubmitted(int.Parse((sender as Button).Tag.ToString()));
+
+            switch (feedBack)
+            {
+                case "Success!": break;
+                case "Winner": break;
+                case null: break;
+                default: lbExplications.Content = feedBack;
+                    lbExplications.Visibility = Visibility.Visible;
+                    break;
+            }
         }
     }
 }

@@ -80,11 +80,14 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
             Prizes.Reverse();
             Prizes[Prizes.Count-1].Background = Brushes.Black;
-
         }
 
-        public void AnswerSubmitted(int optionId)
+        public string AnswerSubmitted(int optionId)
         {
+            // Returneaza "Success!" Daca a fost ales raspunsul corect,
+            // Returneaza Game.Explanations Daca a fost ales un raspuns gresit
+            // Returneaza "Winner!" Daca a fost ales raspunsul corect pentru ultima intrebare
+
             if (GameService.CheckAnswer(optionId))
             {
                 CurrentQuestion = GameService.PickNext();
@@ -92,15 +95,16 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 if(CurrentQuestion == null)
                 {
                     // Nu mai sunt intrebari. Au fost raspunse toate corect.
-                    MessageBox.Show("Winner!");
+                    return "Winner!";
                 }
 
                 MarkCurrentPrizeWithinPrizeStack();
+                return "Success!";
             }
             else
             {
-                MessageBox.Show("Iaca na =(");
-                GameService.GameOver();
+                GameOver();
+                return CurrentQuestion.Explanations;
             }
         }
 
@@ -109,7 +113,15 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Background = Brushes.Black;
         }
 
-        // TODO: Find a way to check answers using GameService (Is answer correct / wrong / the last one etc.)
+        public void GameOver()
+        {
+            FiftyFiftyUsed = true;
+            FriendCalled = true;
+            AudienceAsked = true;
+
+            GameService.GameOver();
+        }
+
         // TODO: Find a way to deal with lifelinesAvailability renundance
         // TODO: Add default style
     }
