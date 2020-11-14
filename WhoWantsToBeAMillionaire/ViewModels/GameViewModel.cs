@@ -63,7 +63,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public GameViewModel()
         {
-            CurrentQuestion = GameService.Game.Questions[0];
+            //CurrentQuestion = GameService.Game.Questions[0];
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
 
             Prizes = new List<Label>();

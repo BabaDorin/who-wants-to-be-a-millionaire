@@ -19,7 +19,7 @@ namespace WhoWantsToBeAMillionaire
 {
     public partial class MainWindow : Window
     {
-        private MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
 

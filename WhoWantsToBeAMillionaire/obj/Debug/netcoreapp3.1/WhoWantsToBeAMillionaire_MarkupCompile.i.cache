@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\App.xaml
-6-931374320
+8-313850798
 
-261594427937
+271640579126
 1921654412462
-MainWindow.xaml;Views\AdminView.xaml;Views\AskAudienceView.xaml;Views\GameView.xaml;Views\ResultsView.xaml;Views\StartView.xaml;
+MainWindow.xaml;Styles\Styles.xaml;Views\AdminView.xaml;Views\AskAudienceView.xaml;Views\GameView.xaml;Views\ResultsView.xaml;Views\RulesView.xaml;Views\StartView.xaml;
 
 False
 

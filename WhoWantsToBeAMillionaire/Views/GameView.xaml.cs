@@ -22,7 +22,7 @@ namespace WhoWantsToBeAMillionaire.Views
         public GameView()
         {
             DataContext = new GameViewModel();
-            (DataContext as GameViewModel).CurrentQuestion = "cf sarak";
+            //(DataContext as GameViewModel).CurrentQuestion = "cf sarak";
             InitializeComponent();
         }
 

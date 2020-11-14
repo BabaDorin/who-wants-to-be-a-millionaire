@@ -32,6 +32,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btShowRules_Click(object sender, RoutedEventArgs e)
         {
+            ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Rules");
         }
     }
 }

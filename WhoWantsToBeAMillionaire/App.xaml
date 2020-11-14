@@ -6,11 +6,13 @@
              xmlns:views="clr-namespace:WhoWantsToBeAMillionaire.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:StartViewModel}">
+        <ResourceDictionary Source="/Styles/Styles.xaml" />
+
+        <!--<DataTemplate DataType="{x:Type viewmodels:StartViewModel}">
             <views:StartView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
             <views:GameView/>
-        </DataTemplate>
+        </DataTemplate>-->
     </Application.Resources>
 </Application>
