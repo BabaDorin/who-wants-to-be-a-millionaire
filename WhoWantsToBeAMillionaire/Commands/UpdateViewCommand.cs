@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using WhoWantsToBeAMillionaire.ViewModels;
+using WhoWantsToBeAMillionaire.Views;
 
 namespace WhoWantsToBeAMillionaire.Commands
 {
@@ -24,13 +26,16 @@ namespace WhoWantsToBeAMillionaire.Commands
 
         public void Execute(object parameter)
         {
-            if(parameter.ToString() == "Game")
+            BaseViewModel selectedViewModel = null;
+            switch (parameter.ToString())
             {
-                viewModel.SelectedViewModel = new GameViewModel();
-            }else if(parameter.ToString() == "Start")
-            {
-                viewModel.SelectedViewModel = new StartViewModel();
+                case "Game": selectedViewModel = new GameViewModel(); break;
+                case "Start": selectedViewModel = new StartViewModel(); break;
+                case "Rules": selectedViewModel = new RulesViewModel(); break;
+                default: selectedViewModel = new StartViewModel(); break;
             }
+
+            viewModel.SelectedViewModel = selectedViewModel;
         }
     }
 }

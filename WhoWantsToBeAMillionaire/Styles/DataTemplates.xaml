@@ -9,4 +9,7 @@
     <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
         <views:GameView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodels:RulesViewModel}">
+        <views:RulesView/>
+    </DataTemplate>
 </ResourceDictionary>
