@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             mc:Ignorable="d" Background="White" Height="492" Width="974">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -26,7 +25,10 @@
                 <Button x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
             </StackPanel>
 
-            <Label Grid.Row="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Intrebare"/>
+            <Label Grid.Row="1" 
+                   FontSize="40" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Content="{Binding CurrentQuestion.QuestionText}"/>
 
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -38,17 +40,22 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Raspuns 1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
-                <Label Grid.Row="0" Grid.Column="1" Content="Raspuns 2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
-                <Label Grid.Row="1" Grid.Column="0" Content="Raspuns 3" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="Raspuns 4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
+                <Button Click="btOption_Click" Grid.Row="0" Grid.Column="0" Tag="0" Content="{Binding CurrentQuestion.Options[0]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
+                <Button Click="btOption_Click" Grid.Row="0" Grid.Column="1" Tag="1" Content="{Binding CurrentQuestion.Options[1]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
+                <Button Click="btOption_Click" Grid.Row="1" Grid.Column="0" Tag="2" Content="{Binding CurrentQuestion.Options[2]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
+                <Button Click="btOption_Click" Grid.Row="1" Grid.Column="1" Tag="3" Content="{Binding CurrentQuestion.Options[3]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
             </Grid>
 
-            <Label Grid.Row="3" Content="AdditionalInformation" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Background="Azure"/>
+            <Label Grid.Row="3" Content="AdditionalInformation" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Background="Azure" Visibility="Collapsed"/>
         </Grid>
 
         <!--<Label Grid.Column="1" Content="Prize list" Background="Purple"/>-->
-        <StackPanel CanVerticallyScroll="True" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+        <StackPanel 
+            CanVerticallyScroll="True" 
+            Grid.Column="1" 
+            Orientation="Vertical" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center">
             <!--<Label Content="1 000 000" FontSize="15" Style="{Binding prizeStyle[0]}"/>-->
             <Label Content="1 000 000" FontSize="15"/>
             <Label Content="500 000" FontSize="15"/>

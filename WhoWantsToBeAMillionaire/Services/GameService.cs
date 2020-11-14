@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using WhoWantsToBeAMillionaire.Models;
 
@@ -31,16 +32,23 @@ namespace WhoWantsToBeAMillionaire.Services
             Game.PlayerName = playerName;
         }
 
-        public Question PickAQuestion()
+        public Question PickNext()
         {
             // In dependenta de numarul intrebarii, vom extrage o intrebare de dificultatea corespunzatoare
-            throw new NotImplementedException();
+            return Game.Questions[++Game.CurrentQuestion];
         }
 
-        public bool CheckAnswer(int userAnswerId)
+        public void GameOver()
+        {
+
+        }
+
+        public bool CheckAnswer(int userOptionId)
         {
             // Verifica corectitudinea raspunsului utilizatorului.
-            throw new NotImplementedException();
+            Debug.WriteLine("Current question index " + Game.CurrentQuestion + ", Correct ID: "
+                + Game.Questions[Game.CurrentQuestion].CorrectOptionIndex + ", User's option: " + userOptionId);
+            return Game.Questions[Game.CurrentQuestion].CorrectOptionIndex == userOptionId;
         }
 
         public List<int> AskAudience()

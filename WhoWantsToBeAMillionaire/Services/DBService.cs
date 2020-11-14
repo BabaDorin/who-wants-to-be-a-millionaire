@@ -29,11 +29,11 @@ namespace WhoWantsToBeAMillionaire.Services
             {
                 Question tq = new Question()
                 {
-                    CorrectOptionIndex = i,
+                    CorrectOptionIndex = 1,
                     DifficultyLevel = DifficultyLevel.Easy,
                     Explications = "Explanations goes here",
                     Options = new List<string>() { "op1", "op2", "op3", "op4" },
-                    QuestionText = "Text intrebare"
+                    QuestionText = "Text intrebare " + i
                 };
                 TestQuestions.Add(tq);
             }

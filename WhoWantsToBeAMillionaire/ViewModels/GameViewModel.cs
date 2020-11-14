@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Principal;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
@@ -75,6 +76,21 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         }
 
+        public void AnswerSubmitted(int optionId)
+        {
+            if (GameService.CheckAnswer(optionId))
+            {
+                MessageBox.Show("True, boi");
+                CurrentQuestion = GameService.PickNext();
+            }
+            else
+            {
+                MessageBox.Show("Iaca na =(");
+                GameService.GameOver();
+            }
+        }
+
+        // LAST: PickNextQuestion
         // TODO: Find a way to check answers using GameService (Is answer correct / wrong / the last one etc.)
         // TODO: Find a way to deal with lifelinesAvailability renundance
         // TODO: Add default style
