@@ -34,7 +34,8 @@ namespace WhoWantsToBeAMillionaire.Models
         public Game()
         {
             PrizeSoFar = "0";
-            
+
+            Prizes = new List<string>();
             Prizes.Add("100");
             Prizes.Add("200");
             Prizes.Add("300");

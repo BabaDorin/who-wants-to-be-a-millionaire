@@ -24,6 +24,7 @@ namespace WhoWantsToBeAMillionaire
             InitializeComponent();
 
             DataContext = new MainViewModel();
+            UpdateView("Start");
         }
 
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)

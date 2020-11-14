@@ -27,7 +27,7 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             // Initializarea jocului: Este creat un obiect Game. Sunt extrase intrebarile jocului din fisierul XML
             Game = new Game();
-            Game.Questions = DBService.GetQuestions();
+            Game.Questions = DBService.GetTestQuestions();
             Game.PlayerName = playerName;
         }
 

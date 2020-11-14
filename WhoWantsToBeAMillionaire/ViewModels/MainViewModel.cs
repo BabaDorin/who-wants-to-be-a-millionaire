@@ -19,7 +19,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 			{
 				selectedViewModel = value;
 				OnPropertyChanged(nameof(selectedViewModel));
-				MessageBox.Show("Selectedviewmodel has been set to " + SelectedViewModel.ToString());
 			}
 		}
 

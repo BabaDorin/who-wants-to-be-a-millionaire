@@ -6,13 +6,11 @@
              xmlns:views="clr-namespace:WhoWantsToBeAMillionaire.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="/Styles/Styles.xaml" />
-
-        <!--<DataTemplate DataType="{x:Type viewmodels:StartViewModel}">
-            <views:StartView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
-            <views:GameView/>
-        </DataTemplate>-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml" />
+                <ResourceDictionary Source="/Styles/DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
