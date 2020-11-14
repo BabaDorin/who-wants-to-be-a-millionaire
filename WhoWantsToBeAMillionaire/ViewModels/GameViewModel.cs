@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Security.Principal;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
 
@@ -72,7 +74,12 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
             Prizes = new List<Label>();
             foreach (string prize in GameService.Game.Prizes)
-                Prizes.Add(new Label { Content = prize });
+            {
+                Label lbPrize = new Label { Content = prize };
+                Prizes.Add(lbPrize);
+            }
+            Prizes.Reverse();
+            Prizes[Prizes.Count-1].Background = Brushes.Black;
 
         }
 
@@ -80,8 +87,15 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         {
             if (GameService.CheckAnswer(optionId))
             {
-                MessageBox.Show("True, boi");
                 CurrentQuestion = GameService.PickNext();
+
+                if(CurrentQuestion == null)
+                {
+                    // Nu mai sunt intrebari. Au fost raspunse toate corect.
+                    MessageBox.Show("Winner!");
+                }
+
+                MarkCurrentPrizeWithinPrizeStack();
             }
             else
             {
@@ -90,7 +104,11 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
-        // LAST: PickNextQuestion
+        public void MarkCurrentPrizeWithinPrizeStack()
+        {
+            Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Background = Brushes.Black;
+        }
+
         // TODO: Find a way to check answers using GameService (Is answer correct / wrong / the last one etc.)
         // TODO: Find a way to deal with lifelinesAvailability renundance
         // TODO: Add default style

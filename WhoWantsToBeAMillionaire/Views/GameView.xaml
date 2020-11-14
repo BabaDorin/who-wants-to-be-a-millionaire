@@ -51,27 +51,12 @@
 
         <!--<Label Grid.Column="1" Content="Prize list" Background="Purple"/>-->
         <StackPanel 
+            x:Name="prizeStack"
             CanVerticallyScroll="True" 
             Grid.Column="1" 
             Orientation="Vertical" 
             VerticalAlignment="Center" 
             HorizontalAlignment="Center">
-            <!--<Label Content="1 000 000" FontSize="15" Style="{Binding prizeStyle[0]}"/>-->
-            <Label Content="1 000 000" FontSize="15"/>
-            <Label Content="500 000" FontSize="15"/>
-            <Label Content="250 000" FontSize="15"/>
-            <Label Content="124 000" FontSize="15"/>
-            <Label Content="64 000" FontSize="15"/>
-            <Label Content="32 000" FontSize="15"/>
-            <Label Content="16 000" FontSize="15"/>
-            <Label Content="8 000" FontSize="15"/>
-            <Label Content="4 000" FontSize="15"/>
-            <Label Content="2 000" FontSize="15"/>
-            <Label Content="1 000" FontSize="15"/>
-            <Label Content="500" FontSize="15"/>
-            <Label Content="200" FontSize="15"/>
-            <Label Content="300" FontSize="15"/>
-            <Label Content="100" FontSize="15"/>
         </StackPanel>
     </Grid>
 </UserControl>

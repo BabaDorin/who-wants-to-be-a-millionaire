@@ -35,6 +35,9 @@ namespace WhoWantsToBeAMillionaire.Services
         public Question PickNext()
         {
             // In dependenta de numarul intrebarii, vom extrage o intrebare de dificultatea corespunzatoare
+            if (Game.CurrentQuestion == 14)
+                return null;
+
             return Game.Questions[++Game.CurrentQuestion];
         }
 

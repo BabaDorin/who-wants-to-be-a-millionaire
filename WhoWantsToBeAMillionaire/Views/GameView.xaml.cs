@@ -25,6 +25,12 @@ namespace WhoWantsToBeAMillionaire.Views
             DataContext = new GameViewModel();
             //(DataContext as GameViewModel).CurrentQuestion = "cf sarak";
             InitializeComponent();
+
+            foreach(Label lbPrize in (DataContext as GameViewModel).Prizes)
+            {
+                prizeStack.Children.Add(lbPrize);
+                lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
+            }
         }
 
 

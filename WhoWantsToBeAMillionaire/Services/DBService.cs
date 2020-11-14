@@ -25,7 +25,7 @@ namespace WhoWantsToBeAMillionaire.Services
         public static List<Question> GetTestQuestions()
         {
             List<Question> TestQuestions = new List<Question>();
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 15; i++)
             {
                 Question tq = new Question()
                 {
