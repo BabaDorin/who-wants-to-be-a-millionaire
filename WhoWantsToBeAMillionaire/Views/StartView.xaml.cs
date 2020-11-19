@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WhoWantsToBeAMillionaire.Models;
+using WhoWantsToBeAMillionaire.Services;
 using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
@@ -23,16 +24,23 @@ namespace WhoWantsToBeAMillionaire.Views
         public StartView()
         {
             InitializeComponent();
+            DataContext = new StartViewModel();
         }
 
         private void btStartGame_Click(object sender, RoutedEventArgs e)
         {
+            GameService.GetInstace().Init(tbPlayerName.Text);
             ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Game");
         }
 
         private void btShowRules_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Rules");
+        }
+
+        private void tbPlayerName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            (DataContext as StartViewModel).PlayerNameNotEmpty = (tbPlayerName.Text.Trim() != "");
         }
     }
 }

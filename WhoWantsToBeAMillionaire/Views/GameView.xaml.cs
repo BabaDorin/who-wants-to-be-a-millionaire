@@ -33,7 +33,6 @@ namespace WhoWantsToBeAMillionaire.Views
             }
         }
 
-
         private void btAskAudience_Click(object sender, RoutedEventArgs e)
         {
             Window window = new Window

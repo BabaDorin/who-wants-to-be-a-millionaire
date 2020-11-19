@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         FontFamily="Source Sans Pro"
         Title="MainWindow" Height="630" Width="1140"
-        MinWidth="580" MinHeight="500"
-        Loaded="Window_Loaded">
+        MinWidth="580" MinHeight="500">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/bg.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

@@ -6,8 +6,13 @@
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Purple">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Opacity="0.5" Color="Black"/>    
+        </Grid.Background>
+        
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -17,19 +22,38 @@
         <Label x:Name="Title" Grid.Row="1" 
                FontSize="40"
                Foreground="White"
-               Content="Vrei sa fii Milionar"
+               Content="Bine ai venit!"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
 
-        <Button x:Name="btStartGame" Grid.Row="2"
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Introdu numele"
+                   Foreground="White" FontSize="16"
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Name="tbPlayerName" Grid.Row="1" Foreground="White" Background="BlueViolet" FontSize="33" TextAlignment="Center"
+                     Width="400" Height="60" BorderBrush="Black" BorderThickness="5" TextChanged="tbPlayerName_TextChanged"
+                     
+                     />
+        </Grid>
+
+        <Button x:Name="btStartGame" Grid.Row="3"
                 Content="Incepe jocul"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+                VerticalAlignment="Center" 
+                IsEnabled="{Binding PlayerNameNotEmpty}"
+                Style="{StaticResource NormalPolygon}"
                 Click="btStartGame_Click"/>
-        <Button x:Name="btShowRules" Grid.Row="3"
+        
+        <Button x:Name="btShowRules" Grid.Row="4"
                 Content="Regulamentul"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Style="{StaticResource NormalPolygon}"
                 Click="btShowRules_Click"/>
     </Grid>
 </UserControl>

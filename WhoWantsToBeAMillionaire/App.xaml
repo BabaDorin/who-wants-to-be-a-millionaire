@@ -8,8 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Styles.xaml" />
-                <ResourceDictionary Source="/Styles/DataTemplates.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

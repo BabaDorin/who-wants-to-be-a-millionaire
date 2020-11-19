@@ -38,15 +38,6 @@ namespace WhoWantsToBeAMillionaire
             UpdateView("Game");
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        public void StartGame()
-        {
-
-        }
-
         public void UpdateView(string parameter)
         {
             (DataContext as MainViewModel).UpdateViewCommand.Execute(parameter);

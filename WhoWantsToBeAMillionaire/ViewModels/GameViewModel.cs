@@ -67,7 +67,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         public GameViewModel()
         {
             GameService = GameService.GetInstace();
-            GameService.Init("Test Player Name");
 
             CurrentQuestion = GameService.Game.Questions[0];
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
