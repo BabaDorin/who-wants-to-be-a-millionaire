@@ -79,14 +79,43 @@
         </Setter>
     </Style>
 
-    <Style x:Key="QuestionPolygon" TargetType="{x:Type TextBox}">
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="PolygonStyle" TargetType="Polygon">
+        <Setter Property="Points" Value="00,30 60,0 360,0 420,30 360,60 60,60"/>
+        <Setter Property="Fill" Value="Black"/>
+        <Setter Property="Stroke" Value="Blue"/>
+        <Setter Property="StrokeThickness" Value="2"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Fill" Value="Green"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="QuestionPolygon" BasedOn="{StaticResource PolygonStyle}" TargetType="Polygon">
+        <Setter Property="Points" Value="0,40 60,10 650,10 710,40 650,70 60,70"/>
+    </Style>
+
+    <Style x:Key="OptionPolygon" BasedOn="{StaticResource PolygonStyle}" TargetType="Polygon">
+        <Setter Property="Points" Value="0,30 60,5 360,5 420,30 360,55 60,55"/>
+    </Style>
+
+    <Style x:Key="QuestionStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="600"/>
+    </Style>
+
+    <Style x:Key="OptionStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource QuestionStyle}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Width" Value="350"/>
+        <Setter Property="TextAlignment" Value="Left"/>
     </Style>
 
     <!--TODO: Optimize all of this-->

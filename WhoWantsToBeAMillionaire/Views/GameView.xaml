@@ -26,24 +26,13 @@
                 <Button x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
             </StackPanel>
 
-            <!--<TextBox Grid.Row="1" 
-                   FontSize="40" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Text="{Binding CurrentQuestion.QuestionText}"/>-->
-
-            <Grid x:Name="topTriangle" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
-                <Polygon Fill="black"  Points="0,40 60,10 650,10 710,40 650,70 60,70" Stroke="Blue" StrokeThickness="2"/>
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                <Polygon Style="{StaticResource QuestionPolygon}"/>
                 <TextBox 
-                    Style="{StaticResource QuestionPolygon}"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"  
-                    TextWrapping="WrapWithOverflow"
+                    Style="{StaticResource QuestionStyle}"
                     Width="620"
                     Text="Cine a fost Stefan ct Stefan ct Stefan ct Stefan ct Stefan cel Maren cel Maren cel Maren cel Maren cel Maren cel Mare?"/>
             </Grid>
-            <Label Grid.Row="1" 
-                   
-                   
-                   Content="Cine a dowmnit ieri"/>
 
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -55,6 +44,42 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
+                <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
+                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <TextBox 
+                    Style="{StaticResource OptionStyle}"
+                    Width="300">
+                        A: 1950
+                    </TextBox>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
+                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <TextBox 
+                    Style="{StaticResource OptionStyle}"
+                    Width="300">
+                        B: 1999
+                    </TextBox>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
+                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <TextBox 
+                    Style="{StaticResource OptionStyle}"
+                    Width="300">
+                        A: 1950
+                    </TextBox>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
+                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <TextBox 
+                    Style="{StaticResource OptionStyle}"
+                    Width="300">
+                        B: 1999
+                    </TextBox>
+                </Grid>
+                
                 <Button Click="btOption_Click" Grid.Row="0" Grid.Column="0" Tag="0" Content="{Binding CurrentQuestion.Options[0]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
                 <Button Click="btOption_Click" Grid.Row="0" Grid.Column="1" Tag="1" Content="{Binding CurrentQuestion.Options[1]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
                 <Button Click="btOption_Click" Grid.Row="1" Grid.Column="0" Tag="2" Content="{Binding CurrentQuestion.Options[2]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
