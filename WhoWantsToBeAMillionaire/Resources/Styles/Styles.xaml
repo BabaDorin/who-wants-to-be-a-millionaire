@@ -34,6 +34,28 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
 
+    <Style x:Key="PrizeItemStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Foreground" Value="#eca609"/>
+    </Style>
+
+    <Style x:Key="SafePrizeItemStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style x:Key="CurrentPrize" TargetType="Label">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="#eca609"/>
+    </Style>
+
     <Style x:Key="NormalPolygon" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -57,27 +79,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="LargePolygon" TargetType="{x:Type Button}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Polygon Fill="{TemplateBinding Background}"  Points="0,40 60,0 650,0 710,40 650,80 60,80" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Blue"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="QuestionPolygon" TargetType="{x:Type TextBox}">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
     <!--TODO: Optimize all of this-->

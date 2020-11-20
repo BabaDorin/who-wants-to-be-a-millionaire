@@ -12,6 +12,9 @@
         <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/bg.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Opacity="0.5" Color="Black"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="20*"/>

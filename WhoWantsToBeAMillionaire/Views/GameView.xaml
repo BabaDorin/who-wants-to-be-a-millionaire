@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
-             mc:Ignorable="d" Height="492" Width="974">
+             mc:Ignorable="d" Height="492" Width="1140">
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="2*"/>
@@ -25,10 +26,24 @@
                 <Button x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
             </StackPanel>
 
-            <Label Grid.Row="1" 
+            <!--<TextBox Grid.Row="1" 
                    FontSize="40" 
                    HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Content="{Binding CurrentQuestion.QuestionText}"/>
+                   Text="{Binding CurrentQuestion.QuestionText}"/>-->
+
+            <Grid x:Name="topTriangle" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                <Polygon Fill="black"  Points="0,40 60,10 650,10 710,40 650,70 60,70" Stroke="Blue" StrokeThickness="2"/>
+                <TextBox 
+                    Style="{StaticResource QuestionPolygon}"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"  
+                    TextWrapping="WrapWithOverflow"
+                    Width="620"
+                    Text="Cine a fost Stefan ct Stefan ct Stefan ct Stefan ct Stefan cel Maren cel Maren cel Maren cel Maren cel Maren cel Mare?"/>
+            </Grid>
+            <Label Grid.Row="1" 
+                   
+                   
+                   Content="Cine a dowmnit ieri"/>
 
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>

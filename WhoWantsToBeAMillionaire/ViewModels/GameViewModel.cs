@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Security.Principal;
 using System.Text;
@@ -14,6 +15,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
     class GameViewModel : BaseViewModel
     {
         public GameService GameService { get; set; }
+        private Style lastItemStyle = null;
 
         private Question _currentQuestion;
         public Question CurrentQuestion
@@ -72,13 +74,21 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
 
             Prizes = new List<Label>();
+            var SafePoints = new List<String> { "1 000", "32 000", "1 000 000" };
             foreach (string prize in GameService.Game.Prizes)
             {
                 Label lbPrize = new Label { Content = prize };
+                string styleIdentifier = "PrizeItemStyle";
+                if (SafePoints.Contains(lbPrize.Content.ToString()))
+                    styleIdentifier = "SafePrizeItemStyle";
+                
+                lbPrize.Style = Application.Current.TryFindResource(styleIdentifier) as Style;
                 Prizes.Add(lbPrize);
             }
             Prizes.Reverse();
-            Prizes[Prizes.Count-1].Background = Brushes.Black;
+
+            lastItemStyle = Prizes[Prizes.Count - 1].Style;
+            Prizes[Prizes.Count-1].Style = Application.Current.TryFindResource("CurrentPrize") as Style;
         }
 
         public string AnswerSubmitted(int optionId)
@@ -109,7 +119,12 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public void MarkCurrentPrizeWithinPrizeStack()
         {
-            Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Background = Brushes.Black;
+            Prizes[Prizes.Count - GameService.Game.CurrentQuestion].Style = lastItemStyle;
+
+            lastItemStyle = Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Style;
+
+            Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Style 
+                = Application.Current.TryFindResource("CurrentPrize") as Style;
         }
 
         public void GameOver()

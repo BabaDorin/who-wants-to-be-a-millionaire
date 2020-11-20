@@ -20,9 +20,9 @@
             <TextBlock Style="{StaticResource Heading}">
             Vrei sa fii Milionar, regulament
             </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
-            </TextBlock>
+            <Label Style="{StaticResource CurrentPrize}">
+            $200
+            </Label>
             <TextBlock Style="{StaticResource NormalText}" Margin="10">
             Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
             </TextBlock>
