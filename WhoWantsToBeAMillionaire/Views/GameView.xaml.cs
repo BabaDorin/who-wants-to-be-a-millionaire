@@ -56,7 +56,8 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btOption_Click(object sender, RoutedEventArgs e)
         {
-            string feedBack = (DataContext as GameViewModel).AnswerSubmitted(int.Parse((sender as Button).Tag.ToString()));
+
+            string feedBack = (DataContext as GameViewModel).AnswerSubmitted(int.Parse((sender as FrameworkElement).Tag.ToString()));
 
             switch (feedBack)
             {
@@ -67,6 +68,11 @@ namespace WhoWantsToBeAMillionaire.Views
                     lbExplications.Visibility = Visibility.Visible;
                     break;
             }
+        }
+
+        private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

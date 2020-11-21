@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" Height="492" Width="1140">
     <Grid>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="2*"/>
@@ -17,7 +17,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="5*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Name="RowForAdditionalInformation" Height="0*"/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -45,45 +45,51 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <Polygon Name="option1Polygon" Style="{StaticResource OptionPolygon}"
+                             Tag="0"
+                             MouseDown="btOption_Click"/>
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
-                    Width="300">
-                        A: 1950
-                    </TextBox>
+                    Width="300"
+                    Text="{Binding CurrentQuestion.Options[0]}"
+                    Tag="0"
+                    MouseDown="btOption_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <Polygon Style="{StaticResource OptionPolygon}"
+                             Tag="1"
+                             MouseDown="btOption_Click"/>
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
-                    Width="300">
-                        B: 1999
-                    </TextBox>
+                    Width="300"
+                    Text="{Binding CurrentQuestion.Options[1]}"
+                    Tag="1"
+                    MouseDown="btOption_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <Polygon Style="{StaticResource OptionPolygon}"
+                             Tag="2"
+                             MouseDown="btOption_Click"/>
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
-                    Width="300">
-                        A: 1950
-                    </TextBox>
+                    Width="300"
+                    Text="{Binding CurrentQuestion.Options[2]}"
+                    Tag="2"
+                    MouseDown="btOption_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"/>
+                    <Polygon Style="{StaticResource OptionPolygon}"
+                             Tag="3" MouseDown="btOption_Click"/>
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
-                    Width="300">
-                        B: 1999
-                    </TextBox>
+                    Width="300"
+                    Text="{Binding CurrentQuestion.Options[3]}"
+                    Tag="3"
+                    MouseDown="btOption_Click"/>
                 </Grid>
-                
-                <Button Click="btOption_Click" Grid.Row="0" Grid.Column="0" Tag="0" Content="{Binding CurrentQuestion.Options[0]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
-                <Button Click="btOption_Click" Grid.Row="0" Grid.Column="1" Tag="1" Content="{Binding CurrentQuestion.Options[1]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
-                <Button Click="btOption_Click" Grid.Row="1" Grid.Column="0" Tag="2" Content="{Binding CurrentQuestion.Options[2]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
-                <Button Click="btOption_Click" Grid.Row="1" Grid.Column="1" Tag="3" Content="{Binding CurrentQuestion.Options[3]}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Background="AliceBlue"/>
             </Grid>
 
             <Label Grid.Row="3" Name="lbExplications" 
