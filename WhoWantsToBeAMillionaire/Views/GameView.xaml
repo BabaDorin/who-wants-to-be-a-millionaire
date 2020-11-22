@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
-             mc:Ignorable="d" Height="492" Width="1140">
+             mc:Ignorable="d" Height="580" Width="1100">
+    <!--set height and width to auto when done!-->
+    <!--Height="580" Width="1100"-->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -19,12 +21,6 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Name="RowForAdditionalInformation" Height="0*"/>
             </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button x:Name="btFiftyFifty" Click="btFiftyFifty_Click"  Content="Lifeline 1" Background="Blue"/>
-                <Button x:Name="btAskAudience" Click="btAskAudience_Click" Content="Lifeline 1" Background="Blue"/>
-                <Button x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
-            </StackPanel>
 
             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
                 <Polygon Style="{StaticResource QuestionPolygon}"/>
@@ -51,9 +47,14 @@
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
                     Width="300"
-                    Text="{Binding CurrentQuestion.Options[0]}"
                     Tag="0"
-                    MouseDown="btOption_Click"/>
+                    MouseDown="btOption_Click">
+                        <TextBox.Text>
+                            <MultiBinding StringFormat="{}A:  {0}">
+                                <Binding Path="CurrentQuestion.Options[0]" />
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
@@ -63,9 +64,14 @@
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
                     Width="300"
-                    Text="{Binding CurrentQuestion.Options[1]}"
                     Tag="1"
-                    MouseDown="btOption_Click"/>
+                    MouseDown="btOption_Click">
+                        <TextBox.Text>
+                            <MultiBinding StringFormat="{}B:  {0}">
+                                <Binding Path="CurrentQuestion.Options[1]" />
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
@@ -75,9 +81,14 @@
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
                     Width="300"
-                    Text="{Binding CurrentQuestion.Options[2]}"
                     Tag="2"
-                    MouseDown="btOption_Click"/>
+                    MouseDown="btOption_Click">
+                        <TextBox.Text>
+                            <MultiBinding StringFormat="{}C:  {0}">
+                                <Binding Path="CurrentQuestion.Options[2]" />
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
@@ -86,9 +97,14 @@
                     <TextBox 
                     Style="{StaticResource OptionStyle}"
                     Width="300"
-                    Text="{Binding CurrentQuestion.Options[3]}"
                     Tag="3"
-                    MouseDown="btOption_Click"/>
+                    MouseDown="btOption_Click">
+                        <TextBox.Text>
+                            <MultiBinding StringFormat="{}D:  {0}">
+                                <Binding Path="CurrentQuestion.Options[3]" />
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
             </Grid>
 
@@ -100,14 +116,28 @@
                    Visibility="Collapsed"/>
         </Grid>
 
-        <!--<Label Grid.Column="1" Content="Prize list" Background="Purple"/>-->
-        <StackPanel 
-            x:Name="prizeStack"
-            CanVerticallyScroll="True" 
-            Grid.Column="1" 
-            Orientation="Vertical" 
-            VerticalAlignment="Center" 
-            HorizontalAlignment="Center">
-        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="btFiftyFifty" Click="btFiftyFifty_Click"  Content="Lifeline 1" Background="Blue"/>
+                <Button Grid.Column="1" x:Name="btAskAudience" Click="btAskAudience_Click" Content="Lifeline 1" Background="Blue"/>
+                <Button Grid.Column="2" x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
+            </Grid>
+
+            <Grid Grid.Row="1" 
+                  Name="prizeStack" 
+                  Margin="0 20 0 40"
+                  Height="auto">
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

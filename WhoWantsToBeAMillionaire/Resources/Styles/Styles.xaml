@@ -37,21 +37,21 @@
     <Style x:Key="PrizeItemStyle" TargetType="Label">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Height" Value="32"/>
+        <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="Foreground" Value="#eca609"/>
     </Style>
 
     <Style x:Key="SafePrizeItemStyle" TargetType="Label">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Height" Value="32"/>
+        <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
     <Style x:Key="CurrentPrize" TargetType="Label">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Height" Value="32"/>
+        <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="#eca609"/>
     </Style>
@@ -84,11 +84,6 @@
         <Setter Property="Fill" Value="Black"/>
         <Setter Property="Stroke" Value="Blue"/>
         <Setter Property="StrokeThickness" Value="2"/>
-        <Style.Triggers>
-            <Trigger Property="Polygon.IsMouseOver" Value="True">
-                <Setter Property="Fill" Value="Green"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="QuestionPolygon" BasedOn="{StaticResource PolygonStyle}" TargetType="Polygon">
@@ -97,6 +92,11 @@
 
     <Style x:Key="OptionPolygon" BasedOn="{StaticResource PolygonStyle}" TargetType="Polygon">
         <Setter Property="Points" Value="0,30 60,5 360,5 420,30 360,55 60,55"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Fill" Value="Green"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="QuestionStyle" TargetType="{x:Type TextBox}">

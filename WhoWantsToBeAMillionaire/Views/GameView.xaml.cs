@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Printing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,13 +25,14 @@ namespace WhoWantsToBeAMillionaire.Views
         public GameView()
         {
             DataContext = new GameViewModel();
-            //(DataContext as GameViewModel).CurrentQuestion = "cf sarak";
             InitializeComponent();
 
             foreach(Label lbPrize in (DataContext as GameViewModel).Prizes)
             {
-                prizeStack.Children.Add(lbPrize);
+                prizeStack.RowDefinitions.Add(new RowDefinition());
+                Grid.SetRow(lbPrize, prizeStack.RowDefinitions.Count - 1);
                 lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
+                prizeStack.Children.Add(lbPrize);
             }
         }
 
