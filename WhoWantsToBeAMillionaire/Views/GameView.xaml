@@ -141,6 +141,16 @@
                         Style="{StaticResource EllipseButton}">
                     <Image Source="pack://application:,,,/Resources/Media/phonecall.png"/>
                 </Button>
+                
+                <Image Name="FiftyFiftyUsed" 
+                       Grid.Column="0" Source="pack://application:,,,/Resources/Media/cross.png" 
+                       Opacity="0.7" Visibility="Collapsed"/>
+                <Image Name="AskAudienceUsed" 
+                       Grid.Column="1" Source="pack://application:,,,/Resources/Media/cross.png" 
+                       Opacity="0.7" Visibility="Collapsed"/>
+                <Image Name="PhoneCallUsed" 
+                       Grid.Column="2" Source="pack://application:,,,/Resources/Media/cross.png" 
+                       Opacity="0.7" Visibility="Collapsed"/>
             </Grid>
 
             <Grid Grid.Row="1" 

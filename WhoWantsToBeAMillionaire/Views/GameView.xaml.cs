@@ -45,16 +45,21 @@ namespace WhoWantsToBeAMillionaire.Views
             window.Height = 400;
             window.Width = 400;
             window.ShowDialog();
+
+            AskAudienceUsed.Visibility = Visibility.Visible;
+            btAskAudience.IsEnabled = false;
         }
 
         private void btPhoneCall_Click(object sender, RoutedEventArgs e)
         {
-
+            PhoneCallUsed.Visibility = Visibility.Visible;
+            btPhoneCall.IsEnabled = false;
         }
 
         private void btFiftyFifty_Click(object sender, RoutedEventArgs e)
         {
-
+            FiftyFiftyUsed.Visibility = Visibility.Visible;
+            btFiftyFifty.IsEnabled = false;
         }
 
         private void btOption_Click(object sender, RoutedEventArgs e)

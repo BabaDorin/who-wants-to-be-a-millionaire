@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Resources\Media\askaudience.png" />
     <None Remove="Resources\Media\bg.jpg" />
+    <None Remove="Resources\Media\cross.png" />
     <None Remove="Resources\Media\phonecall.png" />
   </ItemGroup>
 
@@ -17,6 +18,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\bg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\cross.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\phonecall.png">
