@@ -128,9 +128,19 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" x:Name="btFiftyFifty" Click="btFiftyFifty_Click"  Content="Lifeline 1" Background="Blue"/>
-                <Button Grid.Column="1" x:Name="btAskAudience" Click="btAskAudience_Click" Content="Lifeline 1" Background="Blue"/>
-                <Button Grid.Column="2" x:Name="btPhoneCall" Click="btPhoneCall_Click"  Content="Lifeline 1" Background="Blue"/>
+                <Button Grid.Column="0" x:Name="btFiftyFifty" 
+                        Click="btFiftyFifty_Click"  Content="50/50" 
+                        Style="{StaticResource EllipseButton}"/>
+                <Button Grid.Column="1" x:Name="btAskAudience" 
+                        Click="btAskAudience_Click"
+                        Style="{StaticResource EllipseButton}">
+                    <Image Source="pack://application:,,,/Resources/Media/askaudience.png"/>
+                </Button>
+                <Button Grid.Column="2" x:Name="btPhoneCall" 
+                        Click="btPhoneCall_Click"
+                        Style="{StaticResource EllipseButton}">
+                    <Image Source="pack://application:,,,/Resources/Media/phonecall.png"/>
+                </Button>
             </Grid>
 
             <Grid Grid.Row="1" 

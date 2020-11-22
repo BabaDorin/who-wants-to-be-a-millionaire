@@ -7,11 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Media\askaudience.png" />
     <None Remove="Resources\Media\bg.jpg" />
+    <None Remove="Resources\Media\phonecall.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Media\askaudience.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Media\bg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\phonecall.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
