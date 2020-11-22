@@ -74,10 +74,10 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
 
             Prizes = new List<Label>();
-            var SafePoints = new List<String> { "1 000", "32 000", "1 000 000" };
+            var SafePoints = new List<String> { "$ 1 000", "$ 32 000", "$ 1 000 000" };
             foreach (string prize in GameService.Game.Prizes)
             {
-                Label lbPrize = new Label { Content = prize };
+                Label lbPrize = new Label { Content = "$ " + prize };
                 string styleIdentifier = "PrizeItemStyle";
                 if (SafePoints.Contains(lbPrize.Content.ToString()))
                     styleIdentifier = "SafePrizeItemStyle";

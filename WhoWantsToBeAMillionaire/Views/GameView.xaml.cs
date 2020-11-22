@@ -32,6 +32,7 @@ namespace WhoWantsToBeAMillionaire.Views
                 prizeStack.RowDefinitions.Add(new RowDefinition());
                 Grid.SetRow(lbPrize, prizeStack.RowDefinitions.Count - 1);
                 lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
+                lbPrize.VerticalAlignment= VerticalAlignment.Stretch;
                 prizeStack.Children.Add(lbPrize);
             }
         }

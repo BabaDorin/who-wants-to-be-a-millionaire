@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
-             mc:Ignorable="d" Height="580" Width="1100">
+             mc:Ignorable="d" Height="auto" Width="auto">
     <!--set height and width to auto when done!-->
     <!--Height="580" Width="1100"-->
     <Grid>
@@ -48,6 +48,7 @@
                     Style="{StaticResource OptionStyle}"
                     Width="300"
                     Tag="0"
+                    FontStretch="Medium"
                     MouseDown="btOption_Click">
                         <TextBox.Text>
                             <MultiBinding StringFormat="{}A:  {0}">

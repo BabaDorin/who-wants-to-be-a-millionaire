@@ -35,21 +35,24 @@
     </Style>
 
     <Style x:Key="PrizeItemStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Height" Value="auto"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="Foreground" Value="#eca609"/>
     </Style>
 
     <Style x:Key="SafePrizeItemStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Height" Value="auto"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
     <Style x:Key="CurrentPrize" TargetType="Label">
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Height" Value="auto"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <!--<Setter Property="Height" Value="32"/>-->
         <Setter Property="Foreground" Value="Black"/>
@@ -80,8 +83,8 @@
     </Style>
 
     <Style x:Key="PolygonStyle" TargetType="Polygon">
-        <Setter Property="Points" Value="00,30 60,0 360,0 420,30 360,60 60,60"/>
         <Setter Property="Fill" Value="Black"/>
+        <Setter Property="Stretch" Value="Uniform"/>
         <Setter Property="Stroke" Value="Blue"/>
         <Setter Property="StrokeThickness" Value="2"/>
     </Style>
