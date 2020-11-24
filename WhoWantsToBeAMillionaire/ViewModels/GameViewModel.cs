@@ -64,11 +64,13 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
+        public int SecondsPerQuestion { get; set; }
         public List<Label> Prizes { get; set; }
 
         public GameViewModel()
         {
             GameService = GameService.GetInstace();
+            SecondsPerQuestion = 4;
 
             CurrentQuestion = GameService.Game.Questions[0];
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;

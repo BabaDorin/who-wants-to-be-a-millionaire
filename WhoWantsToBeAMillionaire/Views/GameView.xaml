@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
-             mc:Ignorable="d" Height="auto" Width="auto">
+             mc:Ignorable="d" Height="580" Width="1100">
     <!--set height and width to auto when done!-->
     <!--Height="580" Width="1100"-->
     <Grid>
@@ -17,12 +17,15 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="7*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="5*"/>
                 <RowDefinition Name="RowForAdditionalInformation" Height="0*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+            <Label Name="timer" Grid.Row="1" Content="00:00" Style="{StaticResource timerStyle}"/>
+
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
                 <Polygon Style="{StaticResource QuestionPolygon}"/>
                 <TextBox 
                     Style="{StaticResource QuestionStyle}"
@@ -30,7 +33,7 @@
                     Text="Cine a fost Stefan ct Stefan ct Stefan ct Stefan ct Stefan cel Maren cel Maren cel Maren cel Maren cel Maren cel Mare?"/>
             </Grid>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

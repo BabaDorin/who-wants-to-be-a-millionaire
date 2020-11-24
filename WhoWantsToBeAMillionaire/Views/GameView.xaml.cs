@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using WhoWantsToBeAMillionaire.Services;
 using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
@@ -22,6 +24,10 @@ namespace WhoWantsToBeAMillionaire.Views
     /// </summary>
     public partial class GameView : UserControl
     {
+
+        DispatcherTimer t;
+        DateTime start;
+
         public GameView()
         {
             DataContext = new GameViewModel();
@@ -34,6 +40,25 @@ namespace WhoWantsToBeAMillionaire.Views
                 lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
                 lbPrize.VerticalAlignment= VerticalAlignment.Stretch;
                 prizeStack.Children.Add(lbPrize);
+            }
+
+            t = new DispatcherTimer(new TimeSpan(0, 0, 0, 1), DispatcherPriority.Background,
+                    t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
+            start = DateTime.Now;
+        }
+
+        private void t_Tick(object sender, EventArgs e)
+        {
+            var difference = DateTime.Now.Subtract(start);
+            string seconds = difference.Seconds.ToString();
+            if (seconds.Length == 1)
+                seconds = "0" + seconds;
+            timer.Content = String.Format($"0{difference.Minutes}:{seconds}");
+
+            if (difference.Seconds == (DataContext as GameViewModel).SecondsPerQuestion)
+            {
+                MessageBox.Show("gata!");
+                t.Stop();
             }
         }
 
