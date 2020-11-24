@@ -94,34 +94,64 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private async void btOption_Click(object sender, RoutedEventArgs e)
         {
-            (sender as Polygon).Style = Application.Current.TryFindResource("OptionSelected") as Style;
-            await Task.Delay(2000);
-            string feedBack = _viewModel.AnswerSubmitted(int.Parse((sender as FrameworkElement).Tag.ToString()));
+            var btOption = sender as Polygon;
+            btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
 
+            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+
+            await Task.Delay(2000);
+
+            string feedBack = _viewModel.AnswerSubmitted(int.Parse(btOption.Tag.ToString()));
             switch (feedBack)
             {
-                case "Success!": (sender as Polygon).Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
+                case "Success!":
+                    btOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
                     break;
-                case "Winner": break;
-                case null: break;
-                default: lbExplications.Content = feedBack;
-                    (sender as Polygon).Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
+
+                case null:
+                    break;
+
+                default: 
+                    // Raspuns gresit. Feeback-ul metodei AnswerSubmitted va returna explicatie pentru intrebarea data,
+                    // daca aceasta exista.
+                    if(feedBack.Length > 0)
+                    {
+                        lbExplications.Content = feedBack;
+                        lbExplications.Visibility = Visibility.Visible; // afiseaza rezultatele
+                    }
+
+                    btOption.Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
                     MarkCorrectOption();
-                    await Task.Delay(2000);
-                    Alert alert = new Alert("Game over, pleci acas cu putini bani", "danger");
-                    alert.ShowDialog();
-                    lbExplications.Visibility = Visibility.Visible; // afiseaza rezultatele
+                    ellapsedTime.Stop();
+
+                    // TODO: display results page.
                     return;
             }
 
             await Task.Delay(2000);
             _viewModel.PickNextQuestion();
-            (sender as Polygon).Style = Application.Current.TryFindResource("OptionPolygon") as Style;
+            btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
+            OptionsAndLifelinesSetIsEnabledPropertyTo(true);
+        }
+
+        private void OptionsAndLifelinesSetIsEnabledPropertyTo(bool flag)
+        {
+            foreach (var grid in optionsGrid.Children)
+            {
+                (grid as Grid).Children[0].IsEnabled = flag;
+            }
+
+            for(int i = 0; i<3; i++)
+            {
+                (lifeLinesGrid.Children[i] as Button).IsEnabled = flag;
+            }
         }
 
         private void MarkCorrectOption()
         {
-            //throw new NotImplementedException();
+            var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex]
+                                        as Grid).Children[0] as Polygon;
+            btCorrectOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
         }
 
         private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)

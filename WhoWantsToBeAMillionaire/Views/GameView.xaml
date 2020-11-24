@@ -38,7 +38,7 @@
                     Text="Cine a fost Stefan ct Stefan ct Stefan ct Stefan ct Stefan cel Maren cel Maren cel Maren cel Maren cel Maren cel Mare?"/>
             </Grid>
 
-            <Grid Grid.Row="3">
+            <Grid Name="optionsGrid" Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -131,7 +131,7 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid x:Name="lifeLinesGrid" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
