@@ -64,7 +64,16 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
-        public int SecondsPerQuestion { get; set; }
+        private int _secondsPerQuestion;
+        public int SecondsPerQuestion
+        {
+            get { return _secondsPerQuestion; }
+            set
+            {
+                _secondsPerQuestion = value;
+                OnPropertyChanged(nameof(SecondsPerQuestion));
+            }
+        }
         public List<Label> Prizes { get; set; }
 
         public GameViewModel()

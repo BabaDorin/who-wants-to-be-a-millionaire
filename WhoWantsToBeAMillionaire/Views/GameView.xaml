@@ -23,7 +23,12 @@
                 <RowDefinition Name="RowForAdditionalInformation" Height="0*"/>
             </Grid.RowDefinitions>
 
-            <Label Name="timer" Grid.Row="1" Content="00:00" Style="{StaticResource timerStyle}"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Name="timer" Content="00:00" Style="{StaticResource timerStyle}"/>
+                <Label Style="{StaticResource timerStyle}" FontSize="13" FontWeight="Normal"
+                       Content="{Binding Path=SecondsPerQuestion}" 
+                       ContentStringFormat="secunde per intrebare: {0}"/>
+            </StackPanel>
 
             <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
                 <Polygon Style="{StaticResource QuestionPolygon}"/>
