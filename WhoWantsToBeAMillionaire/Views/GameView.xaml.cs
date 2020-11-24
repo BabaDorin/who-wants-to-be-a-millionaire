@@ -24,16 +24,18 @@ namespace WhoWantsToBeAMillionaire.Views
     /// </summary>
     public partial class GameView : UserControl
     {
-
-        DispatcherTimer t;
+        private GameViewModel _viewModel;
+        DispatcherTimer ellapsedTime;
         DateTime start;
 
         public GameView()
         {
             DataContext = new GameViewModel();
+            _viewModel = (DataContext as GameViewModel);
+
             InitializeComponent();
 
-            foreach(Label lbPrize in (DataContext as GameViewModel).Prizes)
+            foreach(Label lbPrize in _viewModel.Prizes)
             {
                 prizeStack.RowDefinitions.Add(new RowDefinition());
                 Grid.SetRow(lbPrize, prizeStack.RowDefinitions.Count - 1);
@@ -42,8 +44,8 @@ namespace WhoWantsToBeAMillionaire.Views
                 prizeStack.Children.Add(lbPrize);
             }
 
-            t = new DispatcherTimer(new TimeSpan(0, 0, 0, 1), DispatcherPriority.Background,
-                    t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
+            ellapsedTime = new DispatcherTimer(new TimeSpan(0, 0, 0, 1), DispatcherPriority.Background,
+                    t_Tick, Dispatcher.CurrentDispatcher); ellapsedTime.IsEnabled = true;
             start = DateTime.Now;
         }
 
@@ -55,10 +57,10 @@ namespace WhoWantsToBeAMillionaire.Views
                 seconds = "0" + seconds;
             timer.Content = String.Format($"0{difference.Minutes}:{seconds}");
 
-            if (difference.Seconds == (DataContext as GameViewModel).SecondsPerQuestion)
+            if (difference.Seconds == _viewModel.SecondsPerQuestion)
             {
                 MessageBox.Show("gata!");
-                t.Stop();
+                ellapsedTime.Stop();
             }
         }
 
@@ -84,6 +86,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btFiftyFifty_Click(object sender, RoutedEventArgs e)
         {
+            start = DateTime.Now;
             FiftyFiftyUsed.Visibility = Visibility.Visible;
             btFiftyFifty.IsEnabled = false;
         }
@@ -91,7 +94,7 @@ namespace WhoWantsToBeAMillionaire.Views
         private void btOption_Click(object sender, RoutedEventArgs e)
         {
 
-            string feedBack = (DataContext as GameViewModel).AnswerSubmitted(int.Parse((sender as FrameworkElement).Tag.ToString()));
+            string feedBack = _viewModel.AnswerSubmitted(int.Parse((sender as FrameworkElement).Tag.ToString()));
 
             switch (feedBack)
             {

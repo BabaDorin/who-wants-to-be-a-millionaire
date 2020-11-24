@@ -30,12 +30,13 @@ namespace WhoWantsToBeAMillionaire
 
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)
         {
-            UpdateView("Start");
+
         }
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            UpdateView("Game");
+            Alert aler = new Alert("message", "success");
+            aler.ShowDialog();
         }
 
         public void UpdateView(string parameter)
