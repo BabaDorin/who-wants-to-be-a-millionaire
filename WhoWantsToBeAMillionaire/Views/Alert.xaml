@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
         Title="Alert" Height="300" Width="500"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/bg.jpg" Stretch="UniformToFill"/>

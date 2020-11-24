@@ -23,7 +23,7 @@
                 <RowDefinition Name="RowForAdditionalInformation" Height="0*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Grid.Row="1">
                 <Label Name="timer" Content="00:00" Style="{StaticResource timerStyle}"/>
                 <Label Style="{StaticResource timerStyle}" FontSize="13" FontWeight="Normal"
                        Content="{Binding Path=SecondsPerQuestion}" 
@@ -117,7 +117,7 @@
                 </Grid>
             </Grid>
 
-            <Label Grid.Row="3" Name="lbExplications" 
+            <Label Grid.Row="4" Name="lbExplications" 
                    Content="{Binding Explanations}" 
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                    FontSize="20" 

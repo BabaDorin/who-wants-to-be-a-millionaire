@@ -136,6 +136,33 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="OptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Polygon">
+        <Setter Property="Fill" Value="CadetBlue"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Fill" Value="CadetBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RightOptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Polygon">
+        <Setter Property="Fill" Value="ForestGreen"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Fill" Value="ForestGreen"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="WrongOptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Polygon">
+        <Setter Property="Fill" Value="DarkRed"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Fill" Value="DarkRed"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="QuestionStyle" TargetType="{x:Type TextBox}">
         <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
         <Setter Property="FontSize" Value="15"/>
@@ -190,8 +217,6 @@
         <Setter Property="FontSize" Value="30"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <!--TODO: Optimize all of this-->

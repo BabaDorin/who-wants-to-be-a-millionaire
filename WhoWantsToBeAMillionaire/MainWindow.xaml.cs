@@ -20,11 +20,13 @@ namespace WhoWantsToBeAMillionaire
 {
     public partial class MainWindow : Window
     {
+        private static MainViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
 
             DataContext = new MainViewModel();
+            _viewModel = (DataContext as MainViewModel);
             UpdateView("Start");
         }
 
@@ -35,13 +37,13 @@ namespace WhoWantsToBeAMillionaire
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            Alert aler = new Alert("message", "success");
-            aler.ShowDialog();
+            Alert alert = new Alert("message", "success");
+            alert.ShowDialog();
         }
 
         public void UpdateView(string parameter)
         {
-            (DataContext as MainViewModel).UpdateViewCommand.Execute(parameter);
+            _viewModel.UpdateViewCommand.Execute(parameter);
         }
     }
 }

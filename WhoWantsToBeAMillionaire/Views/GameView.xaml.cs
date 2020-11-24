@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Printing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -91,20 +92,36 @@ namespace WhoWantsToBeAMillionaire.Views
             btFiftyFifty.IsEnabled = false;
         }
 
-        private void btOption_Click(object sender, RoutedEventArgs e)
+        private async void btOption_Click(object sender, RoutedEventArgs e)
         {
-
+            (sender as Polygon).Style = Application.Current.TryFindResource("OptionSelected") as Style;
+            await Task.Delay(2000);
             string feedBack = _viewModel.AnswerSubmitted(int.Parse((sender as FrameworkElement).Tag.ToString()));
 
             switch (feedBack)
             {
-                case "Success!": break;
+                case "Success!": (sender as Polygon).Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
+                    break;
                 case "Winner": break;
                 case null: break;
                 default: lbExplications.Content = feedBack;
-                    lbExplications.Visibility = Visibility.Visible;
-                    break;
+                    (sender as Polygon).Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
+                    MarkCorrectOption();
+                    await Task.Delay(2000);
+                    Alert alert = new Alert("Game over, pleci acas cu putini bani", "danger");
+                    alert.ShowDialog();
+                    lbExplications.Visibility = Visibility.Visible; // afiseaza rezultatele
+                    return;
             }
+
+            await Task.Delay(2000);
+            _viewModel.PickNextQuestion();
+            (sender as Polygon).Style = Application.Current.TryFindResource("OptionPolygon") as Style;
+        }
+
+        private void MarkCorrectOption()
+        {
+            //throw new NotImplementedException();
         }
 
         private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)
