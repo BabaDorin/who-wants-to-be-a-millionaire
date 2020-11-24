@@ -79,7 +79,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         public GameViewModel()
         {
             GameService = GameService.GetInstace();
-            SecondsPerQuestion = 4;
+            SecondsPerQuestion = 20;
 
             CurrentQuestion = GameService.Game.Questions[0];
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
@@ -115,8 +115,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
             else
             {
-                GameOver();
-                return CurrentQuestion.Explanations;
+                return "NotSuccess";
             }
         }
 

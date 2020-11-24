@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
 using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,16 +37,16 @@ namespace WhoWantsToBeAMillionaire.Views
 
             InitializeComponent();
 
-            foreach(Label lbPrize in _viewModel.Prizes)
+            foreach (Label lbPrize in _viewModel.Prizes)
             {
                 prizeStack.RowDefinitions.Add(new RowDefinition());
                 Grid.SetRow(lbPrize, prizeStack.RowDefinitions.Count - 1);
                 lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
-                lbPrize.VerticalAlignment= VerticalAlignment.Stretch;
+                lbPrize.VerticalAlignment = VerticalAlignment.Stretch;
                 prizeStack.Children.Add(lbPrize);
             }
 
-            ellapsedTime = new DispatcherTimer(new TimeSpan(0, 0, 0, 1), DispatcherPriority.Background,
+            ellapsedTime = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background,
                     t_Tick, Dispatcher.CurrentDispatcher); ellapsedTime.IsEnabled = true;
             start = DateTime.Now;
         }
@@ -54,14 +55,21 @@ namespace WhoWantsToBeAMillionaire.Views
         {
             var difference = DateTime.Now.Subtract(start);
             string seconds = difference.Seconds.ToString();
+
             if (seconds.Length == 1)
                 seconds = "0" + seconds;
             timer.Content = String.Format($"0{difference.Minutes}:{seconds}");
 
-            if (difference.Seconds == _viewModel.SecondsPerQuestion)
+            if (difference.Seconds > _viewModel.SecondsPerQuestion - 5)
+                timer.Foreground = Brushes.Red;
+            else if (difference.Seconds > _viewModel.SecondsPerQuestion - 30)
+                timer.Foreground = Brushes.Yellow;
+
+            if (difference > TimeSpan.FromSeconds(_viewModel.SecondsPerQuestion))
             {
-                MessageBox.Show("gata!");
                 ellapsedTime.Stop();
+                GameOver();
+                return;
             }
         }
 
@@ -105,25 +113,14 @@ namespace WhoWantsToBeAMillionaire.Views
             switch (feedBack)
             {
                 case "Success!":
+                    // Raspuns corect
                     btOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
                     break;
 
-                case null:
-                    break;
-
-                default: 
-                    // Raspuns gresit. Feeback-ul metodei AnswerSubmitted va returna explicatie pentru intrebarea data,
-                    // daca aceasta exista.
-                    if(feedBack.Length > 0)
-                    {
-                        lbExplications.Content = feedBack;
-                        lbExplications.Visibility = Visibility.Visible; // afiseaza rezultatele
-                    }
-
+                default:
+                    // Raspuns gresit
                     btOption.Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
-                    MarkCorrectOption();
-                    ellapsedTime.Stop();
-
+                    GameOver();
                     // TODO: display results page.
                     return;
             }
@@ -134,29 +131,34 @@ namespace WhoWantsToBeAMillionaire.Views
             OptionsAndLifelinesSetIsEnabledPropertyTo(true);
         }
 
+        private void GameOver()
+        {
+            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+
+            RowForAdditionalInformation.Height = GridLength.Auto;
+            panelExplications.Visibility = Visibility.Visible;
+            string explanations = _viewModel.CurrentQuestion.Explanations;
+
+            if (explanations != null && explanations.Length > 0)
+                tbExplications.Text = explanations;
+
+            MarkCorrectOption();
+            ellapsedTime.Stop();
+        }
+
         private void OptionsAndLifelinesSetIsEnabledPropertyTo(bool flag)
         {
             foreach (var grid in optionsGrid.Children)
-            {
                 (grid as Grid).Children[0].IsEnabled = flag;
-            }
 
-            for(int i = 0; i<3; i++)
-            {
+            for (int i = 0; i < 3; i++)
                 (lifeLinesGrid.Children[i] as Button).IsEnabled = flag;
-            }
         }
 
         private void MarkCorrectOption()
         {
-            var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex]
-                                        as Grid).Children[0] as Polygon;
+            var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex] as Grid).Children[0] as Polygon;
             btCorrectOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
-        }
-
-        private void TextBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

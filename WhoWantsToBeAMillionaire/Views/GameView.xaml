@@ -117,12 +117,26 @@
                 </Grid>
             </Grid>
 
-            <Label Grid.Row="4" Name="lbExplications" 
-                   Content="{Binding Explanations}" 
+            <StackPanel Grid.Row="4" 
+                        Orientation="Vertical" 
+                        Background="White" Opacity="0.7" 
+                        Visibility="Collapsed"
+                        Name="panelExplications"
+                        Margin="4">
+                <TextBox Name="tbExplications" 
+                   Text="{Binding Explanations}" 
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
-                   FontSize="20" 
-                   Background="Azure" 
-                   Visibility="Collapsed"/>
+                   FontSize="15" 
+                   BorderThickness="0"
+                   IsReadOnly="True"
+                   TextWrapping="WrapWithOverflow"      
+                   Background="Azure"/>
+                
+                <Button x:Name="btGenerateResults" 
+                        Content="Mai Departe" 
+                        FontSize="18"
+                        FontWeight="Bold"/>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Column="1">
