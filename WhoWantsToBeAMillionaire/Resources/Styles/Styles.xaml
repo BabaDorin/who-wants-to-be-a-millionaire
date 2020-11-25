@@ -47,6 +47,30 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
+    <Style x:Key="NoWin" TargetType="UserControl">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/cryingdude.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Win" TargetType="UserControl">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/happydudeboai.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BigWin" TargetType="UserControl">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/dudewithmoney.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="DangerAlertGrid" TargetType="Grid">
         <Setter Property="Background">
             <Setter.Value>
@@ -212,6 +236,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="btBackStyle" TargetType="Button">
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="FontSize" Value="50"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Content" Value="&lt;"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style> 
 
     <Style x:Key="timerStyle" TargetType="Label">
         <Setter Property="FontSize" Value="30"/>

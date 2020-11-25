@@ -7,22 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer>
-        <StackPanel Orientation="Vertical">
-            <Button Content="&lt; Inapoi" 
-                    Background="Gray" 
-                    BorderThickness="0" 
-                    FontSize="20" 
-                    Width="100" 
-                    HorizontalAlignment="Left"
-                    Name="btInapoi"
+        <StackPanel Orientation="Vertical" Margin="20 0 20 10">
+            <Button Style="{StaticResource btBackStyle}"
                     Click="btInapoi_Click"/>
 
             <TextBlock Style="{StaticResource Heading}">
             Vrei sa fii Milionar, regulament
             </TextBlock>
-            <Label Style="{StaticResource CurrentPrize}">
-            $200
-            </Label>
             <TextBlock Style="{StaticResource NormalText}" Margin="10">
             Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
             </TextBlock>

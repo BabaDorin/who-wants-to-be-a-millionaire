@@ -30,6 +30,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 OnPropertyChanged(nameof(CurrentQuestion));
             }
         }
+        //public int CurrentQuestion { get; set; }
 
         // Lifelines availability
         private bool _audienceAsked;
@@ -74,7 +75,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 OnPropertyChanged(nameof(SecondsPerQuestion));
             }
         }
-        public List<Label> Prizes { get; set; }
+        public List<Label> PrizeLabels { get; set; }
 
         public GameViewModel()
         {
@@ -84,31 +85,42 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             CurrentQuestion = GameService.Game.Questions[0];
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
 
-            Prizes = new List<Label>();
-            var SafePoints = new List<String> { "$ 1 000", "$ 32 000", "$ 1 000 000" };
-            foreach (string prize in GameService.Game.Prizes)
+            var Prizes = new List<string>
             {
-                Label lbPrize = new Label { Content = "$ " + prize };
+                "$ 100", "$ 200", "$ 300", "$ 500",
+                "$ 1 000", "$ 2 000", "$ 4 000", "$ 8 000",
+                "$ 16 000", "$ 32 000", "$ 64 000", "$ 125 000",
+                "$ 250 000", "$ 500 000", "$ 1 000 000"
+            };
+
+            var SafePoints = new List<String> { "$ 1 000", "$ 32 000", "$ 1 000 000" };
+            PrizeLabels = new List<Label>();
+
+            foreach (string prize in Prizes)
+            {
+                Label lbPrize = new Label { Content = prize };
+
                 string styleIdentifier = "PrizeItemStyle";
                 if (SafePoints.Contains(lbPrize.Content.ToString()))
                     styleIdentifier = "SafePrizeItemStyle";
                 
                 lbPrize.Style = Application.Current.TryFindResource(styleIdentifier) as Style;
-                Prizes.Add(lbPrize);
+                PrizeLabels.Add(lbPrize);
             }
-            Prizes.Reverse();
 
-            lastItemStyle = Prizes[Prizes.Count - 1].Style;
-            Prizes[Prizes.Count-1].Style = Application.Current.TryFindResource("CurrentPrize") as Style;
+            PrizeLabels.Reverse();
+
+            lastItemStyle = PrizeLabels[PrizeLabels.Count - 1].Style;
+            PrizeLabels[PrizeLabels.Count-1].Style = Application.Current.TryFindResource("CurrentPrize") as Style;
         }
 
-        public string AnswerSubmitted(int optionId)
+        public string AnswerSubmitted(int optionId, TimeSpan ellapsedTimeForQuestion)
         {
             // Returneaza "Success!" Daca a fost ales raspunsul corect,
             // Returneaza Game.Explanations Daca a fost ales un raspuns gresit
             // Returneaza "Winner!" Daca a fost ales raspunsul corect pentru ultima intrebare
 
-            if (GameService.CheckAnswer(optionId))
+            if (GameService.CheckAnswer(optionId, ellapsedTimeForQuestion))
             {
                 return "Success!";
             }
@@ -133,11 +145,11 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public void MarkCurrentPrizeWithinPrizeStack()
         {
-            Prizes[Prizes.Count - GameService.Game.CurrentQuestion].Style = lastItemStyle;
+            PrizeLabels[PrizeLabels.Count - GameService.CurrentQuestionId].Style = lastItemStyle;
 
-            lastItemStyle = Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Style;
+            lastItemStyle = PrizeLabels[PrizeLabels.Count - 1 - GameService.CurrentQuestionId].Style;
 
-            Prizes[Prizes.Count - 1 - GameService.Game.CurrentQuestion].Style 
+            PrizeLabels[PrizeLabels.Count - 1 - GameService.CurrentQuestionId].Style 
                 = Application.Current.TryFindResource("CurrentPrize") as Style;
         }
 

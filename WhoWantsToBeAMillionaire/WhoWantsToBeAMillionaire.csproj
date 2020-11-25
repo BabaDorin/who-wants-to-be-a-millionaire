@@ -10,6 +10,9 @@
     <None Remove="Resources\Media\askaudience.png" />
     <None Remove="Resources\Media\bg.jpg" />
     <None Remove="Resources\Media\cross.png" />
+    <None Remove="Resources\Media\cryingdude.jpg" />
+    <None Remove="Resources\Media\dudewithmoney.jpg" />
+    <None Remove="Resources\Media\happydudeboai.jpg" />
     <None Remove="Resources\Media\phonecall.png" />
   </ItemGroup>
 
@@ -21,6 +24,15 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\cross.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\cryingdude.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\dudewithmoney.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\happydudeboai.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\phonecall.png">

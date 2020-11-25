@@ -37,7 +37,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
             InitializeComponent();
 
-            foreach (Label lbPrize in _viewModel.Prizes)
+            foreach (Label lbPrize in _viewModel.PrizeLabels)
             {
                 prizeStack.RowDefinitions.Add(new RowDefinition());
                 Grid.SetRow(lbPrize, prizeStack.RowDefinitions.Count - 1);
@@ -108,8 +108,8 @@ namespace WhoWantsToBeAMillionaire.Views
 
             OptionsAndLifelinesSetIsEnabledPropertyTo(false);
 
-            await Task.Delay(2000);
-            string feedBack = _viewModel.AnswerSubmitted(int.Parse(btOption.Tag.ToString()));
+            await Task.Delay(2);
+            string feedBack = _viewModel.AnswerSubmitted(int.Parse(btOption.Tag.ToString()), DateTime.Now.Subtract(start));
             switch (feedBack)
             {
                 case "Success!":
@@ -124,7 +124,7 @@ namespace WhoWantsToBeAMillionaire.Views
                     return;
             }
 
-            await Task.Delay(2000);
+            await Task.Delay(2);
 
             if (!_viewModel.PickNextQuestion())
             {
@@ -135,6 +135,7 @@ namespace WhoWantsToBeAMillionaire.Views
                 btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
                 OptionsAndLifelinesSetIsEnabledPropertyTo(true);
                 start = DateTime.Now;
+                timer.Content = "00:00";
                 ellapsedTime.Start();
             }
         }
