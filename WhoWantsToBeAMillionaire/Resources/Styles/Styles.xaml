@@ -117,12 +117,32 @@
         <Setter Property="Background" Value="#eca609"/>
     </Style>
 
+    <Style x:Key="SimpleTextBox" TargetType="TextBox">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="BorderThickness" Value="4"/>
+    </Style>
+
     <Style x:Key="NormalPolygon" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Blue"/>
+        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Polygon Fill="{TemplateBinding Background}"  Points="0,30 60,0 360,0 420,30 360,60 60,60" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2"/>
+                        <Polygon Fill="{TemplateBinding Background}"  
+                                 Points="0,30 60,5 360,5 420,30 360,55 60,55"
+                                 Stretch="Uniform"
+                                 Stroke="{TemplateBinding BorderBrush}" 
+                                 StrokeThickness="2"></Polygon>
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -140,51 +160,22 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PolygonStyle" TargetType="Polygon">
+    <Style x:Key="StartViewButtons" BasedOn="{StaticResource NormalPolygon}" TargetType="Button">
+        <Setter Property="Width" Value="500"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Gray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="QuestionPolygon" TargetType="Polygon">
+        <Setter Property="Points" Value="0,40 60,10 650,10 710,40 650,70 60,70"/>
         <Setter Property="Fill" Value="Black"/>
         <Setter Property="Stretch" Value="Uniform"/>
         <Setter Property="Stroke" Value="Blue"/>
         <Setter Property="StrokeThickness" Value="2"/>
-    </Style>
-
-    <Style x:Key="QuestionPolygon" BasedOn="{StaticResource PolygonStyle}" TargetType="Polygon">
-        <Setter Property="Points" Value="0,40 60,10 650,10 710,40 650,70 60,70"/>
-    </Style>
-
-    <Style x:Key="OptionPolygon" BasedOn="{StaticResource PolygonStyle}" TargetType="Polygon">
-        <Setter Property="Points" Value="0,30 60,5 360,5 420,30 360,55 60,55"/>
-        <Style.Triggers>
-            <Trigger Property="Polygon.IsMouseOver" Value="True">
-                <Setter Property="Fill" Value="Green"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="OptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Polygon">
-        <Setter Property="Fill" Value="CadetBlue"/>
-        <Style.Triggers>
-            <Trigger Property="Polygon.IsMouseOver" Value="True">
-                <Setter Property="Fill" Value="CadetBlue"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="RightOptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Polygon">
-        <Setter Property="Fill" Value="ForestGreen"/>
-        <Style.Triggers>
-            <Trigger Property="Polygon.IsMouseOver" Value="True">
-                <Setter Property="Fill" Value="ForestGreen"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="WrongOptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Polygon">
-        <Setter Property="Fill" Value="DarkRed"/>
-        <Style.Triggers>
-            <Trigger Property="Polygon.IsMouseOver" Value="True">
-                <Setter Property="Fill" Value="DarkRed"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="QuestionStyle" TargetType="{x:Type TextBox}">
@@ -201,13 +192,44 @@
         <Setter Property="Width" Value="600"/>
     </Style>
 
-    <Style x:Key="OptionStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource QuestionStyle}">
+    <Style x:Key="OptionPolygon" BasedOn="{StaticResource NormalPolygon}" TargetType="Button">
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="Width" Value="350"/>
-        <Setter Property="TextAlignment" Value="Left"/>
-        <Setter Property="IsReadOnly" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Green"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
+    <Style x:Key="OptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Button">
+        <Setter Property="Background" Value="CadetBlue"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="CadetBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RightOptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Button">
+        <Setter Property="Background" Value="ForestGreen"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="ForestGreen"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="WrongOptionSelected" BasedOn="{StaticResource OptionPolygon}" TargetType="Button">
+        <Setter Property="Background" Value="DarkRed"/>
+        <Style.Triggers>
+            <Trigger Property="Polygon.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="DarkRed"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    
+    
     <Style x:Key="EllipseButton" TargetType="Button">
         <Setter Property="Margin" Value="6"/>
         <Setter Property="FontWeight" Value="Bold"/>

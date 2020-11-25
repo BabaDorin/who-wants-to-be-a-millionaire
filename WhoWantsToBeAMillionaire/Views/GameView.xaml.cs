@@ -103,7 +103,7 @@ namespace WhoWantsToBeAMillionaire.Views
         private async void btOption_Click(object sender, RoutedEventArgs e)
         {
             ellapsedTime.Stop();
-            var btOption = sender as Polygon;
+            var btOption = sender as Button;
             btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
 
             OptionsAndLifelinesSetIsEnabledPropertyTo(false);
@@ -172,7 +172,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void MarkCorrectOption()
         {
-            var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex] as Grid).Children[0] as Polygon;
+            var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex] as Grid).Children[0] as Button;
             btCorrectOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
         }
 

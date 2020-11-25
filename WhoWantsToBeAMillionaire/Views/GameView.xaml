@@ -49,71 +49,35 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Name="option1Polygon" Style="{StaticResource OptionPolygon}"
-                             Tag="0"
-                             MouseDown="btOption_Click"/>
-                    <TextBox 
-                    Style="{StaticResource OptionStyle}"
-                    Width="300"
-                    Tag="0"
-                    FontStretch="Medium"
-                    MouseDown="btOption_Click">
-                        <TextBox.Text>
-                            <MultiBinding StringFormat="{}A:  {0}">
-                                <Binding Path="CurrentQuestion.Options[0]" />
-                            </MultiBinding>
-                        </TextBox.Text>
-                    </TextBox>
+                    <Button Style="{StaticResource OptionPolygon}"
+                            ContentStringFormat="{}A: {0}"
+                            Tag="0"
+                            Content="{Binding CurrentQuestion.Options[0]}"
+                            Click="btOption_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"
-                             Tag="1"
-                             MouseDown="btOption_Click"/>
-                    <TextBox 
-                    Style="{StaticResource OptionStyle}"
-                    Width="300"
-                    Tag="1"
-                    MouseDown="btOption_Click">
-                        <TextBox.Text>
-                            <MultiBinding StringFormat="{}B:  {0}">
-                                <Binding Path="CurrentQuestion.Options[1]" />
-                            </MultiBinding>
-                        </TextBox.Text>
-                    </TextBox>
+                    <Button Style="{StaticResource OptionPolygon}"
+                            ContentStringFormat="{}B: {0}"
+                            Tag="1"
+                            Content="{Binding CurrentQuestion.Options[1]}"
+                            Click="btOption_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"
-                             Tag="2"
-                             MouseDown="btOption_Click"/>
-                    <TextBox 
-                    Style="{StaticResource OptionStyle}"
-                    Width="300"
-                    Tag="2"
-                    MouseDown="btOption_Click">
-                        <TextBox.Text>
-                            <MultiBinding StringFormat="{}C:  {0}">
-                                <Binding Path="CurrentQuestion.Options[2]" />
-                            </MultiBinding>
-                        </TextBox.Text>
-                    </TextBox>
+                    <Button Style="{StaticResource OptionPolygon}"
+                            ContentStringFormat="{}C: {0}"
+                            Tag="2"
+                            Content="{Binding CurrentQuestion.Options[2]}"
+                            Click="btOption_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Polygon Style="{StaticResource OptionPolygon}"
-                             Tag="3" MouseDown="btOption_Click"/>
-                    <TextBox 
-                    Style="{StaticResource OptionStyle}"
-                    Width="300"
-                    Tag="3"
-                    MouseDown="btOption_Click">
-                        <TextBox.Text>
-                            <MultiBinding StringFormat="{}D:  {0}">
-                                <Binding Path="CurrentQuestion.Options[3]" />
-                            </MultiBinding>
-                        </TextBox.Text>
-                    </TextBox>
+                    <Button Style="{StaticResource OptionPolygon}"
+                            ContentStringFormat="{}D: {0}"
+                            Tag="3"
+                            Content="{Binding CurrentQuestion.Options[3]}"
+                            Click="btOption_Click"/>
                 </Grid>
             </Grid>
 

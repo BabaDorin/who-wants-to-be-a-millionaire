@@ -35,25 +35,21 @@
             <Label Grid.Row="0" Content="Introdu numele"
                    Foreground="White" FontSize="16"
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox Name="tbPlayerName" Grid.Row="1" Foreground="White" Background="BlueViolet" FontSize="33" TextAlignment="Center"
-                     Width="400" Height="60" BorderBrush="Black" BorderThickness="5" TextChanged="tbPlayerName_TextChanged"
-                     
+            <TextBox Name="tbPlayerName" Grid.Row="1" 
+                     Style="{StaticResource SimpleTextBox}"
+                     TextChanged="tbPlayerName_TextChanged"
                      />
         </Grid>
 
         <Button x:Name="btStartGame" Grid.Row="3"
-                Content="Incepe jocul"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center" 
                 IsEnabled="{Binding PlayerNameNotEmpty}"
-                Style="{StaticResource NormalPolygon}"
+                Style="{StaticResource StartViewButtons}"
+                Content="Incepe jocul"
                 Click="btStartGame_Click"/>
         
         <Button x:Name="btShowRules" Grid.Row="4"
                 Content="Regulamentul"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Style="{StaticResource NormalPolygon}"
+                Style="{StaticResource StartViewButtons}"
                 Click="btShowRules_Click"/>
     </Grid>
 </UserControl>
