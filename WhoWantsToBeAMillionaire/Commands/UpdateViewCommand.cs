@@ -32,6 +32,7 @@ namespace WhoWantsToBeAMillionaire.Commands
                 case "Game": selectedViewModel = new GameViewModel(); break;
                 case "Start": selectedViewModel = new StartViewModel(); break;
                 case "Rules": selectedViewModel = new RulesViewModel(); break;
+                case "Results": selectedViewModel = new ResultsViewModel(); break;
                 default: selectedViewModel = new StartViewModel(); break;
             }
 

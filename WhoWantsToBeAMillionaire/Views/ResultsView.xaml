@@ -5,8 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="580" d:DesignWidth="1100">
+    <!--set height and width to auto when done!-->
+    <!--Height="580" Width="1100"-->
+    <Grid Style="{StaticResource SuccessAlertGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Name="btHome" Content="Home" Click="btHome_Click" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="20"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="White" Content="Castigul dumneavoastra:" HorizontalAlignment="Center"/>
+            <Label FontSize="80" FontWeight="Bold" Foreground="Orange" Content="$1 000 000!" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Timp scurs: 9:20" FontWeight="Bold" FontSize="20" Foreground="White" HorizontalAlignment="Center"/>
+            <Label Content="Rezultatele au fost inserate in fisierul Results.xml" FontSize="15" Foreground="White" HorizontalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </UserControl>

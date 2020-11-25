@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WhoWantsToBeAMillionaire.ViewModels
 {
-    class ResultsViewModel
+    class ResultsViewModel : BaseViewModel
     {
     }
 }

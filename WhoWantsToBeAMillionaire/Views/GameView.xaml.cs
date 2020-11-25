@@ -102,13 +102,13 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private async void btOption_Click(object sender, RoutedEventArgs e)
         {
+            ellapsedTime.Stop();
             var btOption = sender as Polygon;
             btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
 
             OptionsAndLifelinesSetIsEnabledPropertyTo(false);
 
-            await Task.Delay(2);
-
+            await Task.Delay(2000);
             string feedBack = _viewModel.AnswerSubmitted(int.Parse(btOption.Tag.ToString()));
             switch (feedBack)
             {
@@ -121,11 +121,11 @@ namespace WhoWantsToBeAMillionaire.Views
                     // Raspuns gresit
                     btOption.Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
                     GameOver();
-                    DisplayResults();
                     return;
             }
 
-            await Task.Delay(2);
+            await Task.Delay(2000);
+
             if (!_viewModel.PickNextQuestion())
             {
                 DisplayResults();
@@ -135,12 +135,13 @@ namespace WhoWantsToBeAMillionaire.Views
                 btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
                 OptionsAndLifelinesSetIsEnabledPropertyTo(true);
                 start = DateTime.Now;
+                ellapsedTime.Start();
             }
         }
 
         private void DisplayResults()
         {
-            throw new NotImplementedException();
+            ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Results");
         }
 
         private void GameOver()
@@ -171,6 +172,11 @@ namespace WhoWantsToBeAMillionaire.Views
         {
             var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex] as Grid).Children[0] as Polygon;
             btCorrectOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
+        }
+
+        private void btGenerateResults_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayResults();
         }
     }
 }

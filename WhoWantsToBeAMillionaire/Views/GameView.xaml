@@ -133,6 +133,7 @@
                    Background="Azure"/>
                 
                 <Button x:Name="btGenerateResults" 
+                        Click="btGenerateResults_Click"
                         Content="Mai Departe" 
                         FontSize="18"
                         FontWeight="Bold"/>
