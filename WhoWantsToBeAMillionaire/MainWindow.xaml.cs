@@ -37,13 +37,18 @@ namespace WhoWantsToBeAMillionaire
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            Alert alert = new Alert("message", "success");
-            alert.ShowDialog();
+
         }
 
         public void UpdateView(string parameter)
         {
             _viewModel.UpdateViewCommand.Execute(parameter);
+        }
+
+        private void UpperMenu_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

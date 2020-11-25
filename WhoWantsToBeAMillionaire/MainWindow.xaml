@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         
         <!--Meniul de sus-->
-        <StackPanel Name="UpperMenu"  Orientation="Horizontal">
+        <StackPanel Name="UpperMenu"  Orientation="Horizontal" Background="Black">
             <Button Name="btToggleVolume"
                     Click="btToggleVolume_Click"
                     Content="VOL ON"/>
@@ -30,6 +30,8 @@
                     Content="Admin Panel"/>
         </StackPanel>
 
-        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel, Mode=TwoWay}"/>
+        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel, Mode=TwoWay}">
+            
+        </ContentControl>
     </Grid>
 </Window>
