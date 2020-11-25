@@ -130,6 +130,11 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
+        public void SaveResults()
+        {
+            GameService.SaveResults();
+        }
+
         public bool PickNextQuestion()
         {
             CurrentQuestion = GameService.PickNext();

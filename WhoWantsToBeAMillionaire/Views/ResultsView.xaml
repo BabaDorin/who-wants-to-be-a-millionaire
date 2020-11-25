@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" 
              d:DesignHeight="580" d:DesignWidth="1100"
-             Style="{StaticResource BigWin}">
+             Name="mainUserControl">
     <!--set height and width to auto when done!-->
     <!--Height="580" Width="1100"-->
-    <Grid Style="{StaticResource SuccessAlertGrid}">
+    <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition/>

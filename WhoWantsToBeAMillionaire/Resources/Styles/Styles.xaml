@@ -58,7 +58,7 @@
     <Style x:Key="Win" TargetType="UserControl">
         <Setter Property="Background">
             <Setter.Value>
-                <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/happydudeboai.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+                <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/happydudeboai.jpg" Stretch="UniformToFill" Opacity="0.7"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -71,25 +71,25 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DangerAlertGrid" TargetType="Grid">
+    <Style x:Key="DangerGrid" TargetType="Grid">
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" Opacity="0.3">
-                    <GradientStop Color="Red" Offset="0.25" />
+                    <GradientStop Color="Red" Offset="0.15" />
                     <GradientStop Color="Black" Offset="0.50" />
-                    <GradientStop Color="Red" Offset="0.75" />
+                    <GradientStop Color="Red" Offset="0.85" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="SuccessAlertGrid" TargetType="Grid">
+    <Style x:Key="SuccessGrid" TargetType="Grid">
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1"  Opacity="0.4">
-                    <GradientStop Color="Green" Offset="0.25" />
+                    <GradientStop Color="Green" Offset="0.15" />
                     <GradientStop Color="Black" Offset="0.50" />
-                    <GradientStop Color="Green" Offset="0.75" />
+                    <GradientStop Color="Green" Offset="0.85" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>

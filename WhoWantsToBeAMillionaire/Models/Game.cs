@@ -29,7 +29,7 @@ namespace WhoWantsToBeAMillionaire.Models
 
         public Game()
         {
-            PrizeSoFar = "0";
+            PrizeSoFar = "$ 0";
             TotalEllapsedTime = TimeSpan.FromSeconds(0);
         }
     }

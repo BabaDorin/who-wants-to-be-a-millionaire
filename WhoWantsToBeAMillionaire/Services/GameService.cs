@@ -80,6 +80,11 @@ namespace WhoWantsToBeAMillionaire.Services
             return LifelineService.AskAudience();
         }
 
+        public void SaveResults()
+        {
+            DBService.SaveResults(Results);
+        }
+
         public List<string> CallAFriend(string friendName)
         {
             // Verifica daca serviciul este disponibil (nu a fost folosit deja).

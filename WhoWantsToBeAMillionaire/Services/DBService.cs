@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using WhoWantsToBeAMillionaire.Models;
 
 namespace WhoWantsToBeAMillionaire.Services
@@ -15,6 +16,11 @@ namespace WhoWantsToBeAMillionaire.Services
         public static bool AddQuestion(Question question)
         {
             throw new NotImplementedException();
+        }
+
+        public static void SaveResults(Results results)
+        {
+            MessageBox.Show("Implement");
         }
 
         public static List<Question> GetQuestions()

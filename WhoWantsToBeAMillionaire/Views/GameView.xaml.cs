@@ -128,7 +128,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
             if (!_viewModel.PickNextQuestion())
             {
-                DisplayResults();
+                SaveAndDisplayResults();
             }
             else
             {
@@ -140,8 +140,9 @@ namespace WhoWantsToBeAMillionaire.Views
             }
         }
 
-        private void DisplayResults()
+        private void SaveAndDisplayResults()
         {
+            _viewModel.SaveResults();
             ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Results");
         }
 
@@ -177,7 +178,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btGenerateResults_Click(object sender, RoutedEventArgs e)
         {
-            DisplayResults();
+            SaveAndDisplayResults();
         }
     }
 }
