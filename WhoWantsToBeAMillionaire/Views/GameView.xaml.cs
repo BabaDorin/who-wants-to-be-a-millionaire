@@ -107,7 +107,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
             OptionsAndLifelinesSetIsEnabledPropertyTo(false);
 
-            await Task.Delay(2000);
+            await Task.Delay(2);
 
             string feedBack = _viewModel.AnswerSubmitted(int.Parse(btOption.Tag.ToString()));
             switch (feedBack)
@@ -121,14 +121,26 @@ namespace WhoWantsToBeAMillionaire.Views
                     // Raspuns gresit
                     btOption.Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
                     GameOver();
-                    // TODO: display results page.
+                    DisplayResults();
                     return;
             }
 
-            await Task.Delay(2000);
-            _viewModel.PickNextQuestion();
-            btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
-            OptionsAndLifelinesSetIsEnabledPropertyTo(true);
+            await Task.Delay(2);
+            if (!_viewModel.PickNextQuestion())
+            {
+                DisplayResults();
+            }
+            else
+            {
+                btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
+                OptionsAndLifelinesSetIsEnabledPropertyTo(true);
+                start = DateTime.Now;
+            }
+        }
+
+        private void DisplayResults()
+        {
+            throw new NotImplementedException();
         }
 
         private void GameOver()

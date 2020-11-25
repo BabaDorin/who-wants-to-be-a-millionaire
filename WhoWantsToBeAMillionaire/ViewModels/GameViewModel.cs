@@ -110,7 +110,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
             if (GameService.CheckAnswer(optionId))
             {
-
                 return "Success!";
             }
             else
@@ -119,17 +118,17 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
-        public void PickNextQuestion()
+        public bool PickNextQuestion()
         {
             CurrentQuestion = GameService.PickNext();
 
             if (CurrentQuestion == null)
             {
-                // Nu mai sunt intrebari. Au fost raspunse toate corect.
-                //return "Winner!";
+                return false; // Nu mai sunt intrebari
             }
 
             MarkCurrentPrizeWithinPrizeStack();
+            return true;
         }
 
         public void MarkCurrentPrizeWithinPrizeStack()
