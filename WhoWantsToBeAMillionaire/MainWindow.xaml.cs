@@ -43,7 +43,8 @@ namespace WhoWantsToBeAMillionaire
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-
+            AdminView adminView = new AdminView();
+            adminView.ShowDialog();
         }
 
         public void UpdateView(string parameter)

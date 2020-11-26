@@ -1,12 +1,88 @@
-﻿<UserControl x:Class="WhoWantsToBeAMillionaire.Views.AdminView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<Window x:Class="WhoWantsToBeAMillionaire.Views.AdminView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
+        mc:Ignorable="d"
+        Title="AdminView" Height="400" Width="600">
+    <!--set height and width to auto when done!-->
+    <!--Height="580" Width="1100"-->
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Adauga, modifica sau elimina intrebari." HorizontalContentAlignment="Center"
+               FontSize="20"/>
+        <Button Grid.Row="0" Content="+" Height="30" VerticalAlignment="Bottom"/>
+
+        <!--<StackPanel Grid.Row="1" Margin="30 10" Background="LightGoldenrodYellow">
             
+        </StackPanel>-->
+
+        <!--<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid x:Name="questionsGrid" Margin="30 10" Background="LightYellow">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Intrebare" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="Modifica"  Margin="5" VerticalAlignment="Top"/>
+                <Button Grid.Row="0" Grid.Column="2" Content="Elimina"   Margin="5" VerticalAlignment="Top"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Intrebare" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                <Button Grid.Row="1" Grid.Column="1" Content="Modifica"  Margin="5" VerticalAlignment="Top"/>
+                <Button Grid.Row="1" Grid.Column="2" Content="Elimina"   Margin="5" VerticalAlignment="Top"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Intrebare" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                <Button Grid.Row="2" Grid.Column="1" Content="Modifica"  Margin="5" VerticalAlignment="Top"/>
+                <Button Grid.Row="2" Grid.Column="2" Content="Elimina"   Margin="5" VerticalAlignment="Top"/>
+            </Grid>
+
+        </ScrollViewer>-->
+
+        <DataGrid Grid.Row="1" HorizontalAlignment="Center" Margin="15"   
+        Name="McDataGrid" RowHeight="30" ColumnWidth="100" CellEditEnding="McDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding QuestionId}"/>
+                <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText}"/>
+                <DataGridComboBoxColumn Header="Nivel de dificultate" x:Name="DifficultyDropDown"
+                                        SelectedValueBinding="{Binding DifficultyLevel}"  
+                                        SelectedItemBinding="{Binding DifficultyLevel}"
+                                        SelectedValuePath="Value"/>
+                <DataGridTextColumn Header="Optiunea ID:0" Binding="{Binding Options[0]}"/>
+                <DataGridTextColumn Header="Optiunea ID:1" Binding="{Binding Options[1]}"/>
+                <DataGridTextColumn Header="Optiunea ID:2" Binding="{Binding Options[2]}"/>
+                <DataGridTextColumn Header="Optiunea ID:3" Binding="{Binding Options[3]}"/>
+                <DataGridTextColumn Header="ID optiune corecta" Binding="{Binding CorrectOptionIndex}"/>
+                <DataGridTextColumn Header="Explicatii" Binding="{Binding Explanations}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Modifica"/>
+            <Button Grid.Column="1" Content="Elimina"/>
+        </Grid>
+
     </Grid>
-</UserControl>
+</Window>
