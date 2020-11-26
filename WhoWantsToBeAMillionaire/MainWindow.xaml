@@ -15,23 +15,42 @@
         <Grid.Background>
             <SolidColorBrush Opacity="0.5" Color="Black"/>
         </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="20*"/>
-        </Grid.RowDefinitions>
-        
-        <!--Meniul de sus-->
-        <StackPanel Name="UpperMenu"  Orientation="Horizontal" Background="Black">
-            <Button Name="btToggleVolume"
-                    Click="btToggleVolume_Click"
-                    Content="VOL ON"/>
-            <Button Name="btAdminPanel"
-                    Click="btAdminPanel_Click"
-                    Content="Admin Panel"/>
-        </StackPanel>
 
-        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel, Mode=TwoWay}">
-            
+        <!--Meniul de sus-->
+
+
+        <ContentControl Grid.Row="1" Padding="0, 30, 0, 0" Content="{Binding SelectedViewModel, Mode=TwoWay}">
+
         </ContentControl>
+
+        <Grid Height="30" VerticalAlignment="Top" Margin="0 5 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" 
+                    HorizontalAlignment="Center"
+                    Name="btToggleVolume" Style="{StaticResource EmptyButton}"
+                    Click="btToggleVolume_Click">
+                <Image Source="pack://application:,,,/Resources/Media/volume.png"/>
+            </Button>
+
+            <Button Grid.Column="1" Name="btAdminPanel"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource EmptyButton}"
+                    Click="btAdminPanel_Click">
+                <Image Source="pack://application:,,,/Resources/Media/admin.png"/>
+            </Button>
+
+            <Image Name="VolumeOff"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0" 
+                   Source="pack://application:,,,/Resources/Media/cross.png"
+                   Height="{Binding ElementName=btToggleVolume, Path=Height}"
+                   Width="{Binding ElementName=btToggleVolume, Path=Width}"
+                   MouseDown="btToggleVolume_Click"
+                   Opacity="0.7" Visibility="Hidden"/>
+        </Grid>
     </Grid>
 </Window>

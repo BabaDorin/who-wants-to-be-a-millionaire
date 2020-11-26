@@ -154,6 +154,19 @@
         </Setter>
     </Style>
 
+    <Style x:Key="EmptyButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="StartViewButtons" BasedOn="{StaticResource NormalPolygon}" TargetType="Button">
         <Setter Property="Width" Value="500"/>
         <Setter Property="FontSize" Value="20"/>
@@ -242,7 +255,7 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Content" Value="&lt;"/>
         <Setter Property="FontFamily" Value="Calibri"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="10, 45, 10, 10"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style> 

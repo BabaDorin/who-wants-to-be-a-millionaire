@@ -32,7 +32,10 @@ namespace WhoWantsToBeAMillionaire
 
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)
         {
-
+            if (VolumeOff.Visibility == Visibility.Hidden)
+                VolumeOff.Visibility = Visibility.Visible;
+            else
+                VolumeOff.Visibility = Visibility.Hidden;
         }
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
