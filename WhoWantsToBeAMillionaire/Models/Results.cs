@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WhoWantsToBeAMillionaire.Models
 {
-    class Results
+    public class Results
     {
         // Numele jucatorului
         public string PlayerName { get; set; }

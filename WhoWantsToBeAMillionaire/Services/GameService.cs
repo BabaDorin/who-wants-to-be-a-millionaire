@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Windows;
 using WhoWantsToBeAMillionaire.Models;
 
 namespace WhoWantsToBeAMillionaire.Services
@@ -31,8 +32,10 @@ namespace WhoWantsToBeAMillionaire.Services
             // Initializarea jocului: Este creat un obiect Game. Sunt extrase intrebarile jocului din fisierul XML
             Game = new Game();
             Results = new Results();
-            Game.Questions = DBService.GetTestQuestions();
+
+            Game.Questions = DBService.GetQuestions();
             Game.PlayerName = playerName;
+            Results.PlayerName = playerName;
             CurrentQuestionId = 0;
         }
 
@@ -82,6 +85,9 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public void SaveResults()
         {
+            Results.FinalPrize = Game.PrizeSoFar;
+            Results.CorrectAnswers = CurrentQuestionId;
+            if(Game.PrizeSoFar == "$ 1 000 000") Results.CorrectAnswers = CurrentQuestionId + 1;
             DBService.SaveResults(Results);
         }
 

@@ -6,5 +6,9 @@ namespace WhoWantsToBeAMillionaire.Services
 {
     class AudioService
     {
+        public static void ToggleVolume()
+        {
+
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WhoWantsToBeAMillionaire.Models
 {
-    enum DifficultyLevel
+    public enum DifficultyLevel
     {
         Easy, // 100 - 300                  | 3 intrebari
         Medium, // 500 - 2 000              | 3 intrebari
@@ -13,8 +13,10 @@ namespace WhoWantsToBeAMillionaire.Models
         Einstein // 500 000 - 1 000 000     | 2 intrebari
     }
 
-    class Question
+    public class Question
     {
+        public string QuestionId { get; set; }
+
         // Intrebarea propriu zisa (Textul intrebarii)
         public string QuestionText { get; set; }
         

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfResults xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Results>
+		<PlayerName>qweq</PlayerName>
+		<FinalPrize>$ 0</FinalPrize>
+		<CorrectAnswers>0</CorrectAnswers>
+		<ElapsedTime>PT0.5820833S</ElapsedTime>
+		<MediumTimeSpanPerQuestion>PT0S</MediumTimeSpanPerQuestion>
+	</Results>
+	<Results>
+		<PlayerName>weqwqewq</PlayerName>
+		<FinalPrize>$ 1 000 000</FinalPrize>
+		<CorrectAnswers>15</CorrectAnswers>
+		<ElapsedTime>PT4.9060836S</ElapsedTime>
+		<MediumTimeSpanPerQuestion>PT0S</MediumTimeSpanPerQuestion>
+	</Results>
+	<Results>
+		<PlayerName>qwew</PlayerName>
+		<FinalPrize>$ 0</FinalPrize>
+		<CorrectAnswers>0</CorrectAnswers>
+		<ElapsedTime>PT0.8471775S</ElapsedTime>
+		<MediumTimeSpanPerQuestion>PT0S</MediumTimeSpanPerQuestion>
+	</Results>
+	<Results>
+		<PlayerName>eqew</PlayerName>
+		<FinalPrize>$ 0</FinalPrize>
+		<CorrectAnswers>0</CorrectAnswers>
+		<ElapsedTime>PT1.4312933S</ElapsedTime>
+		<MediumTimeSpanPerQuestion>PT1S</MediumTimeSpanPerQuestion>
+	</Results>
+	<Results>
+		<PlayerName>12we</PlayerName>
+		<FinalPrize>$ 1 000</FinalPrize>
+		<CorrectAnswers>7</CorrectAnswers>
+		<ElapsedTime>PT2.9298229S</ElapsedTime>
+		<MediumTimeSpanPerQuestion>PT0S</MediumTimeSpanPerQuestion>
+	</Results>
+</ArrayOfResults>

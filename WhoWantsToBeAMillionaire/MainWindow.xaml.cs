@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhoWantsToBeAMillionaire.Services;
 using WhoWantsToBeAMillionaire.ViewModels;
 using WhoWantsToBeAMillionaire.Views;
 
@@ -36,6 +37,8 @@ namespace WhoWantsToBeAMillionaire
                 VolumeOff.Visibility = Visibility.Visible;
             else
                 VolumeOff.Visibility = Visibility.Hidden;
+
+            AudioService.ToggleVolume();
         }
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)

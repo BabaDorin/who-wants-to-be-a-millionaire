@@ -7,7 +7,6 @@ namespace WhoWantsToBeAMillionaire.Models
 {
     class Game
     {
-        // Numele jucatorului
         public string PlayerName { get; set; }
         
         // Premiul curent al jucatorului
