@@ -72,14 +72,36 @@ namespace WhoWantsToBeAMillionaire.Services
             return TestQuestions;
         }
 
-        public static bool RemoveQuestion(Question question)
+        public static bool RemoveQuestion(string questionId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Question> questions = GetQuestions();
+                Question toBeDeleted = questions.First(q => q.QuestionId == questionId);
+                questions.Remove(toBeDeleted);
+                XmlHelper.ToXmlFile(questions, xmlQuestionsPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public static bool UpdateQuestion(Question question)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Question> questions = GetQuestions();
+                Question toBeUpdated = questions.First(q => q.QuestionId == question.QuestionId);
+                toBeUpdated = question;
+                XmlHelper.ToXmlFile(questions, xmlQuestionsPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 
