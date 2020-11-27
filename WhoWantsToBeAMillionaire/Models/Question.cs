@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace WhoWantsToBeAMillionaire.Models
@@ -14,9 +15,15 @@ namespace WhoWantsToBeAMillionaire.Models
 
     public class Question
     {
+        public Question()
+        {
+
+        }
+
         public string QuestionId { get; set; }
 
         // Intrebarea propriu zisa (Textul intrebarii)
+        [Required]
         public string QuestionText { get; set; }
         
         // Nivelul de dificultate al intrebarii

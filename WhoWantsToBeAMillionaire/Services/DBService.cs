@@ -88,6 +88,19 @@ namespace WhoWantsToBeAMillionaire.Services
             }
         }
 
+        public static bool WriteQuestionsToXmlFile(List<Question> QuestionsList)
+        {
+            try
+            {
+                XmlHelper.ToXmlFile(QuestionsList, xmlQuestionsPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public static bool UpdateQuestion(Question question)
         {
             try

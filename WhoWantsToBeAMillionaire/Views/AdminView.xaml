@@ -19,21 +19,21 @@
                FontSize="20"/>
         <Button Grid.Row="0" Content="+" Height="30" VerticalAlignment="Bottom"/>
 
-        <DataGrid Grid.Row="1" HorizontalAlignment="Center" Margin="15" AddingNewItem="McDataGrid_AddingNewItem" InitializingNewItem="McDataGrid_InitializingNewItem"
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="15" InitializingNewItem="McDataGrid_InitializingNewItem"
         Name="McDataGrid" RowHeight="30" ColumnWidth="100" ItemsSource="{Binding QuestionsList}" CellEditEnding="McDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding QuestionId}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding QuestionId, ValidatesOnExceptions=True}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText, ValidatesOnExceptions=True}"/>
                 <DataGridComboBoxColumn Header="Nivel de dificultate" x:Name="DifficultyDropDown"
-                                        SelectedValueBinding="{Binding DifficultyLevel}"  
-                                        SelectedItemBinding="{Binding DifficultyLevel}"
+                                        SelectedValueBinding="{Binding DifficultyLevel, ValidatesOnExceptions=True, Mode=OneWay}"  
+                                        SelectedItemBinding="{Binding DifficultyLevel, ValidatesOnExceptions=True, Mode=OneWay}"
                                         SelectedValuePath="Value"/>
-                <DataGridTextColumn Header="Optiunea ID:0" Binding="{Binding Options[0]}"/>
-                <DataGridTextColumn Header="Optiunea ID:1" Binding="{Binding Options[1]}"/>
-                <DataGridTextColumn Header="Optiunea ID:2" Binding="{Binding Options[2]}"/>
-                <DataGridTextColumn Header="Optiunea ID:3" Binding="{Binding Options[3]}"/>
-                <DataGridTextColumn Header="ID optiune corecta" Binding="{Binding CorrectOptionIndex}"/>
-                <DataGridTextColumn Header="Explicatii" Binding="{Binding Explanations}"/>
+                <DataGridTextColumn Header="Optiunea ID:0" Binding="{Binding Options[0], ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="Optiunea ID:1" Binding="{Binding Options[1], ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="Optiunea ID:2" Binding="{Binding Options[2], ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="Optiunea ID:3" Binding="{Binding Options[3], ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="ID optiune corecta" Binding="{Binding CorrectOptionIndex, ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="Explicatii" Binding="{Binding Explanations, ValidatesOnExceptions=True}"/>
             </DataGrid.Columns>
         </DataGrid>
 

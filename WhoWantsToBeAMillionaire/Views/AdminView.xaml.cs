@@ -49,7 +49,7 @@ namespace WhoWantsToBeAMillionaire.Views
             
             InitializeComponent();
             //McDataGrid.ItemsSource = _viewModel.QuestionsList;
-            DifficultyDropDown.ItemsSource = new List<string> { "Easy", "Medium", "Hard", "Einstein" };
+            DifficultyDropDown.ItemsSource = new List<DifficultyLevel> { DifficultyLevel.Easy, DifficultyLevel.Medium, DifficultyLevel.Hard, DifficultyLevel.Einstein };
         }
 
         private void McDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -59,19 +59,13 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(_viewModel.QuestionsList.Count.ToString());
+            _viewModel.Save();
         }
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.Delete(McDataGrid);
             CollectionViewSource.GetDefaultView(McDataGrid.ItemsSource).Refresh();
-        }
-
-        private void McDataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
-        {
-            //_viewModel.NewRow();
-            //CollectionViewSource.GetDefaultView(McDataGrid.ItemsSource).Refresh();
         }
 
         private void McDataGrid_InitializingNewItem(object sender, InitializingNewItemEventArgs e)
