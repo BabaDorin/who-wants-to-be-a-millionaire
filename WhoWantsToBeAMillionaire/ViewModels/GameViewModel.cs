@@ -81,7 +81,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         public GameViewModel()
         {
             GameService = GameService.GetInstace();
-            SecondsPerQuestion = 20;
+            SecondsPerQuestion = 60;
 
             CurrentQuestion = GameService.Game.Questions[0];
             AudienceAsked = FriendCalled = FiftyFiftyUsed = false;

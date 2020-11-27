@@ -76,6 +76,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btAskAudience_Click(object sender, RoutedEventArgs e)
         {
+            start = DateTime.Now;
             Window window = new Window
             {
                 Content = new AskAudienceView()
@@ -90,6 +91,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btPhoneCall_Click(object sender, RoutedEventArgs e)
         {
+            start = DateTime.Now;
             PhoneCallUsed.Visibility = Visibility.Visible;
             btPhoneCall.IsEnabled = false;
         }

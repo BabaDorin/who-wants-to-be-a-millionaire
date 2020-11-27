@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/audiencebg.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -19,25 +22,96 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Row="0" Grid.Column="0" Margin="3" Fill="DodgerBlue"
-                   Height="200" VerticalAlignment="Bottom"/>
+        <Rectangle Grid.Row="0" Grid.Column="0" Style="{StaticResource AskAudienceGraphBar}" Name="rectangle1">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetName="rectangle1"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding MaximumHeight}" Duration="0:0:2" AutoReverse="True"/>
 
-        <Rectangle Grid.Row="0" Grid.Column="1" Margin="3" Fill="DodgerBlue"
-                   Height="40" VerticalAlignment="Bottom"/>
+                            <DoubleAnimation 
+                                BeginTime="0:0:7"
+                                Storyboard.TargetName="rectangle1"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding RectangleAHeight}" Duration="0:0:2" AutoReverse="False"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
 
-        <Rectangle Grid.Row="0" Grid.Column="2" Margin="3" Fill="DodgerBlue"
-                   Height="47" VerticalAlignment="Bottom"/>
+        <Rectangle Grid.Row="0" Grid.Column="1" Style="{StaticResource AskAudienceGraphBar}" Name="rectangle2">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                BeginTime="0:0:0.5"
+                                Storyboard.TargetName="rectangle2"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding MaximumHeight}" Duration="0:0:2" AutoReverse="True"/>
 
-        <Rectangle Grid.Row="0" Grid.Column="3" Margin="3" Fill="DodgerBlue"
-                   Height="100" VerticalAlignment="Bottom"/>
+                            <DoubleAnimation 
+                                BeginTime="0:0:6.5"
+                                Storyboard.TargetName="rectangle2"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding RectangleBHeight}" Duration="0:0:2" AutoReverse="False"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
 
-        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Content="A" FontSize="20"/>
-        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Content="B" FontSize="20"/>
-        <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Content="C" FontSize="20"/>
-        <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Content="D" FontSize="20"/>
+        <Rectangle Grid.Row="0" Grid.Column="2" Style="{StaticResource AskAudienceGraphBar}" Name="rectangle3">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                BeginTime="0:0:1"
+                                Storyboard.TargetName="rectangle3"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding MaximumHeight}" Duration="0:0:2" AutoReverse="True"/>
+
+                            <DoubleAnimation 
+                                BeginTime="0:0:6"
+                                Storyboard.TargetName="rectangle3"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding RectangleCHeight}" Duration="0:0:2" AutoReverse="False"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+
+        <Rectangle Grid.Row="0" Grid.Column="3" Style="{StaticResource AskAudienceGraphBar}" Height="0" Name="rectangle4">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                BeginTime="0:0:1.5"
+                                Storyboard.TargetName="rectangle4"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding MaximumHeight}" Duration="0:0:2" AutoReverse="True"/>
+
+                            <DoubleAnimation 
+                                BeginTime="0:0:5.5"
+                                Storyboard.TargetName="rectangle4"
+                                Storyboard.TargetProperty="Height"
+                                From="0" To="{Binding RectangleDHeight}" Duration="0:0:2" AutoReverse="False"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+
+        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource AskAudienceLabel}" Content="A"/>
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource AskAudienceLabel}" Content="B"/>
+        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource AskAudienceLabel}" Content="C"/>
+        <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource AskAudienceLabel}" Content="D"/>
     </Grid>
 </UserControl>

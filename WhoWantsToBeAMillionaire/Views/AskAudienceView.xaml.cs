@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
@@ -20,6 +21,7 @@ namespace WhoWantsToBeAMillionaire.Views
     {
         public AskAudienceView()
         {
+            DataContext = new AskAudienceViewModel();
             InitializeComponent();
         }
     }

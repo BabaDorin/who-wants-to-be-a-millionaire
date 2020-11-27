@@ -109,6 +109,17 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
+    <!--HorizontalAlignment="Center" 
+               VerticalAlignment="Center"
+               Content="A" FontSize="30" FontWeight="Bold" Foreground="White"-->
+    <Style x:Key="AskAudienceLabel" TargetType="Label">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
     <!--TextBox styles-->
     <Style x:Key="SimpleTextBox" TargetType="TextBox">
         <Setter Property="Foreground" Value="White"/>
@@ -285,4 +296,22 @@
         <Setter Property="Cursor" Value="Arrow"/>
         <Setter Property="Width" Value="600"/>
     </Style>
+
+    <!--Rectangle Styles-->
+    <Style x:Key="AskAudienceGraphBar" TargetType="Rectangle">
+        <Setter Property="Height" Value="0"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="20 0"/>
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush>
+                    <GradientStop Color="#22fefd" Offset="0.25"/>
+                    <GradientStop Color="#6666f8" Offset="0.5"/>
+                    <GradientStop Color="BlueViolet" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--Fill="DodgerBlue"-->
 </ResourceDictionary>
