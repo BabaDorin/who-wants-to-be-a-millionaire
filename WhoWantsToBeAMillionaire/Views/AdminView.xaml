@@ -19,44 +19,10 @@
                FontSize="20"/>
         <Button Grid.Row="0" Content="+" Height="30" VerticalAlignment="Bottom"/>
 
-        <!--<StackPanel Grid.Row="1" Margin="30 10" Background="LightGoldenrodYellow">
-            
-        </StackPanel>-->
-
-        <!--<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <Grid x:Name="questionsGrid" Margin="30 10" Background="LightYellow">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="8*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Grid.Column="0" Content="Intrebare" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="0" Grid.Column="1" Content="Modifica"  Margin="5" VerticalAlignment="Top"/>
-                <Button Grid.Row="0" Grid.Column="2" Content="Elimina"   Margin="5" VerticalAlignment="Top"/>
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Intrebare" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="1" Grid.Column="1" Content="Modifica"  Margin="5" VerticalAlignment="Top"/>
-                <Button Grid.Row="1" Grid.Column="2" Content="Elimina"   Margin="5" VerticalAlignment="Top"/>
-
-                <Label Grid.Row="2" Grid.Column="0" Content="Intrebare" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-                <Button Grid.Row="2" Grid.Column="1" Content="Modifica"  Margin="5" VerticalAlignment="Top"/>
-                <Button Grid.Row="2" Grid.Column="2" Content="Elimina"   Margin="5" VerticalAlignment="Top"/>
-            </Grid>
-
-        </ScrollViewer>-->
-
-        <DataGrid Grid.Row="1" HorizontalAlignment="Center" Margin="15"   
-        Name="McDataGrid" RowHeight="30" ColumnWidth="100" CellEditEnding="McDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
+        <DataGrid Grid.Row="1" HorizontalAlignment="Center" Margin="15" AddingNewItem="McDataGrid_AddingNewItem" InitializingNewItem="McDataGrid_InitializingNewItem"
+        Name="McDataGrid" RowHeight="30" ColumnWidth="100" ItemsSource="{Binding QuestionsList}" CellEditEnding="McDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding QuestionId}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding QuestionId}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText}"/>
                 <DataGridComboBoxColumn Header="Nivel de dificultate" x:Name="DifficultyDropDown"
                                         SelectedValueBinding="{Binding DifficultyLevel}"  
@@ -80,8 +46,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Modifica"/>
-            <Button Grid.Column="1" Content="Elimina"/>
+            <Button Name="btSave" Grid.Column="0" Content="Salveaza" Margin="10" Click="btSave_Click" IsEnabled="False"/>
+            <Button Name="btDelete" Grid.Column="1" Content="Elimina" Margin="10" Click="btDelete_Click"/>
         </Grid>
 
     </Grid>

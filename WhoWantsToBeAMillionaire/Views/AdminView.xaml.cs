@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
+using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
@@ -38,47 +40,43 @@ namespace WhoWantsToBeAMillionaire.Views
     public partial class AdminView : Window
     {
         
-        public List<Question> QuestionsList { get; set; }
-        
+        private AdminViewModel _viewModel;
+
         public AdminView()
         {
+            DataContext = new AdminViewModel();
+            _viewModel = DataContext as AdminViewModel;
+            
             InitializeComponent();
-
-            QuestionsList = DBService.GetQuestions();
-            McDataGrid.ItemsSource = QuestionsList;
+            //McDataGrid.ItemsSource = _viewModel.QuestionsList;
             DifficultyDropDown.ItemsSource = new List<string> { "Easy", "Medium", "Hard", "Einstein" };
         }
 
         private void McDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-
+            btSave.IsEnabled = true;
         }
 
-        //private void InsertIntoList(Question q)
-        //{
-        //    questionsGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(30, GridUnitType.Pixel) });
-        //    int currentRowIndex = questionsGrid.RowDefinitions.Count - 1;
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(_viewModel.QuestionsList.Count.ToString());
+        }
 
-        //    Label lbQuestionText = new Label();
-        //    lbQuestionText.Content = q.QuestionText + " 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333";
-        //    Grid.SetRow(lbQuestionText, currentRowIndex);
-        //    Grid.SetColumn(lbQuestionText, 0);
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Delete(McDataGrid);
+            CollectionViewSource.GetDefaultView(McDataGrid.ItemsSource).Refresh();
+        }
 
-        //    Button btUpdate = new Button();
-        //    btUpdate.Content = "Update";
-        //    btUpdate.Tag = q.QuestionId;
-        //    Grid.SetRow(btUpdate, currentRowIndex);
-        //    Grid.SetColumn(btUpdate, 1);
+        private void McDataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+            //_viewModel.NewRow();
+            //CollectionViewSource.GetDefaultView(McDataGrid.ItemsSource).Refresh();
+        }
 
-        //    Button btDelete = new Button();
-        //    btDelete.Content = "Delete";
-        //    btDelete.Tag = q.QuestionId;
-        //    Grid.SetRow(btDelete, currentRowIndex);
-        //    Grid.SetColumn(btDelete, 2);
-
-        //    questionsGrid.Children.Add(lbQuestionText);
-        //    questionsGrid.Children.Add(btUpdate);
-        //    questionsGrid.Children.Add(btDelete);
-        //}
+        private void McDataGrid_InitializingNewItem(object sender, InitializingNewItemEventArgs e)
+        {
+            _viewModel.NewRow();
+        }
     }
 }

@@ -29,8 +29,8 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void btStartGame_Click(object sender, RoutedEventArgs e)
         {
-            GameService.GetInstace().Init(tbPlayerName.Text);
-            ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Game");
+            if(GameService.GetInstace().Init(tbPlayerName.Text))
+                ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Game");
         }
 
         private void btShowRules_Click(object sender, RoutedEventArgs e)

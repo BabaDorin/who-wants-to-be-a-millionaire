@@ -27,16 +27,33 @@ namespace WhoWantsToBeAMillionaire.Services
         public LifelineService LifelineService { get; set; }
         public int CurrentQuestionId { get; set; }
 
-        public void Init(string playerName)
+        public bool Init(string playerName)
         {
-            // Initializarea jocului: Este creat un obiect Game. Sunt extrase intrebarile jocului din fisierul XML
-            Game = new Game();
-            Results = new Results();
+            try
+            {
+                // Initializarea jocului: Este creat un obiect Game. Sunt extrase intrebarile jocului din fisierul XML
+                Game = new Game();
+                Results = new Results();
 
-            Game.Questions = DBService.GetQuestions();
-            Game.PlayerName = playerName;
-            Results.PlayerName = playerName;
-            CurrentQuestionId = 0;
+                Game.Questions = DBService.GetQuestions();
+                // Este nevoie de minim 15 intrebari pentru a incepe jocul
+                if (Game.Questions.Count < 15)
+                {
+                    MessageBox.Show("Este nevoie de minim 15 intrebari pentru a initia un joc.");
+                    return false;
+                }
+
+                Game.PlayerName = playerName;
+                Results.PlayerName = playerName;
+                CurrentQuestionId = 0;
+
+                return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("S-a produs o eroare la initializarea jocului.");
+                return false;
+            }
         }
 
         public Question PickNext()
