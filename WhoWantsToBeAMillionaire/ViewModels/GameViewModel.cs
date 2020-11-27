@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
+using WhoWantsToBeAMillionaire.Views;
 
 namespace WhoWantsToBeAMillionaire.ViewModels
 {
@@ -172,6 +173,19 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         {
             GameService.FiftyFifty();
             OnPropertyChanged(nameof(CurrentQuestion));
+        }
+
+        public void AskAudience()
+        {
+            List<int> results = GameService.AskAudience();
+
+            Window window = new Window
+            {
+                Content = new AskAudienceView(results)
+            };
+            window.Height = 400;
+            window.Width = 400;
+            window.ShowDialog();
         }
 
 

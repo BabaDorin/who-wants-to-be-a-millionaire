@@ -15,9 +15,8 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Adauga, modifica sau elimina intrebari." HorizontalContentAlignment="Center"
+        <Label Grid.Row="0" Content="Adauga, modifica sau elimina intrebari." HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                FontSize="20"/>
-        <Button Grid.Row="0" Content="+" Height="30" VerticalAlignment="Bottom"/>
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="15" InitializingNewItem="McDataGrid_InitializingNewItem"
         Name="McDataGrid" RowHeight="30" ColumnWidth="100" ItemsSource="{Binding QuestionsList}" CellEditEnding="McDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
@@ -25,9 +24,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding QuestionId, ValidatesOnExceptions=True}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText, ValidatesOnExceptions=True}"/>
                 <DataGridComboBoxColumn Header="Nivel de dificultate" x:Name="DifficultyDropDown"
-                                        SelectedValueBinding="{Binding DifficultyLevel, ValidatesOnExceptions=True, Mode=OneWay}"  
-                                        SelectedItemBinding="{Binding DifficultyLevel, ValidatesOnExceptions=True, Mode=OneWay}"
-                                        SelectedValuePath="Value"/>
+                                        SelectedItemBinding="{Binding DifficultyLevel}"/>
                 <DataGridTextColumn Header="Optiunea ID:0" Binding="{Binding Options[0], ValidatesOnExceptions=True}"/>
                 <DataGridTextColumn Header="Optiunea ID:1" Binding="{Binding Options[1], ValidatesOnExceptions=True}"/>
                 <DataGridTextColumn Header="Optiunea ID:2" Binding="{Binding Options[2], ValidatesOnExceptions=True}"/>

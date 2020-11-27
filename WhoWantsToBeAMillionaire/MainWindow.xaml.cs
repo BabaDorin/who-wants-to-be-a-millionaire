@@ -57,5 +57,15 @@ namespace WhoWantsToBeAMillionaire
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        public void DeactivateAdminPanel()
+        {
+            btAdminPanel.IsEnabled = false;
+        }
+
+        public void ActivateAdminPanel()
+        {
+            btAdminPanel.IsEnabled = true;
+        }
     }
 }

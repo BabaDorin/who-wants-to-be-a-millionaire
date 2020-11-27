@@ -102,7 +102,7 @@ namespace WhoWantsToBeAMillionaire.Services
             // Verifica daca serviciul este disponibil (nu a fost folosit deja).
             // Returneaza o lista cu 4 valori - fiecare numar reprezentand procentajul
             // din aduienta care a indicat anume acea optiune;
-            return LifelineService.AskAudience();
+            return LifelineService.AskAudience(Game.Questions[CurrentQuestionId]);
         }
 
         public void SaveResults()

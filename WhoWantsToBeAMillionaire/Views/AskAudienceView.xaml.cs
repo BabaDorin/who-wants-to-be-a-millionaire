@@ -19,9 +19,12 @@ namespace WhoWantsToBeAMillionaire.Views
     /// </summary>
     public partial class AskAudienceView : UserControl
     {
-        public AskAudienceView()
+        public AskAudienceViewModel _viewModel;
+        public AskAudienceView(List<int> results)
         {
-            DataContext = new AskAudienceViewModel();
+            DataContext = new AskAudienceViewModel(results);
+            _viewModel = DataContext as AskAudienceViewModel;
+
             InitializeComponent();
         }
     }

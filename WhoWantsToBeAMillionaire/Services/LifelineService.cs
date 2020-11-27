@@ -7,14 +7,64 @@ namespace WhoWantsToBeAMillionaire.Services
 {
     class LifelineService
     {
-        public List<int> AskAudience()
+        public List<int> AskAudience(Question question)
         {
             // Pentru intrebarile Easy: Raspunsul corect va avea peste 80% din voturi
             // Pentru intrebarile Medium: Raspunsul corect va avea peste 60% din voturi
-            // Pentru intrebarile UpperMedium: Raspunsul corect va avea peste 50% din voturi
             // Pentru intrebarile Hard: Raspunsul corect va avea peste 35% din voturi
             // Pentru intrebarile Einstein: Raspunsul corect va avea peste 20% din voturi
-            throw new NotImplementedException();
+
+            List<int> results = new List<int>() { 0, 0, 0, 0 };
+            Random random = new Random();
+            int op1 = 0, op2 = 0, op3 = 0, op4 = 0; // op1 este optiunea castigatoare
+
+            switch (question.DifficultyLevel)
+            {
+                case DifficultyLevel.Easy:
+                    op1 = random.Next(80, 100);  // Optiunea corecta
+                    op2 = random.Next(0, 100 - op1);
+                    op3 = random.Next(0, 100 - (op1 + op2));
+                    op4 = 100 - (op1 + op2 + op3);
+                    break;
+
+                case DifficultyLevel.Medium:
+                    op1 = random.Next(60, 100);  // Optiunea corecta
+                    op2 = random.Next(0, 100 - op1);
+                    op3 = random.Next(0, 100 - (op1 + op2));
+                    op4 = 100 - (op1 + op2 + op3);
+                    break;
+
+                case DifficultyLevel.Hard:
+                    op1 = random.Next(35, 100);  // Optiunea corecta
+                    op2 = random.Next(0, 100 - op1);
+                    op3 = random.Next(0, 100 - (op1 + op2));
+                    op4 = 100 - (op1 + op2 + op3);
+                    break;
+
+                case DifficultyLevel.Einstein:
+                    op1 = random.Next(20, 100);  // Optiunea corecta
+                    op2 = random.Next(0, 100 - op1);
+                    op3 = random.Next(0, 100 - (op1 + op2));
+                    op4 = 100 - (op1 + op2 + op3);
+                    break;
+            }
+
+            Stack<int> OtherOptions = new Stack<int>();
+            OtherOptions.Push(op2);
+            OtherOptions.Push(op3);
+            OtherOptions.Push(op4);
+
+            int correctOptionId = question.CorrectOptionIndex;
+
+            for (int i = 0; i < correctOptionId; i++)
+                results[i] = OtherOptions.Pop();
+
+            results[correctOptionId] = op1;
+
+            for (int i = correctOptionId + 1; i < 4; i++)
+                results[i] = OtherOptions.Pop();
+
+            return results;
         }
 
         public List<string> CallAFriend(string friendName)

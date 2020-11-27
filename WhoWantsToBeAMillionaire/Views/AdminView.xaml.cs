@@ -17,26 +17,6 @@ using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
-    /// <summary>
-    /// Interaction logic for AdminView.xaml
-    /// </summary>
-    ///
-
-    //public class DisplayQuestion
-    //{
-    //    public string QuestionId { get; set; }
-
-    //    public string QuestionText { get; set; }
-
-    //    public DifficultyLevel DifficultyLevel { get; set; }
-
-    //    public List<string> Options { get; set; }
-
-    //    public int CorrectOptionIndex { get; set; }
-
-    //    public string Explanations { get; set; }
-    //}
-
     public partial class AdminView : Window
     {
         
@@ -48,7 +28,6 @@ namespace WhoWantsToBeAMillionaire.Views
             _viewModel = DataContext as AdminViewModel;
             
             InitializeComponent();
-            //McDataGrid.ItemsSource = _viewModel.QuestionsList;
             DifficultyDropDown.ItemsSource = new List<DifficultyLevel> { DifficultyLevel.Easy, DifficultyLevel.Medium, DifficultyLevel.Hard, DifficultyLevel.Einstein };
         }
 

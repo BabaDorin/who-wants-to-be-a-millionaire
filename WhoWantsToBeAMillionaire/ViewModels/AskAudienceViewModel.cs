@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WhoWantsToBeAMillionaire.ViewModels
 {
-    class AskAudienceViewModel : BaseViewModel
+    public class AskAudienceViewModel : BaseViewModel
     {
 
         private int _maximumHeight;
@@ -77,13 +77,17 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
-        public AskAudienceViewModel()
+        public AskAudienceViewModel(List<int> results)
         {
             MaximumHeight = 300;
-            RectangleAHeight = 300;
-            RectangleBHeight = 30;
-            RectangleCHeight = 100;
-            RectangleDHeight = 200;
+
+            // 300 - 100 %
+            //  x  -  results[i] %
+
+            RectangleAHeight = MaximumHeight * results[0] / 100;
+            RectangleBHeight = MaximumHeight * results[1] / 100;
+            RectangleCHeight = MaximumHeight * results[2] / 100;
+            RectangleDHeight = MaximumHeight * results[3] / 100;
         }
     }
 }

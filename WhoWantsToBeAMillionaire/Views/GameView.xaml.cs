@@ -77,13 +77,7 @@ namespace WhoWantsToBeAMillionaire.Views
         private void btAskAudience_Click(object sender, RoutedEventArgs e)
         {
             start = DateTime.Now;
-            Window window = new Window
-            {
-                Content = new AskAudienceView()
-            };
-            window.Height = 400;
-            window.Width = 400;
-            window.ShowDialog();
+            _viewModel.AskAudience();
 
             AskAudienceUsed.Visibility = Visibility.Visible;
             btAskAudience.IsEnabled = false;

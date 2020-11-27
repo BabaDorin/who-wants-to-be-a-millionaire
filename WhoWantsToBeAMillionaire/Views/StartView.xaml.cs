@@ -25,12 +25,17 @@ namespace WhoWantsToBeAMillionaire.Views
         {
             InitializeComponent();
             DataContext = new StartViewModel();
+            ((MainWindow)System.Windows.Application.Current.MainWindow).ActivateAdminPanel();
+
         }
 
         private void btStartGame_Click(object sender, RoutedEventArgs e)
         {
-            if(GameService.GetInstace().Init(tbPlayerName.Text))
+            if (GameService.GetInstace().Init(tbPlayerName.Text))
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).DeactivateAdminPanel();
                 ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Game");
+            }
         }
 
         private void btShowRules_Click(object sender, RoutedEventArgs e)
