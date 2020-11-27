@@ -86,6 +86,7 @@ namespace WhoWantsToBeAMillionaire.Views
         private void btPhoneCall_Click(object sender, RoutedEventArgs e)
         {
             start = DateTime.Now;
+            _viewModel.CallFriend();
             PhoneCallUsed.Visibility = Visibility.Visible;
             btPhoneCall.IsEnabled = false;
         }

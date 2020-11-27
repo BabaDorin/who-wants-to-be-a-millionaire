@@ -16,6 +16,7 @@
     <None Remove="Resources\Media\dudewithmoney.jpg" />
     <None Remove="Resources\Media\happydudeboai.jpg" />
     <None Remove="Resources\Media\phonecall.png" />
+    <None Remove="Resources\Media\phonefriendbg.jpg" />
     <None Remove="Resources\Media\volume.png" />
   </ItemGroup>
 
@@ -43,6 +44,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\phonecall.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\phonefriendbg.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\volume.png">

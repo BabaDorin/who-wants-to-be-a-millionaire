@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="WhoWantsToBeAMillionaire.Views.PhoneCallView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
+             mc:Ignorable="d" 
+              d:DesignHeight="400" d:DesignWidth="400" Background="White">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonefriendbg.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        
+        <Grid Name="GridInput" Visibility="{Binding GridInputVisibility}">
+            <StackPanel Orientation="Vertical" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Pe cine sunam?" FontWeight="Bold"
+                   Foreground="White" FontSize="16"
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox Name="tbPlayerName"
+                     Style="{StaticResource SimpleTextBox}"
+                     Width="330"
+                     TextChanged="tbPlayerName_TextChanged"
+                     />
+                <Button Style="{StaticResource EmptyButton}"
+                        Height="50" Margin="20" IsEnabled="{Binding CallButtonIsEnabled}"
+                        Click="Button_Click">
+                    <Image Source="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonecall.png"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Name="GridDialog" Visibility="{Binding GridDialogVisibility}">
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="r1" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:0" />
+                            <DoubleAnimation Storyboard.TargetName="r2" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:1" />
+                            <DoubleAnimation Storyboard.TargetName="r3" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:2" />
+                            <DoubleAnimation Storyboard.TargetName="r4" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:3" />
+                            <DoubleAnimation Storyboard.TargetName="r5" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:4" />
+                            <DoubleAnimation Storyboard.TargetName="r6" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:5" />
+                            <DoubleAnimation Storyboard.TargetName="r7" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:6" />
+                            <DoubleAnimation Storyboard.TargetName="r8" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:7" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
+            <ScrollViewer Margin="30">
+                <DockPanel Background="Black">
+                    <TextBlock Name="r1" Style="{StaticResource friendReply}" Text="Salut!" Opacity="0"/>
+                    <TextBlock Name="r2" Style="{StaticResource playerReply}" Text="sadfgrewq!" Opacity="0"/>
+                    <TextBlock Name="r3" Style="{StaticResource friendReply}" Text="ewwerwrwer!" Opacity="0"/>
+                    <TextBlock Name="r4" Style="{StaticResource playerReply}" Text="werwererwerreerwerwerwerewerwe!" Opacity="0"/>
+                    <TextBlock Name="r5" Style="{StaticResource friendReply}" Text="werrewwrerwerwerwerwwrewrerewrwerwerewrweerwr!" Opacity="0"/>
+                    <TextBlock Name="r6" Style="{StaticResource playerReply}" Text="werwrerwe!" Opacity="0"/>
+                    <TextBlock Name="r7" Style="{StaticResource friendReply}" Text="erwrew!" Opacity="0"/>
+                    <TextBlock Name="r8" Style="{StaticResource playerReply}" Text="rwerw!" Opacity="0"/>
+                </DockPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

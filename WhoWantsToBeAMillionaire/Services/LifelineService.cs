@@ -69,8 +69,6 @@ namespace WhoWantsToBeAMillionaire.Services
             return results;
         }
 
-        
-
         public void FiftyFifty(Question question)
         {
             // Marcheaza 2 intrebari gresite prin "".
@@ -164,7 +162,7 @@ namespace WhoWantsToBeAMillionaire.Services
                     wrongOptions.Add(question.Options[i]);
             
             Random rnd = new Random();
-            string optiuneGresita = question.Options[rnd.Next(0, 3)];
+            string optiuneGresita = wrongOptions[rnd.Next(0, 3)];
             options.Add(optiuneGresita);
 
             int randomIndex = rnd.Next(0, 2);

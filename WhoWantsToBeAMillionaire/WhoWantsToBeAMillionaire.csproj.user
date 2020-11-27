@@ -16,6 +16,9 @@
     <Compile Update="Views\GameView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\PhoneCallView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ResultsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PhoneCallView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ResultsView.xaml">

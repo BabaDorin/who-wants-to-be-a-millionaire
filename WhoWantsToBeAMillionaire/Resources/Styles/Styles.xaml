@@ -120,6 +120,8 @@
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
+    
+
     <!--TextBox styles-->
     <Style x:Key="SimpleTextBox" TargetType="TextBox">
         <Setter Property="Foreground" Value="White"/>
@@ -131,6 +133,25 @@
         <Setter Property="Height" Value="60"/>
         <Setter Property="BorderBrush" Value="DarkBlue"/>
         <Setter Property="BorderThickness" Value="4"/>
+    </Style>
+    
+    <!--TextBlock styles-->
+    <Style x:Key="reply" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="20 10"/>
+        <Setter Property="Width" Value="220"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="DockPanel.Dock" Value="Top"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <Style x:Key="friendReply" BasedOn="{StaticResource reply}" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="playerReply" BasedOn="{StaticResource reply}" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="TextAlignment" Value="Right"/>
     </Style>
 
     <!--Button styles-->
@@ -175,6 +196,10 @@
             <Trigger Property="IsFocused" Value="True">
                 <Setter Property="Background" Value="Transparent"/>
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+
         </Style.Triggers>
     </Style>
 

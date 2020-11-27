@@ -188,6 +188,17 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             window.ShowDialog();
         }
 
+        public void CallFriend()
+        {
+            Window window = new Window
+            {
+                Content = new PhoneCallView()
+            };
+            window.Height = 400;
+            window.Width = 400;
+            window.ShowDialog();
+        }
+
 
         // TODO: Find a way to deal with lifelinesAvailability renundance
         // TODO: Add default style

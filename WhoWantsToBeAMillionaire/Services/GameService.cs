@@ -63,6 +63,20 @@ namespace WhoWantsToBeAMillionaire.Services
             if (CurrentQuestionId == 14)
                 return null;
 
+            // DELETE THIS
+            List<string> list = LifelineService.CallAFriend("Joric", "Doru", Game.Questions[CurrentQuestionId]);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if(i % 2 == 0)
+                {
+                    Debug.WriteLine("Jora: " + list[i]);
+                }
+                else
+                {
+                    Debug.WriteLine("Doru: " + list[i]);
+                }
+            }
+
             return Game.Questions[++CurrentQuestionId];
         }
 
@@ -117,7 +131,7 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             // Verifica daca serviciul este disponibil (nu a fost folosit deja).
             // Returneaza o lista cu replicile prietenului si participantului 
-            return LifelineService.CallAFriend(friendName);
+            return LifelineService.CallAFriend(friendName, Results.PlayerName, Game.Questions[CurrentQuestionId]);
         }
 
         public void FiftyFifty()
