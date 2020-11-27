@@ -184,6 +184,9 @@
                 <Setter Property="Background" Value="Green"/>
                 <Setter Property="Cursor" Value="Hand"/>
             </Trigger>
+            <Trigger Property="Content" Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 

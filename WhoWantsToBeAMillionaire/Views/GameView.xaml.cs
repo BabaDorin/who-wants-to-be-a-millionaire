@@ -68,6 +68,7 @@ namespace WhoWantsToBeAMillionaire.Views
             if (difference > TimeSpan.FromSeconds(_viewModel.SecondsPerQuestion))
             {
                 ellapsedTime.Stop();
+                _viewModel.GameService.AddToEllapsedTime(DateTime.Now.Subtract(start));
                 GameOver();
                 return;
             }
@@ -96,7 +97,11 @@ namespace WhoWantsToBeAMillionaire.Views
         private void btFiftyFifty_Click(object sender, RoutedEventArgs e)
         {
             start = DateTime.Now;
+            _viewModel.FiftyFifty();
             FiftyFiftyUsed.Visibility = Visibility.Visible;
+
+
+
             btFiftyFifty.IsEnabled = false;
         }
 

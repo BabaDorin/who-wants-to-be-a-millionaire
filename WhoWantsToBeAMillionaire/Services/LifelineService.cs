@@ -51,7 +51,21 @@ namespace WhoWantsToBeAMillionaire.Services
         public void FiftyFifty(Question question)
         {
             // Marcheaza 2 intrebari gresite prin "".
-            throw new NotImplementedException();
+
+            List<int> idOptiuni = new List<int>() {0, 1, 2, 3};
+            idOptiuni.Remove(question.CorrectOptionIndex);
+
+            Random rnd = new Random();
+
+            // Prima optiune care va fi eliminata:
+            int op1 = idOptiuni[rnd.Next(0, 3)];
+            question.Options[op1] = "";
+            idOptiuni.Remove(op1);
+
+            int op2 = idOptiuni[rnd.Next(0, 2)];
+            question.Options[op2] = "";
+            idOptiuni.Remove(op1);
+            return;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Security.Principal;
 using System.Text;
@@ -166,6 +167,13 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
             GameService.GameOver();
         }
+
+        public void FiftyFifty()
+        {
+            GameService.FiftyFifty();
+            OnPropertyChanged(nameof(CurrentQuestion));
+        }
+
 
         // TODO: Find a way to deal with lifelinesAvailability renundance
         // TODO: Add default style

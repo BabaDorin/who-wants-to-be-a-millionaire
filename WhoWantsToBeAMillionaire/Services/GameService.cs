@@ -33,6 +33,7 @@ namespace WhoWantsToBeAMillionaire.Services
             {
                 // Initializarea jocului: Este creat un obiect Game. Sunt extrase intrebarile jocului din fisierul XML
                 Game = new Game();
+                LifelineService = new LifelineService();
                 Results = new Results();
 
                 Game.Questions = DBService.GetQuestions();
@@ -70,11 +71,15 @@ namespace WhoWantsToBeAMillionaire.Services
 
         }
 
+        public void AddToEllapsedTime(TimeSpan timeSpan)
+        {
+            Results.ElapsedTime += timeSpan;
+            Results.MediumTimeSpanPerQuestion = TimeSpan.FromSeconds(Results.ElapsedTime.Seconds / (CurrentQuestionId + 1));
+        }
+
         public bool CheckAnswer(int userOptionId, TimeSpan ellapsedTimeForQuestion)
         {
-            Results.ElapsedTime += ellapsedTimeForQuestion;
-            Results.MediumTimeSpanPerQuestion = TimeSpan.FromSeconds(Results.ElapsedTime.Seconds / (CurrentQuestionId + 1));
-
+            AddToEllapsedTime(ellapsedTimeForQuestion);
             var isCorrect = Game.Questions[CurrentQuestionId].CorrectOptionIndex == userOptionId;
 
             // Indicii castigurilor safe: 4 9 14 ($1000, $32000, $1000000).
@@ -120,6 +125,7 @@ namespace WhoWantsToBeAMillionaire.Services
             // Verifica daca serviciul este disponibil (nu a fost folosit deja).
             // Exclude 2 raspunsuri incorecte (textul raspunsurilor este marcat ca fiind "", deja 
             // este treaba ViewModel-ului sa dezactiveze butoanele ce contin aceste raspunsuri).
+            
             LifelineService.FiftyFifty(Game.Questions[CurrentQuestionId]);
         }
     }
