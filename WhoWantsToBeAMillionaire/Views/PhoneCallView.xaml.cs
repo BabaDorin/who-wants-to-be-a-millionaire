@@ -18,7 +18,7 @@ namespace WhoWantsToBeAMillionaire.Views
     /// <summary>
     /// Interaction logic for PhoneCallView.xaml
     /// </summary>
-    public partial class PhoneCallView : UserControl
+    public partial class PhoneCallView : Window
     {
         private PhoneCallViewModel _viewModel;
         public PhoneCallView(Question question, string playerName)

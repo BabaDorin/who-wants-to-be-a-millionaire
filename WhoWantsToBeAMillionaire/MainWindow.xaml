@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         FontFamily="Source Sans Pro"
         Title="MainWindow" Height="630" Width="1140"
-        MinWidth="1092" MinHeight="615">
+        MinWidth="1092" MinHeight="615"
+        WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/bg.jpg" Stretch="UniformToFill"/>
     </Window.Background>

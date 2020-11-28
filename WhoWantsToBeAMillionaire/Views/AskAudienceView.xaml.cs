@@ -17,7 +17,7 @@ namespace WhoWantsToBeAMillionaire.Views
     /// <summary>
     /// Interaction logic for AskAudienceView.xaml
     /// </summary>
-    public partial class AskAudienceView : UserControl
+    public partial class AskAudienceView : Window
     {
         public AskAudienceViewModel _viewModel;
         public AskAudienceView(List<int> results)

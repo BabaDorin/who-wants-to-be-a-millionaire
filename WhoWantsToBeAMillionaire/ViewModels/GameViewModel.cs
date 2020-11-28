@@ -178,24 +178,13 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         public void AskAudience()
         {
             List<int> results = GameService.AskAudience();
-
-            Window window = new Window
-            {
-                Content = new AskAudienceView(results)
-            };
-            window.Height = 400;
-            window.Width = 400;
+            var window = new AskAudienceView(results);
             window.ShowDialog();
         }
 
         public void CallFriend()
         {
-            MessageBox.Show(GameService.Results.PlayerName);
-            Window window = new Window
-            {
-                Content = new PhoneCallView(CurrentQuestion, GameService.Results.PlayerName)
-            };
-            window.Width = 400;
+            var window = new PhoneCallView(CurrentQuestion, GameService.Results.PlayerName);
             window.ShowDialog();
         }
 

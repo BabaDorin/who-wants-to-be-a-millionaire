@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
-        Title="AdminView" Height="400" Width="600">
+        Title="AdminView" Height="400" Width="600"
+        WindowStartupLocation="CenterScreen">
     <!--set height and width to auto when done!-->
     <!--Height="580" Width="1100"-->
     <Grid>

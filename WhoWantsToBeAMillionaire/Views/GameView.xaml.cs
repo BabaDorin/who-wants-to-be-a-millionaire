@@ -53,17 +53,19 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void t_Tick(object sender, EventArgs e)
         {
+            // Extragem diferenta de timp dintre momentul actual si cel in care a fost afisata intrebarea
             var difference = DateTime.Now.Subtract(start);
-            string seconds = difference.Seconds.ToString();
-
-            if (seconds.Length == 1)
-                seconds = "0" + seconds;
-            timer.Content = String.Format($"0{difference.Minutes}:{seconds}");
-
+            timer.Content = difference.ToString(@"mm\:ss");
+            
+            // Daca mai raman 5 secunde - timer-ul devine rosu
+            // 30 secunde - timer-ul galben
+            // > 30 secunde - timer-ul alb
             if (difference.Seconds > _viewModel.SecondsPerQuestion - 5)
                 timer.Foreground = Brushes.Red;
             else if (difference.Seconds > _viewModel.SecondsPerQuestion - 30)
                 timer.Foreground = Brushes.Yellow;
+            else
+                timer.Foreground = Brushes.White;
 
             if (difference > TimeSpan.FromSeconds(_viewModel.SecondsPerQuestion))
             {

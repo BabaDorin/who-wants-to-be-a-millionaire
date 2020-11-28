@@ -78,7 +78,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             for (int i = 0; i < Conversation.Count; i++)
             {
                 TextBlock tbReply = new TextBlock();
-
                 if (i % 2 == 1)
                 {
                     tbReply.Style = Application.Current.TryFindResource("playerReply") as Style;
@@ -89,12 +88,9 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                     tbReply.Style = Application.Current.TryFindResource("friendReply") as Style;
                     tbReply.Text = $"{FriendName}: {Conversation[i]}";
                 }
-
-                await Task.Delay(1500);
-
                 parent.Children.Add(tbReply);
 
-                Debug.WriteLine("Added");
+                await Task.Delay(1500);
             }
         }
     }
