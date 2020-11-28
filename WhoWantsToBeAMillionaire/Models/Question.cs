@@ -7,10 +7,10 @@ namespace WhoWantsToBeAMillionaire.Models
 {
     public enum DifficultyLevel
     {
-        Easy, // 100 - 300                  | 3 intrebari
-        Medium, // 500 - 16 000              | 3 intrebari
-        Hard, // 32 000 - 250 000           | 4 intrebari
-        Einstein // 500 000 - 1 000 000     | 2 intrebari
+        Easy = 0, // 100 - 300                  | 4 intrebari
+        Medium = 1, // 500 - 16 000              | 5 intrebari
+        Hard = 2, // 32 000 - 250 000           | 4 intrebari
+        Einstein = 3 // 500 000 - 1 000 000     | 2 intrebari
     }
 
     public class Question

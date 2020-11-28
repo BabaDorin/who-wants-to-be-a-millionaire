@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using WhoWantsToBeAMillionaire.Models;
@@ -36,7 +37,8 @@ namespace WhoWantsToBeAMillionaire.Services
                 LifelineService = new LifelineService();
                 Results = new Results();
 
-                Game.Questions = DBService.GetQuestions();
+                Game.Questions = RetrieveAndSelect15Questions();
+
                 // Este nevoie de minim 15 intrebari pentru a incepe jocul
                 if (Game.Questions.Count < 15)
                 {
@@ -63,26 +65,60 @@ namespace WhoWantsToBeAMillionaire.Services
             if (CurrentQuestionId == 14)
                 return null;
 
-            // DELETE THIS
-            List<string> list = LifelineService.CallAFriend("Joric", "Doru", Game.Questions[CurrentQuestionId]);
-            for (int i = 0; i < list.Count; i++)
-            {
-                if(i % 2 == 0)
-                {
-                    Debug.WriteLine("Jora: " + list[i]);
-                }
-                else
-                {
-                    Debug.WriteLine("Doru: " + list[i]);
-                }
-            }
-
             return Game.Questions[++CurrentQuestionId];
         }
 
-        public void GameOver()
+        public List<Question> RetrieveAndSelect15Questions()
         {
+            // Easy, // 100 - 300                  | 4 intrebari
+            // Medium, // 500 - 16 000             | 5 intrebari
+            // Hard, // 32 000 - 250 000           | 4 intrebari
+            // Einstein // 500 000 - 1 000 000     | 2 intrebari
 
+            List<Question> allQuestions = DBService.GetQuestions();
+            if (allQuestions.Count < 15)
+                return allQuestions;
+
+            List<Question> gameQuestions = new List<Question>();
+
+            // Popularea listei cu intrebari din diferite categorii de dificultate.
+            PopulateList(allQuestions, gameQuestions, DifficultyLevel.Easy, 4);
+            PopulateList(allQuestions, gameQuestions, DifficultyLevel.Medium, 5);
+            PopulateList(allQuestions, gameQuestions, DifficultyLevel.Hard, 4);
+            PopulateList(allQuestions, gameQuestions, DifficultyLevel.Einstein, 2);
+
+            // Populam cu intrebari aleatoare daca lista contine mai putin de 15 intrebari,
+            Random rnd = new Random();
+            while(gameQuestions.Count < 15)
+            {
+                Question selectedQ = allQuestions[rnd.Next(0, allQuestions.Count)];
+                gameQuestions.Add(selectedQ);
+                allQuestions.Remove(selectedQ);
+            }
+
+            // Sortarea intrebarilor astfel incat primele sa fie mereu cele mai usoare.
+            gameQuestions = gameQuestions.OrderBy(q => q.DifficultyLevel).ToList();
+
+            return gameQuestions;
+        }
+
+        public void PopulateList(List<Question> AllQuestions, List<Question> FinalQuestionsList, DifficultyLevel difficultyLevel, int maximumQuestions)
+        {
+            List<Question> questionsByDiffLevel = AllQuestions.Where(q => q.DifficultyLevel == difficultyLevel).ToList();
+            int questionsCount = questionsByDiffLevel.Count;
+            if (questionsCount > maximumQuestions)
+                questionsCount = maximumQuestions;
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < questionsCount; i++)
+            {
+                Question selectedQ = questionsByDiffLevel[rnd.Next(0, questionsByDiffLevel.Count)];
+                FinalQuestionsList.Add(selectedQ);
+
+                questionsByDiffLevel.Remove(selectedQ);
+                FinalQuestionsList.Remove(selectedQ);
+            }
         }
 
         public void AddToEllapsedTime(TimeSpan timeSpan)
