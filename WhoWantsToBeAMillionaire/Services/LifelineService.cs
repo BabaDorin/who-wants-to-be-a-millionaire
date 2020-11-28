@@ -9,7 +9,7 @@ namespace WhoWantsToBeAMillionaire.Services
 {
     class LifelineService
     {
-        public List<int> AskAudience(Question question)
+        public static List<int> AskAudience(Question question)
         {
             // Pentru intrebarile Easy: Raspunsul corect va avea peste 80% din voturi
             // Pentru intrebarile Medium: Raspunsul corect va avea peste 60% din voturi
@@ -69,7 +69,7 @@ namespace WhoWantsToBeAMillionaire.Services
             return results;
         }
 
-        public void FiftyFifty(Question question)
+        public static void FiftyFifty(Question question)
         {
             // Marcheaza 2 intrebari gresite prin "".
 
@@ -89,7 +89,7 @@ namespace WhoWantsToBeAMillionaire.Services
             return;
         }
 
-        public List<string> CallAFriend(string friendName, string playerName, Question question)
+        public static List<string> CallAFriend(string friendName, string playerName, Question question)
         {
             // Vor exista 3 tipuri de prieteni
             // Primul tip: Nu cunoaste raspunsul si va da 2 raspunsuri absolut aleatorii

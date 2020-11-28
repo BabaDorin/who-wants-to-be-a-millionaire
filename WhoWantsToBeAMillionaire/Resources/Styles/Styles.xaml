@@ -109,9 +109,6 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
-    <!--HorizontalAlignment="Center" 
-               VerticalAlignment="Center"
-               Content="A" FontSize="30" FontWeight="Bold" Foreground="White"-->
     <Style x:Key="AskAudienceLabel" TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -138,11 +135,24 @@
     <!--TextBlock styles-->
     <Style x:Key="reply" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Margin" Value="20 10"/>
-        <Setter Property="Width" Value="220"/>
+        <Setter Property="Margin" Value="10"/>
+        <!--<Setter Property="Width" Value="200"/>-->
+        <Setter Property="Background" Value="DarkBlue"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="DockPanel.Dock" Value="Top"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                         From="0" To="1"
+                                         Duration="0:0:1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="friendReply" BasedOn="{StaticResource reply}" TargetType="TextBlock">
@@ -151,7 +161,6 @@
 
     <Style x:Key="playerReply" BasedOn="{StaticResource reply}" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="TextAlignment" Value="Right"/>
     </Style>
 
     <!--Button styles-->

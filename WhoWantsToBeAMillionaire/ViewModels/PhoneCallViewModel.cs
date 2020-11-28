@@ -1,7 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using WhoWantsToBeAMillionaire.Models;
+using WhoWantsToBeAMillionaire.Services;
 
 namespace WhoWantsToBeAMillionaire.ViewModels
 {
@@ -49,10 +55,47 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
-        public PhoneCallViewModel()
+        public string FriendName { get; set; }
+        public string PlayerName { get; set; }
+
+        public List<string> Conversation { get; set; }
+
+        public Question CurrentQuestion{ get; set; }
+
+        public PhoneCallViewModel(Question question, string playerName)
         {
+            PlayerName = playerName;
+            CurrentQuestion = question;
+
             GridInputVisibility = Visibility.Visible;
             GridDialogVisibility = Visibility.Collapsed;
+        }
+
+        public async void DisplayConversation(DockPanel parent)
+        {
+            Conversation = LifelineService.CallAFriend(FriendName, PlayerName, CurrentQuestion);
+
+            for (int i = 0; i < Conversation.Count; i++)
+            {
+                TextBlock tbReply = new TextBlock();
+
+                if (i % 2 == 1)
+                {
+                    tbReply.Style = Application.Current.TryFindResource("playerReply") as Style;
+                    tbReply.Text = Conversation[i];
+                }
+                else
+                {
+                    tbReply.Style = Application.Current.TryFindResource("friendReply") as Style;
+                    tbReply.Text = $"{FriendName}: {Conversation[i]}";
+                }
+
+                await Task.Delay(1500);
+
+                parent.Children.Add(tbReply);
+
+                Debug.WriteLine("Added");
+            }
         }
     }
 }

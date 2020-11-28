@@ -192,7 +192,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         {
             Window window = new Window
             {
-                Content = new PhoneCallView()
+                Content = new PhoneCallView(CurrentQuestion, GameService.Results.PlayerName)
             };
             window.Height = 400;
             window.Width = 400;

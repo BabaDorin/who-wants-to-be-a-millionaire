@@ -21,7 +21,7 @@
                      Width="330"
                      TextChanged="tbPlayerName_TextChanged"
                      />
-                <Button Style="{StaticResource EmptyButton}"
+                <Button Name="ButtonCall" Style="{StaticResource EmptyButton}"
                         Height="50" Margin="20" IsEnabled="{Binding CallButtonIsEnabled}"
                         Click="Button_Click">
                     <Image Source="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonecall.png"/>
@@ -30,33 +30,11 @@
         </Grid>
 
         <Grid Name="GridDialog" Visibility="{Binding GridDialogVisibility}">
-            <Grid.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="r1" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:0" />
-                            <DoubleAnimation Storyboard.TargetName="r2" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:1" />
-                            <DoubleAnimation Storyboard.TargetName="r3" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:2" />
-                            <DoubleAnimation Storyboard.TargetName="r4" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:3" />
-                            <DoubleAnimation Storyboard.TargetName="r5" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:4" />
-                            <DoubleAnimation Storyboard.TargetName="r6" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:5" />
-                            <DoubleAnimation Storyboard.TargetName="r7" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:6" />
-                            <DoubleAnimation Storyboard.TargetName="r8" To="1" Storyboard.TargetProperty="Opacity" Duration="0:0:1" BeginTime="0:0:7" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Grid.Triggers>
+            
 
             <ScrollViewer Margin="30">
-                <DockPanel Background="Black">
-                    <TextBlock Name="r1" Style="{StaticResource friendReply}" Text="Salut!" Opacity="0"/>
-                    <TextBlock Name="r2" Style="{StaticResource playerReply}" Text="sadfgrewq!" Opacity="0"/>
-                    <TextBlock Name="r3" Style="{StaticResource friendReply}" Text="ewwerwrwer!" Opacity="0"/>
-                    <TextBlock Name="r4" Style="{StaticResource playerReply}" Text="werwererwerreerwerwerwerewerwe!" Opacity="0"/>
-                    <TextBlock Name="r5" Style="{StaticResource friendReply}" Text="werrewwrerwerwerwerwwrewrerewrwerwerewrweerwr!" Opacity="0"/>
-                    <TextBlock Name="r6" Style="{StaticResource playerReply}" Text="werwrerwe!" Opacity="0"/>
-                    <TextBlock Name="r7" Style="{StaticResource friendReply}" Text="erwrew!" Opacity="0"/>
-                    <TextBlock Name="r8" Style="{StaticResource playerReply}" Text="rwerw!" Opacity="0"/>
+                <DockPanel Background="Black" Name="DialogDockPanel">
+
                 </DockPanel>
             </ScrollViewer>
         </Grid>

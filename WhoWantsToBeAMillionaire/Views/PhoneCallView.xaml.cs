@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
@@ -20,10 +21,10 @@ namespace WhoWantsToBeAMillionaire.Views
     public partial class PhoneCallView : UserControl
     {
         private PhoneCallViewModel _viewModel;
-        public PhoneCallView()
+        public PhoneCallView(Question question, string playerName)
         {
             InitializeComponent();
-            DataContext = new PhoneCallViewModel();
+            DataContext = new PhoneCallViewModel(question, playerName);
             _viewModel = DataContext as PhoneCallViewModel;
         }
 
@@ -39,6 +40,8 @@ namespace WhoWantsToBeAMillionaire.Views
         {
             _viewModel.GridInputVisibility = Visibility.Collapsed;
             _viewModel.GridDialogVisibility = Visibility.Visible;
+
+            _viewModel.DisplayConversation(DialogDockPanel);
         }
     }
 }
