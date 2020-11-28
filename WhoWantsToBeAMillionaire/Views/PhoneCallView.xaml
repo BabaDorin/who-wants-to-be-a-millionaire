@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" 
-              d:DesignHeight="400" d:DesignWidth="400" Background="White">
+              d:DesignHeight="700" d:DesignWidth="400" Background="White">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonefriendbg.jpg" Stretch="UniformToFill"/>
@@ -16,27 +16,22 @@
                 <Label Content="Pe cine sunam?" FontWeight="Bold"
                    Foreground="White" FontSize="16"
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <TextBox Name="tbPlayerName"
+                <TextBox Name="tbFriendName"
                      Style="{StaticResource SimpleTextBox}"
                      Width="330"
                      TextChanged="tbPlayerName_TextChanged"
                      />
                 <Button Name="ButtonCall" Style="{StaticResource EmptyButton}"
                         Height="50" Margin="20" IsEnabled="{Binding CallButtonIsEnabled}"
-                        Click="Button_Click">
+                        Click="ButtonCall_Click">
                     <Image Source="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonecall.png"/>
                 </Button>
             </StackPanel>
         </Grid>
 
         <Grid Name="GridDialog" Visibility="{Binding GridDialogVisibility}">
-            
-
-            <ScrollViewer Margin="30">
-                <DockPanel Background="Black" Name="DialogDockPanel">
-
+                <DockPanel Name="DialogDockPanel">
                 </DockPanel>
-            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

@@ -36,8 +36,9 @@ namespace WhoWantsToBeAMillionaire.Views
                 _viewModel.CallButtonIsEnabled = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonCall_Click(object sender, RoutedEventArgs e)
         {
+            _viewModel.FriendName = tbFriendName.Text;
             _viewModel.GridInputVisibility = Visibility.Collapsed;
             _viewModel.GridDialogVisibility = Visibility.Visible;
 

@@ -135,9 +135,6 @@
     <!--TextBlock styles-->
     <Style x:Key="reply" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Margin" Value="10"/>
-        <!--<Setter Property="Width" Value="200"/>-->
-        <Setter Property="Background" Value="DarkBlue"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="DockPanel.Dock" Value="Top"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -157,10 +154,12 @@
 
     <Style x:Key="friendReply" BasedOn="{StaticResource reply}" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="10 10 40 10"/>
     </Style>
 
     <Style x:Key="playerReply" BasedOn="{StaticResource reply}" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="40 10 10 10"/>
     </Style>
 
     <!--Button styles-->

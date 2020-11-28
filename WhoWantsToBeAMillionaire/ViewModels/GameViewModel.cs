@@ -190,11 +190,11 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public void CallFriend()
         {
+            MessageBox.Show(GameService.Results.PlayerName);
             Window window = new Window
             {
                 Content = new PhoneCallView(CurrentQuestion, GameService.Results.PlayerName)
             };
-            window.Height = 400;
             window.Width = 400;
             window.ShowDialog();
         }
