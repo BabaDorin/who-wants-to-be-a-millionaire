@@ -90,7 +90,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 }
                 parent.Children.Add(tbReply);
 
-                await Task.Delay(1500);
+                await Task.Delay(2000);
             }
         }
     }

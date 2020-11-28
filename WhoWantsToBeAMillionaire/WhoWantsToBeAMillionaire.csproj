@@ -14,9 +14,11 @@
     <None Remove="Resources\Media\cross.png" />
     <None Remove="Resources\Media\cryingdude.jpg" />
     <None Remove="Resources\Media\dudewithmoney.jpg" />
+    <None Remove="Resources\Media\friendImg.png" />
     <None Remove="Resources\Media\happydudeboai.jpg" />
     <None Remove="Resources\Media\phonecall.png" />
     <None Remove="Resources\Media\phonefriendbg.jpg" />
+    <None Remove="Resources\Media\playerImg.png" />
     <None Remove="Resources\Media\volume.png" />
   </ItemGroup>
 
@@ -40,6 +42,9 @@
     <Resource Include="Resources\Media\dudewithmoney.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Media\friendImg.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Media\happydudeboai.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -47,6 +52,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\phonefriendbg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\playerImg.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\volume.png">

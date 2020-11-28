@@ -31,8 +31,10 @@
         </Grid>
 
         <Grid Name="GridDialog" Visibility="{Binding GridDialogVisibility}">
-            <DockPanel Name="DialogDockPanel" Margin="30">
-            </DockPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DockPanel Name="DialogDockPanel" Margin="30">
+                </DockPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Window>

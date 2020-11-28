@@ -121,8 +121,8 @@ namespace WhoWantsToBeAMillionaire.Services
             List<string> r1 = new List<string>() { "Alo?", "Pronto", "Da", "Alo alo", "Hello", "Cine acolo?" };
             List<string> r2 = new List<string>() { 
                 $"Salut {friendName}, sunt {playerName}, am nevoie de ajutorul tau",
-                $"Buna! ${playerName} te deranjeaza. Daca ma ajuti impartim banutii",
-                $"Daca nu ma ajuti ma supar pe tine, cu ${playerName} vorbesti."
+                $"Buna! {playerName} te deranjeaza. Daca ma ajuti impartim banutii",
+                $"Daca nu ma ajuti ma supar pe tine, cu {playerName} vorbesti."
             };
             List<string> r3 = new List<string>() { "Zi", "N-am bani", "Ce s-a intamplat?", $"Ce ai ma {playerName}, esti Ok?", "Cu mare placere!" };
             List<string> r4 = new List<string>() { 
@@ -170,7 +170,7 @@ namespace WhoWantsToBeAMillionaire.Services
             options.RemoveAt(randomIndex);
             string option2 = options[0];
 
-            // Acum avem option1 si option2, suntem siguri ca una este varianta corecta, dar nu stim exact care.
+            //Acum avem option1 si option2, suntem siguri ca una este varianta corecta, dar nu stim exact care.
 
             List<string> r7_type2 = new List<string>
             {
@@ -178,7 +178,7 @@ namespace WhoWantsToBeAMillionaire.Services
                 $"{option1} sau {option2}, cu siguranta una dintre ele",
                 $"Ma inseala memoria, raspunsul e {option1} sau {option2}, cu siguranta.",
             };
-            
+
             List<string> r8_type2 = new List<string>
             {
                 $"Ok, multumesc!",
