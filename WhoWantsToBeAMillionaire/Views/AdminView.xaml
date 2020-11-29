@@ -5,48 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
-        Title="AdminView" Height="400" Width="600"
-        WindowStartupLocation="CenterScreen">
-    <!--set height and width to auto when done!-->
-    <!--Height="580" Width="1100"-->
+        Title="AdminView" Height="600" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-
-        <Label Grid.Row="0" Content="Adauga, modifica sau elimina intrebari." HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-               FontSize="20"/>
-
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="15" InitializingNewItem="McDataGrid_InitializingNewItem"
-        Name="McDataGrid" RowHeight="30" ColumnWidth="100" ItemsSource="{Binding QuestionsList}" CellEditEnding="McDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding QuestionId, ValidatesOnExceptions=True}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText, ValidatesOnExceptions=True}"/>
-                <DataGridComboBoxColumn Header="Nivel de dificultate" x:Name="DifficultyDropDown"
-                                        SelectedItemBinding="{Binding DifficultyLevel}"/>
-                <DataGridTextColumn Header="Optiunea ID:0" Binding="{Binding Options[0], ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="Optiunea ID:1" Binding="{Binding Options[1], ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="Optiunea ID:2" Binding="{Binding Options[2], ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="Optiunea ID:3" Binding="{Binding Options[3], ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="ID optiune corecta" Binding="{Binding CorrectOptionIndex, ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="Explicatii" Binding="{Binding Explanations, ValidatesOnExceptions=True}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        
-
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btSave" Grid.Column="0" Content="Salveaza" Margin="10" Click="btSave_Click" IsEnabled="False"/>
-            <Button Name="btDelete" Grid.Column="1" Content="Elimina" Margin="10" Click="btDelete_Click"/>
+        <!--Grid-ul ce reprezinta pagina de logare-->
+        <Grid Name="LoginPage" Visibility="{Binding LoginPageVisibility}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource LargeText}" HorizontalAlignment="Center" Foreground="Black">
+                    Introduceti parola de administrator
+                </TextBlock>
+                <PasswordBox Name="passwordBox" FontSize="20" Margin="10" HorizontalContentAlignment="Center"/>
+                <Button x:Name="btLogin" Click="btLogin_Click" Content="Login" FontSize="20" IsDefault="True"/>
+            </StackPanel>
         </Grid>
 
+        <!--Grid-ul ce reprezinta panelul de administrare-->
+        <Grid Name="AdminPanel" Visibility="{Binding AdminPanelVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Adauga, modifica sau elimina intrebari." HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontSize="20"/>
+
+            <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="15" InitializingNewItem="QuestionsDataGrid_InitializingNewItem"
+        Name="QuestionsDataGrid" RowHeight="30" ColumnWidth="100" ItemsSource="{Binding QuestionsList}" CellEditEnding="QuestionsDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding QuestionId, ValidatesOnExceptions=True}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Textul intrebarii" Binding="{Binding QuestionText, ValidatesOnExceptions=True}"/>
+                    <DataGridComboBoxColumn Header="Nivel de dificultate" x:Name="DifficultyDropDown"
+                                        SelectedItemBinding="{Binding DifficultyLevel}"/>
+                    <DataGridTextColumn Header="Optiunea ID:0" Binding="{Binding Options[0], ValidatesOnExceptions=True}"/>
+                    <DataGridTextColumn Header="Optiunea ID:1" Binding="{Binding Options[1], ValidatesOnExceptions=True}"/>
+                    <DataGridTextColumn Header="Optiunea ID:2" Binding="{Binding Options[2], ValidatesOnExceptions=True}"/>
+                    <DataGridTextColumn Header="Optiunea ID:3" Binding="{Binding Options[3], ValidatesOnExceptions=True}"/>
+                    <DataGridTextColumn Header="ID optiune corecta" Binding="{Binding CorrectOptionIndex, ValidatesOnExceptions=True}"/>
+                    <DataGridTextColumn Header="Explicatii" Binding="{Binding Explanations, ValidatesOnExceptions=True}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btSave" Grid.Column="0" Content="Salveaza" Margin="10" Click="btSave_Click" IsEnabled="False"/>
+                <Button Name="btDelete" Grid.Column="1" Content="Elimina" Margin="10" Click="btDelete_Click"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

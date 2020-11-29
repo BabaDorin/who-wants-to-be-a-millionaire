@@ -56,6 +56,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         }
 
         public string FriendName { get; set; }
+        
         public string PlayerName { get; set; }
 
         public List<string> Conversation { get; set; }
@@ -73,8 +74,15 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public async void DisplayConversation(DockPanel parent)
         {
+            GridInputVisibility = Visibility.Collapsed;
+            GridDialogVisibility = Visibility.Visible;
+            
+            // Facem rost de lista de replici
             Conversation = LifelineService.CallAFriend(FriendName, PlayerName, CurrentQuestion);
 
+            // Pentru fiecare replica este creat un textblock.
+            // care este adaugat in mod programat in lista dockpanel-ul pentru replici.
+            // Va fi un delay de 2 secunde inainte de a aparea urmatoarea replica.
             for (int i = 0; i < Conversation.Count; i++)
             {
                 TextBlock tbReply = new TextBlock();
@@ -89,7 +97,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                     tbReply.Text = $"{FriendName}: {Conversation[i]}";
                 }
                 parent.Children.Add(tbReply);
-
                 await Task.Delay(2000);
             }
         }

@@ -16,36 +16,34 @@ using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
-    /// <summary>
-    /// Interaction logic for StartView.xaml
-    /// </summary>
     public partial class StartView : UserControl
     {
+        private MainWindow _mainWindow;
         public StartView()
         {
             InitializeComponent();
-            DataContext = new StartViewModel();
-            ((MainWindow)System.Windows.Application.Current.MainWindow).ActivateAdminPanel();
+            _mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
 
+            _mainWindow.ActivateAdminPanel();
         }
 
         private void btStartGame_Click(object sender, RoutedEventArgs e)
         {
             if (GameService.GetInstace().Init(tbPlayerName.Text))
             {
-                ((MainWindow)System.Windows.Application.Current.MainWindow).DeactivateAdminPanel();
-                ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Game");
+                _mainWindow.DeactivateAdminPanel();
+                _mainWindow.UpdateView("Game");
             }
         }
 
         private void btShowRules_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Rules");
+            _mainWindow.UpdateView("Rules");
         }
 
         private void tbPlayerName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            (DataContext as StartViewModel).PlayerNameNotEmpty = (tbPlayerName.Text.Trim() != "");
+            tbPlayerName.IsEnabled = (tbPlayerName.Text.Trim() != "");
         }
     }
 }

@@ -29,9 +29,7 @@ C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsTo
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\ResultsView.baml
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\RulesView.g.cs
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\RulesView.baml
-C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\App.baml
-C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Resources\Styles\DataTemplates.baml
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Resources\Styles\Styles.baml
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\PhoneCallView.g.cs
 C:\Users\Dorin\Desktop\  \College\Tehnologii Avansate de Programare\WhoWantsToBeAMillionaire\WhoWantsToBeAMillionaire\obj\Debug\netcoreapp3.1\Views\PhoneCallView.baml

@@ -21,13 +21,10 @@ namespace WhoWantsToBeAMillionaire
 {
     public partial class MainWindow : Window
     {
-        private static MainViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = new MainViewModel();
-            _viewModel = (DataContext as MainViewModel);
             UpdateView("Start");
         }
 
@@ -49,13 +46,24 @@ namespace WhoWantsToBeAMillionaire
 
         public void UpdateView(string parameter)
         {
-            _viewModel.UpdateViewCommand.Execute(parameter);
-        }
-
-        private void UpperMenu_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            switch (parameter)
+            {
+                case "Start":
+                    childWindow.Content = new StartView();
+                    break;
+                case "Game":
+                    childWindow.Content = new GameView();
+                    break;
+                case "Results":
+                    childWindow.Content = new ResultsView();
+                    break;
+                case "Rules":
+                    childWindow.Content = new RulesView();
+                    break;
+                default:
+                    childWindow.Content = new StartView();
+                    break;
+            }
         }
 
         public void DeactivateAdminPanel()

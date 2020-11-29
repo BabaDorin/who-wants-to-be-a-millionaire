@@ -12,6 +12,7 @@
             <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonefriendbg.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
+        <!--Grid-ul pentru indicarea numelui persoanei ce urmeaza a fi "telefonata"-->
         <Grid Name="GridInput" Visibility="{Binding GridInputVisibility}">
             <StackPanel Orientation="Vertical" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label Content="Pe cine sunam?" FontWeight="Bold"
@@ -30,8 +31,10 @@
             </StackPanel>
         </Grid>
 
+        <!--Grid-ul pentru afisarea dialogului propriu zis-->
         <Grid Name="GridDialog" Visibility="{Binding GridDialogVisibility}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <!--In acest dockpanel vor fi adaugate replicile in mod programat-->
                 <DockPanel Name="DialogDockPanel" Margin="30">
                 </DockPanel>
             </ScrollViewer>

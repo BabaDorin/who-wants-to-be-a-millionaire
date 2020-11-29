@@ -14,16 +14,12 @@ using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
-    /// <summary>
-    /// Interaction logic for AskAudienceView.xaml
-    /// </summary>
     public partial class AskAudienceView : Window
     {
-        public AskAudienceViewModel _viewModel;
         public AskAudienceView(List<int> results)
         {
+            // Este creata o noua instanta a clasei AskAudienceViewModel ce este atrbuita ca DataContext pentru fereastra.
             DataContext = new AskAudienceViewModel(results);
-            _viewModel = DataContext as AskAudienceViewModel;
 
             InitializeComponent();
         }

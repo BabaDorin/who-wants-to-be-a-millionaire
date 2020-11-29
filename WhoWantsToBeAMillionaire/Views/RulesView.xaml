@@ -7,57 +7,48 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer>
-        <StackPanel Orientation="Vertical" Margin="20 0 20 10">
+        <ScrollViewer.Background>
+            <SolidColorBrush Opacity="0.8" Color="Black"/>
+        </ScrollViewer.Background>
+        <StackPanel Orientation="Vertical" Margin="30 0 30 10">
             <Button Style="{StaticResource btBackStyle}"
                     Click="btInapoi_Click"/>
 
-            <TextBlock Style="{StaticResource Heading}">
-            Vrei sa fii Milionar, regulament
+            <TextBlock Style="{StaticResource Heading}" Foreground="Orange">
+            Regulamentul jocului "Vrei sa fii Milionar!"
             </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
+            <TextBlock Style="{StaticResource LargeText}" HorizontalAlignment="Center" Margin="0 10">
+            In ce consta jocul "Vrei sa fii milionar"?
             </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
+            <TextBlock Style="{StaticResource NormalText}">
+            Vrei să fii milionar este un concurs de cultură generală din România care oferă premii mari în bani în schimbul unor răspunsuri corecte la o serie de întrebări cu alegere multiplă și dificultate crescândă.
             </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
+            <TextBlock Style="{StaticResource LargeText}" HorizontalAlignment="Center" Margin="0 10">
+            Care sunt premiile puse in joc?
             </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
+            <TextBlock Style="{StaticResource NormalText}">
+            Premiile incep de la $ 100 si ajung pana la $ 1 000 000, insa exista doar 3 sume pe care le puteti castiga, si anume: $ 1 000, $32 000 si $ 1 000 000. Daca treceti de pragul de $ 1 000, atunci garantat veti pleca acasa cu cel putin $ 1 000. Daca trceti de  $ 32 000, atunci aceasta este suma minima cu care veti pleca acasa. Daca dati un raspuns corect la intrebarea de $ 1 000 000, atunci acesta va fi suma castigata de dumneavostra.
             </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
+            <TextBlock Style="{StaticResource LargeText}" HorizontalAlignment="Center" Margin="0 10">
+            Cat timp am la dispozitie pentru a da un raspuns?
             </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
+            <TextBlock Style="{StaticResource NormalText}">
+            Dispuneti de 60 de secunde pentru a da un raspuns la intrebarea acordata. Daca decideti sa utilizati una din variantele ajutatoare, atunci timpul este resetat, ceea ce inseamna ca veti avea inca un minut pentru a oferi raspunsul final.
             </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
+            <TextBlock Style="{StaticResource LargeText}" HorizontalAlignment="Center" Margin="0 10">
+            Ce se intampla daca expira cele 60 de secunde iar eu nu am ales un raspuns?
             </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
+            <TextBlock Style="{StaticResource NormalText}">
+            In momentul in care expira cele 60 de secunde, este afisat raspunsul corect pentru intrebarea respectiva, iar dumneavoastra parasiti jocul.
             </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
+            <TextBlock Style="{StaticResource LargeText}" HorizontalAlignment="Center" Margin="0 10">
+            Care sunt variantele ajutatoare?
             </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
-            </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
-            </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
-            </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
-            </TextBlock>
-            <TextBlock Style="{StaticResource LargeText}">
-            Ce este Vrei sa fii Milionar?
-            </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}" Margin="10">
-            Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.
+            <TextBlock Style="{StaticResource NormalText}">
+            Exista 3 variante ajutatoare (Lifelines) de care va puteti folosi de-a lungul jocului, si anume: <LineBreak/>
+                50/50 - Elimina 2 raspunsuri incorecte, <LineBreak/>
+                Intreaba publicul - Publicul este intergoat privind raspunsul corect la intrebarea curenta, rezultatele sunt afisate sub forma de grafic <LineBreak/>
+                Suna un prieteni - Ofera posibilitatea de a telefona un prieten.
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

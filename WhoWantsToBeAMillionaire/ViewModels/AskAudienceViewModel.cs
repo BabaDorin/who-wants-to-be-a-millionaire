@@ -79,10 +79,16 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public AskAudienceViewModel(List<int> results)
         {
+            // Inaltimea maxima la care poate ajunge un dreptunghi
             MaximumHeight = 300;
 
-            // 300 - 100 %
-            //  x  -  results[i] %
+            // Constructorul a primit ca parametru de intrare lista cu rezultate in urma sondajului.
+            // Lista consta din 4 valori ce reprezinta procentajele din public ce a votat pentru fiecare optiune.
+            // Exemplu: results[0] = 30     pentru optiunea A au votat 30% din public.
+            // Exemplu: results[1] = 10     pentru optiunea B au votat 10% din public.
+
+            // Avand lungimea maxima a dreptunghiului, putem calcula cum poate fi reprezentat procentajul (de la 1 la 100)
+            // intr-o alta valoare de la 1 la MaximumHeight.
 
             RectangleAHeight = MaximumHeight * results[0] / 100;
             RectangleBHeight = MaximumHeight * results[1] / 100;

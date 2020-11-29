@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
         Height="400" Width="400"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/audiencebg.jpg" Stretch="UniformToFill"/>
@@ -23,6 +24,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <!--
+        Pentru fiecare optiune este creat un obiect de tip Rectangle. Fiecarui ii atribuim 2 animatii:
+        
+        Prima animatie: Inaltimea obiectului creste de la valoarea 0 la MaximumHeight, indicata in viewModel.
+        Prima animatie pentru fiecare dreptunghi incepe cu un mic delay (0.5 secunde) fata de dreptunghul precedent 
+        simuland astfel efectul de val (wave), dupa care se revine la inaltimea initiala - 0.
+        Presupunem ca in timpul in care este efectuata aceasta animatie, publicul face o alegere.
+        
+        A doua animatie: Aceasta incepe odata ce se termina prima. Inaltimea dreptunghiului creste de la 0 la 
+        RectangleHeight, indicata in viewModel pentru fiecare dreptunghi aparte.
+        -->
+        
         <Rectangle Grid.Row="0" Grid.Column="0" Style="{StaticResource AskAudienceGraphBar}" Name="rectangle1">
             <Rectangle.Triggers>
                 <EventTrigger RoutedEvent="Rectangle.Loaded">

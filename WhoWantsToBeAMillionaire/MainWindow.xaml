@@ -20,7 +20,7 @@
         <!--Meniul de sus-->
 
 
-        <ContentControl Grid.Row="1" Padding="0, 30, 0, 0" Content="{Binding SelectedViewModel, Mode=TwoWay}">
+        <ContentControl Name="childWindow" Grid.Row="1" Padding="0, 30, 0, 0">
 
         </ContentControl>
 
