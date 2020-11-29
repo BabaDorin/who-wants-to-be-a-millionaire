@@ -42,7 +42,7 @@
         </Grid>
 
         <Button x:Name="btStartGame" Grid.Row="3"
-                IsEnabled="{Binding PlayerNameNotEmpty}"
+                IsEnabled="False"
                 Style="{StaticResource StartViewButtons}"
                 Content="Incepe jocul"
                 Click="btStartGame_Click"/>

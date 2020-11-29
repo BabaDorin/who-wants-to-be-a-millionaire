@@ -21,168 +21,41 @@ using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
-    /// <summary>
-    /// Interaction logic for GameView.xaml
-    /// </summary>
     public partial class GameView : UserControl
     {
         private GameViewModel _viewModel;
-        DispatcherTimer ellapsedTime;
-        DateTime start;
 
         public GameView()
         {
-            DataContext = new GameViewModel();
-            _viewModel = (DataContext as GameViewModel);
-
+            // Este creata o instanta a clasei GameViewModel si este setata ca DataContext pentru fereastra GameView
             InitializeComponent();
-
-            foreach (Label lbPrize in _viewModel.PrizeLabels)
-            {
-                prizeStack.RowDefinitions.Add(new RowDefinition());
-                Grid.SetRow(lbPrize, prizeStack.RowDefinitions.Count - 1);
-                lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
-                lbPrize.VerticalAlignment = VerticalAlignment.Stretch;
-                prizeStack.Children.Add(lbPrize);
-            }
-
-            ellapsedTime = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background,
-                    t_Tick, Dispatcher.CurrentDispatcher); ellapsedTime.IsEnabled = true;
-            start = DateTime.Now;
-        }
-
-        private void t_Tick(object sender, EventArgs e)
-        {
-            // Extragem diferenta de timp dintre momentul actual si cel in care a fost afisata intrebarea
-            var difference = DateTime.Now.Subtract(start);
-            timer.Content = difference.ToString(@"mm\:ss");
-            
-            // Daca mai raman 5 secunde - timer-ul devine rosu
-            // 30 secunde - timer-ul galben
-            // > 30 secunde - timer-ul alb
-            if (difference.Seconds > _viewModel.SecondsPerQuestion - 5)
-                timer.Foreground = Brushes.Red;
-            else if (difference.Seconds > _viewModel.SecondsPerQuestion - 30)
-                timer.Foreground = Brushes.Yellow;
-            else
-                timer.Foreground = Brushes.White;
-
-            if (difference > TimeSpan.FromSeconds(_viewModel.SecondsPerQuestion))
-            {
-                ellapsedTime.Stop();
-                _viewModel.GameService.AddToEllapsedTime(DateTime.Now.Subtract(start));
-                GameOver();
-                return;
-            }
+            DataContext = new GameViewModel(this);
+            _viewModel = (DataContext as GameViewModel);
         }
 
         private void btAskAudience_Click(object sender, RoutedEventArgs e)
         {
-            start = DateTime.Now;
             _viewModel.AskAudience();
-
-            AskAudienceUsed.Visibility = Visibility.Visible;
-            btAskAudience.IsEnabled = false;
         }
 
         private void btPhoneCall_Click(object sender, RoutedEventArgs e)
         {
-            start = DateTime.Now;
             _viewModel.CallFriend();
-            PhoneCallUsed.Visibility = Visibility.Visible;
-            btPhoneCall.IsEnabled = false;
         }
 
         private void btFiftyFifty_Click(object sender, RoutedEventArgs e)
         {
-            start = DateTime.Now;
             _viewModel.FiftyFifty();
-            FiftyFiftyUsed.Visibility = Visibility.Visible;
-
-
-
-            btFiftyFifty.IsEnabled = false;
         }
 
-        private async void btOption_Click(object sender, RoutedEventArgs e)
+        private void btOption_Click(object sender, RoutedEventArgs e)
         {
-            ellapsedTime.Stop();
-            var btOption = sender as Button;
-            btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
-
-            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
-
-            await Task.Delay(2);
-            string feedBack = _viewModel.AnswerSubmitted(int.Parse(btOption.Tag.ToString()), DateTime.Now.Subtract(start));
-            switch (feedBack)
-            {
-                case "Success!":
-                    // Raspuns corect
-                    btOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
-                    break;
-
-                default:
-                    // Raspuns gresit
-                    btOption.Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
-                    GameOver();
-                    return;
-            }
-
-            await Task.Delay(2);
-
-            if (!_viewModel.PickNextQuestion())
-            {
-                SaveAndDisplayResults();
-            }
-            else
-            {
-                btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
-                OptionsAndLifelinesSetIsEnabledPropertyTo(true);
-                start = DateTime.Now;
-                timer.Content = "00:00";
-                ellapsedTime.Start();
-            }
-        }
-
-        private void SaveAndDisplayResults()
-        {
-            _viewModel.SaveResults();
-            ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Results");
-        }
-
-        private void GameOver()
-        {
-            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
-
-            RowForAdditionalInformation.Height = GridLength.Auto;
-            panelExplications.Visibility = Visibility.Visible;
-            string explanations = _viewModel.CurrentQuestion.Explanations;
-
-            if (explanations != null && explanations.Length > 0)
-                tbExplications.Text = explanations;
-
-            MarkCorrectOption();
-            ellapsedTime.Stop();
-        }
-
-        private void OptionsAndLifelinesSetIsEnabledPropertyTo(bool flag)
-        {
-            foreach (var grid in optionsGrid.Children)
-                (grid as Grid).Children[0].IsEnabled = flag;
-
-            for (int i = 0; i < 3; i++)
-                (lifeLinesGrid.Children[i] as Button).IsEnabled = flag;
-        }
-
-        private void MarkCorrectOption()
-        {
-            var btCorrectOption = (optionsGrid.Children[_viewModel.CurrentQuestion.CorrectOptionIndex] as Grid).Children[0] as Button;
-            btCorrectOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
+            _viewModel.OptionSubmitted(sender as Button);
         }
 
         private void btGenerateResults_Click(object sender, RoutedEventArgs e)
         {
-            SaveAndDisplayResults();
+            _viewModel.SaveAndDisplayResults();
         }
     }
 }

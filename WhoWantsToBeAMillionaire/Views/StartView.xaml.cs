@@ -43,7 +43,7 @@ namespace WhoWantsToBeAMillionaire.Views
 
         private void tbPlayerName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            tbPlayerName.IsEnabled = (tbPlayerName.Text.Trim() != "");
+            btStartGame.IsEnabled = (tbPlayerName.Text.Trim() != "");
         }
     }
 }

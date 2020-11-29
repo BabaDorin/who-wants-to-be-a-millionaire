@@ -23,6 +23,7 @@
                 <RowDefinition Name="RowForAdditionalInformation" Height="0*"/>
             </Grid.RowDefinitions>
 
+            <!--Timer-ul-->
             <StackPanel Grid.Row="1">
                 <Label Name="timer" Content="00:00" Style="{StaticResource timerStyle}"/>
                 <Label Style="{StaticResource timerStyle}" FontSize="13" FontWeight="Normal"
@@ -30,6 +31,7 @@
                        ContentStringFormat="secunde per intrebare: {0}"/>
             </StackPanel>
 
+            <!--Containerul in care va fi afisata intrebarea-->
             <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
                 <Polygon Style="{StaticResource QuestionPolygon}"/>
                 <TextBox 
@@ -48,45 +50,60 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
+                <!--Prima optiune-->
                 <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
                     <Button Style="{StaticResource OptionPolygon}"
-                            ContentStringFormat="{}A: {0}"
                             Tag="0"
-                            Content="{Binding CurrentQuestion.Options[0]}"
-                            Click="btOption_Click"/>
+                            IsEnabled="{Binding ElementName=option0, Path=IsEnabled}"
+                            Click="btOption_Click">
+
+                        <TextBlock Name="option0" Style="{StaticResource optionText}" 
+                                   Text="{Binding CurrentQuestion.Options[0], StringFormat={}A: {0}}"/>
+                    </Button>
                 </Grid>
 
+                <!--A doua optiune-->
                 <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
                     <Button Style="{StaticResource OptionPolygon}"
-                            ContentStringFormat="{}B: {0}"
                             Tag="1"
-                            Content="{Binding CurrentQuestion.Options[1]}"
-                            Click="btOption_Click"/>
+                            IsEnabled="{Binding ElementName=option1, Path=IsEnabled}"
+                            Click="btOption_Click">
+
+                        <TextBlock Name="option1" Style="{StaticResource optionText}" 
+                                   Text="{Binding CurrentQuestion.Options[1], StringFormat={}B: {0}}"/>
+                    </Button>
                 </Grid>
 
+                <!--A treia optiune-->
                 <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
                     <Button Style="{StaticResource OptionPolygon}"
-                            ContentStringFormat="{}C: {0}"
                             Tag="2"
-                            Content="{Binding CurrentQuestion.Options[2]}"
-                            Click="btOption_Click"/>
+                            IsEnabled="{Binding ElementName=option2, Path=IsEnabled}"
+                            Click="btOption_Click">
+
+                        <TextBlock Name="option2" Style="{StaticResource optionText}" 
+                                   Text="{Binding CurrentQuestion.Options[2], StringFormat={}C: {0}}"/>
+                    </Button>
                 </Grid>
 
+                <!--A patra optiune-->
                 <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
                     <Button Style="{StaticResource OptionPolygon}"
-                            ContentStringFormat="{}D: {0}"
                             Tag="3"
-                            Content="{Binding CurrentQuestion.Options[3]}"
-                            Click="btOption_Click"/>
+                            IsEnabled="{Binding ElementName=option3, Path=IsEnabled}"
+                            Click="btOption_Click">
+
+                        <TextBlock Name="option3" Style="{StaticResource optionText}" 
+                                   Text="{Binding CurrentQuestion.Options[3], StringFormat={}D: {0}}"/>
+                    </Button>
                 </Grid>
             </Grid>
 
-            <StackPanel Grid.Row="4" 
-                        Orientation="Vertical" 
-                        Background="White" Opacity="0.7" 
+            <!--Panoul pentru afisarea explicatiilor si a butonului de continuare-->
+            <StackPanel Grid.Row="4" Orientation="Vertical" 
+                        Background="White" Opacity="0.7" Margin="4"
                         Visibility="Collapsed"
-                        Name="panelExplications"
-                        Margin="4">
+                        Name="panelExplications">
                 <TextBox Name="tbExplications" 
                    Text="{Binding Explanations}" 
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
@@ -95,7 +112,7 @@
                    IsReadOnly="True"
                    TextWrapping="WrapWithOverflow"      
                    Background="Azure"/>
-                
+
                 <Button x:Name="btGenerateResults" 
                         Click="btGenerateResults_Click"
                         Content="Mai Departe" 
@@ -110,6 +127,7 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
 
+            <!--Grid pentru afisarea butoanelor asociate variantelor ajutatoare-->
             <Grid x:Name="lifeLinesGrid" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -129,7 +147,7 @@
                         Style="{StaticResource EllipseButton}">
                     <Image Source="pack://application:,,,/Resources/Media/phonecall.png"/>
                 </Button>
-                
+
                 <Image Name="FiftyFiftyUsed" 
                        Grid.Column="0" Source="pack://application:,,,/Resources/Media/cross.png" 
                        Opacity="0.7" Visibility="Collapsed"/>
@@ -141,6 +159,7 @@
                        Opacity="0.7" Visibility="Collapsed"/>
             </Grid>
 
+            <!--Grid in care vor fi adaugate in mod dinamic premiile-->
             <Grid Grid.Row="1" 
                   Name="prizeStack" 
                   Margin="0 20 0 40"

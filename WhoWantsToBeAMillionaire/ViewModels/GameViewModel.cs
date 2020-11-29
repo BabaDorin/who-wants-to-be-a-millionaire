@@ -5,9 +5,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Security.Principal;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
 using WhoWantsToBeAMillionaire.Views;
@@ -16,9 +18,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 {
     class GameViewModel : BaseViewModel
     {
-        public GameService GameService { get; set; }
-        private Style lastItemStyle = null;
-
         private Question _currentQuestion;
         public Question CurrentQuestion
         {
@@ -32,40 +31,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 OnPropertyChanged(nameof(CurrentQuestion));
             }
         }
-        //public int CurrentQuestion { get; set; }
-
-        // Lifelines availability
-        private bool _audienceAsked;
-        public bool AudienceAsked { 
-            get { return _audienceAsked; } 
-            set 
-            {
-                _audienceAsked = value;
-                OnPropertyChanged(nameof(AudienceAsked));
-            } 
-        }
-
-        private bool _friendCalled;
-        public bool FriendCalled
-        {
-            get { return _friendCalled; }
-            set
-            {
-                _friendCalled = value;
-                OnPropertyChanged(nameof(FriendCalled));
-            }
-        }
-
-        private bool _fiftyFiftyUsed;
-        public bool FiftyFiftyUsed
-        {
-            get { return _fiftyFiftyUsed; }
-            set
-            {
-                _fiftyFiftyUsed = value;
-                OnPropertyChanged(nameof(FiftyFiftyUsed));
-            }
-        }
 
         private int _secondsPerQuestion;
         public int SecondsPerQuestion
@@ -77,16 +42,28 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 OnPropertyChanged(nameof(SecondsPerQuestion));
             }
         }
+
+        public GameService GameService { get; set; }
+
+        public GameView _gameView;
+
+        public DispatcherTimer ellapsedTime;
+        public DateTime start;
+        
+        private Style lastItemStyle = null;
+        
         public List<Label> PrizeLabels { get; set; }
 
-        public GameViewModel()
+        public GameViewModel(GameView gameView)
         {
+            _gameView = gameView;
+
+            // Cream o instanta a clasei GameService, Acolo se contine cea mai mare parte a logicii
+            // din spatele jocului.
             GameService = GameService.GetInstace();
-            SecondsPerQuestion = 60;
+            SecondsPerQuestion = 60; 
 
-            CurrentQuestion = GameService.Game.Questions[0];
-            AudienceAsked = FriendCalled = FiftyFiftyUsed = false;
-
+            // Afisam stiva premiilor
             var Prizes = new List<string>
             {
                 "$ 100", "$ 200", "$ 300", "$ 500",
@@ -94,47 +71,123 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 "$ 16 000", "$ 32 000", "$ 64 000", "$ 125 000",
                 "$ 250 000", "$ 500 000", "$ 1 000 000"
             };
+            var SafePoints = new List<String> 
+            { 
+                "$ 1 000", "$ 32 000", "$ 1 000 000" 
+            };
 
-            var SafePoints = new List<String> { "$ 1 000", "$ 32 000", "$ 1 000 000" };
             PrizeLabels = new List<Label>();
 
-            foreach (string prize in Prizes)
+            // Pentru fiecare premiu este creat un label si un row in grid-ul
+            // dedicat afisarii premiilor.
+            for (int i = Prizes.Count-1; i>=0; i--)
             {
-                Label lbPrize = new Label { Content = prize };
+                Label lbPrize = new Label { Content = Prizes[i] };
 
+                // Premiile de $1000, $32000 si $1000000 vor avea alta culoare
                 string styleIdentifier = "PrizeItemStyle";
                 if (SafePoints.Contains(lbPrize.Content.ToString()))
                     styleIdentifier = "SafePrizeItemStyle";
-                
                 lbPrize.Style = Application.Current.TryFindResource(styleIdentifier) as Style;
+
+                // Inserarea premiului in grid
+                gameView.prizeStack.RowDefinitions.Add(new RowDefinition());
+                Grid.SetRow(lbPrize, gameView.prizeStack.RowDefinitions.Count - 1);
+                lbPrize.HorizontalContentAlignment = HorizontalAlignment.Center;
+                lbPrize.VerticalAlignment = VerticalAlignment.Stretch;
+                gameView.prizeStack.Children.Add(lbPrize);
+
                 PrizeLabels.Add(lbPrize);
             }
-
-            PrizeLabels.Reverse();
-
+            
             lastItemStyle = PrizeLabels[PrizeLabels.Count - 1].Style;
-            PrizeLabels[PrizeLabels.Count-1].Style = Application.Current.TryFindResource("CurrentPrize") as Style;
+            
+            // Marcam premiul curent in stiva
+            PrizeLabels[PrizeLabels.Count - 1].Style = Application.Current.TryFindResource("CurrentPrize") as Style;
+
+            // Selectam prima intrebare
+            CurrentQuestion = GameService.Game.Questions[0];
+
+            // Initializam un timer pentru contorizarea timpului la fiecare intrebare.
+            ellapsedTime = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background,
+                   t_Tick, Dispatcher.CurrentDispatcher); ellapsedTime.IsEnabled = true;
+            start = DateTime.Now;
         }
 
-        public string AnswerSubmitted(int optionId, TimeSpan ellapsedTimeForQuestion)
+        private void t_Tick(object sender, EventArgs e)
         {
-            // Returneaza "Success!" Daca a fost ales raspunsul corect,
-            // Returneaza Game.Explanations Daca a fost ales un raspuns gresit
-            // Returneaza "Winner!" Daca a fost ales raspunsul corect pentru ultima intrebare
+            // Extragem diferenta de timp dintre momentul actual si cel in care a fost afisata intrebarea
+            var difference = DateTime.Now.Subtract(start);
+            _gameView.timer.Content = difference.ToString(@"mm\:ss");
 
-            if (GameService.CheckAnswer(optionId, ellapsedTimeForQuestion))
+            // Daca mai raman 5 secunde - timer-ul devine rosu
+            // 30 secunde - timer-ul galben
+            // > 30 secunde - timer-ul alb
+            if (difference.Seconds > SecondsPerQuestion - 5)
+                _gameView.timer.Foreground = Brushes.Red;
+            else if (difference.Seconds > SecondsPerQuestion - 30)
+                _gameView.timer.Foreground = Brushes.Yellow;
+            else
+                _gameView.timer.Foreground = Brushes.White;
+
+            // Cazul in care expira timpul:
+            if (difference > TimeSpan.FromSeconds(SecondsPerQuestion))
             {
-                return "Success!";
+                ellapsedTime.Stop();
+                GameService.AddToEllapsedTime(DateTime.Now.Subtract(start));
+                GameOver();
+                return;
             }
+        }
+
+        public async void OptionSubmitted(Button btOption)
+        {
+            // Oprim contorizarea timpului si dezactivam butoanele
+            ellapsedTime.Stop();
+            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+
+            btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
+
+            await Task.Delay(2000);
+
+            string feedBack = CheckSubmittedOption(int.Parse(btOption.Tag.ToString()), DateTime.Now.Subtract(start));
+            switch (feedBack)
+            {
+                case "Success!":
+                    // Raspuns corect
+                    btOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
+                    break;
+
+                default:
+                    // Raspuns gresit
+                    btOption.Style = Application.Current.TryFindResource("WrongOptionSelected") as Style;
+                    GameOver();
+                    return;
+            }
+
+            // Daca am ajuns pana aici, inseamna ca raspunsul a fost corect.
+            await Task.Delay(2000);
+
+            // Daca nu mai exista intrebari - afisam rezultatele.
+            // Daca mai exista - pregatim terenul pentru urmatoarea intrebare.
+            if (!PickNextQuestion())
+                SaveAndDisplayResults();
             else
             {
-                return "NotSuccess";
+                btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
+                OptionsAndLifelinesSetIsEnabledPropertyTo(true);
+                start = DateTime.Now;
+                _gameView.timer.Content = "00:00";
+                ellapsedTime.Start();
             }
         }
 
-        public void SaveResults()
+        public string CheckSubmittedOption(int optionId, TimeSpan ellapsedTimeForQuestion)
         {
-            GameService.SaveResults();
+            if (GameService.CheckOption(optionId, ellapsedTimeForQuestion))
+                return "Success!";
+            else
+                return "NotSuccess";
         }
 
         public bool PickNextQuestion()
@@ -142,9 +195,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             CurrentQuestion = GameService.PickNext();
 
             if (CurrentQuestion == null)
-            {
                 return false; // Nu mai sunt intrebari
-            }
 
             MarkCurrentPrizeWithinPrizeStack();
             return true;
@@ -152,29 +203,72 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public void MarkCurrentPrizeWithinPrizeStack()
         {
-            PrizeLabels[PrizeLabels.Count - GameService.CurrentQuestionId].Style = lastItemStyle;
+            // Evidentiaza premiul curent in stiva premiilor, iar premiul care a fost evidentiat revine la stilul sau normal.
+            var previousPrize = PrizeLabels[PrizeLabels.Count - GameService.CurrentQuestionId];
+            var currentPrize = PrizeLabels[PrizeLabels.Count - 1 - GameService.CurrentQuestionId];
 
-            lastItemStyle = PrizeLabels[PrizeLabels.Count - 1 - GameService.CurrentQuestionId].Style;
+            previousPrize.Style = lastItemStyle;
+            lastItemStyle = currentPrize.Style;
+            currentPrize.Style = Application.Current.TryFindResource("CurrentPrize") as Style;
+        }
 
-            PrizeLabels[PrizeLabels.Count - 1 - GameService.CurrentQuestionId].Style 
-                = Application.Current.TryFindResource("CurrentPrize") as Style;
+        public void SaveAndDisplayResults()
+        {
+            GameService.SaveResults();
+            ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Results");
+        }
+
+        private void OptionsAndLifelinesSetIsEnabledPropertyTo(bool flag)
+        {
+            // Dezactiveaza / Activeaza (in dependenta de valoarea flag-ului) optiunile de raspuns si cele ajutatoare.
+            foreach (var grid in _gameView.optionsGrid.Children)
+                (grid as Grid).Children[0].IsEnabled = flag;
+
+            for (int i = 0; i < 3; i++)
+                (_gameView.lifeLinesGrid.Children[i] as Button).IsEnabled = flag;
         }
 
         public void GameOver()
         {
-            FiftyFiftyUsed = true;
-            FriendCalled = true;
-            AudienceAsked = true;
+            // Oprim timer-ul, dezactivam butoanele si afisam eplicatia privind raspunsul corect.
+            ellapsedTime.Stop();
+            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+
+            _gameView.RowForAdditionalInformation.Height = GridLength.Auto;
+            _gameView.panelExplications.Visibility = Visibility.Visible;
+            string explanations = CurrentQuestion.Explanations;
+
+            if (explanations != null && explanations.Length > 0)
+                _gameView.tbExplications.Text = explanations;
+            else
+                _gameView.tbExplications.Height = 0;
+
+            MarkCorrectOption();
+        }
+
+        public void MarkCorrectOption()
+        {
+            // Identifica care este butonul ce contine raspunsul corect si ii atribuie stilul RightOptionSelected 
+            var btCorrectOption = (_gameView.optionsGrid.Children[CurrentQuestion.CorrectOptionIndex] as Grid).Children[0] as Button;
+            btCorrectOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
         }
 
         public void FiftyFifty()
         {
+            start = DateTime.Now;
+            _gameView.FiftyFiftyUsed.Visibility = Visibility.Visible;
+            _gameView.btFiftyFifty.IsEnabled = false;
+
             GameService.FiftyFifty();
             OnPropertyChanged(nameof(CurrentQuestion));
         }
 
         public void AskAudience()
         {
+            start = DateTime.Now;
+            _gameView.AskAudienceUsed.Visibility = Visibility.Visible;
+            _gameView.btAskAudience.IsEnabled = false;
+
             List<int> results = GameService.AskAudience();
             var window = new AskAudienceView(results);
             window.ShowDialog();
@@ -182,12 +276,12 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public void CallFriend()
         {
+            start = DateTime.Now;
+            _gameView.PhoneCallUsed.Visibility = Visibility.Visible;
+            _gameView.btPhoneCall.IsEnabled = false;
+
             var window = new PhoneCallView(CurrentQuestion, GameService.Results.PlayerName);
             window.ShowDialog();
         }
-
-
-        // TODO: Find a way to deal with lifelinesAvailability renundance
-        // TODO: Add default style
     }
 }

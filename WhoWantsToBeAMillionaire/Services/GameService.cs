@@ -127,7 +127,7 @@ namespace WhoWantsToBeAMillionaire.Services
             Results.MediumTimeSpanPerQuestion = TimeSpan.FromSeconds(Results.ElapsedTime.Seconds / (CurrentQuestionId + 1));
         }
 
-        public bool CheckAnswer(int userOptionId, TimeSpan ellapsedTimeForQuestion)
+        public bool CheckOption(int userOptionId, TimeSpan ellapsedTimeForQuestion)
         {
             AddToEllapsedTime(ellapsedTimeForQuestion);
             var isCorrect = Game.Questions[CurrentQuestionId].CorrectOptionIndex == userOptionId;

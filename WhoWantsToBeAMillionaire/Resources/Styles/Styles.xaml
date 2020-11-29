@@ -8,7 +8,7 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontSize" Value="15"/>
     </Style>
-    
+
     <Style x:Key="Heading" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="FontSize" Value="25"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -30,7 +30,7 @@
     <Style x:Key="WarningText" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="Foreground" Value="Red"/>
     </Style>
-    
+
     <!--UserControl styles-->
     <Style x:Key="NoWin" TargetType="UserControl">
         <Setter Property="Background">
@@ -56,7 +56,7 @@
         </Setter>
     </Style>
 
-    
+
     <!--Grid styles-->
     <Style x:Key="DangerGrid" TargetType="Grid">
         <Setter Property="Background">
@@ -84,13 +84,13 @@
         </Setter>
     </Style>
 
-    
+
     <!--Label styles-->
     <Style x:Key="PrizeItemBaseStyle" TargetType="Label">
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
-    
+
     <Style x:Key="PrizeItemStyle" TargetType="Label" BasedOn="{StaticResource PrizeItemBaseStyle}">
         <Setter Property="Foreground" Value="#eca609"/>
     </Style>
@@ -118,7 +118,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
-    
+
 
     <!--TextBox styles-->
     <Style x:Key="SimpleTextBox" TargetType="TextBox">
@@ -132,7 +132,7 @@
         <Setter Property="BorderBrush" Value="DarkBlue"/>
         <Setter Property="BorderThickness" Value="4"/>
     </Style>
-    
+
     <!--TextBlock styles-->
     <Style x:Key="reply" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
@@ -163,6 +163,27 @@
         <Setter Property="Margin" Value="40 10 10 10"/>
     </Style>
 
+    <Style x:Key="optionText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="A: ">
+                <Setter Property="IsEnabled" Value="False"/>
+            </Trigger>
+            <Trigger Property="Text" Value="B: ">
+                <Setter Property="IsEnabled" Value="False"/>
+            </Trigger>
+            <Trigger Property="Text" Value="C: ">
+                <Setter Property="IsEnabled" Value="False"/>
+            </Trigger>
+            <Trigger Property="Text" Value="D: ">
+                <Setter Property="IsEnabled" Value="False"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <!--Button styles-->
     <Style x:Key="NormalPolygon" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Black"/>
@@ -226,11 +247,8 @@
         <Setter Property="FontSize" Value="18"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Green"/>
+                <Setter Property="Background" Value="CadetBlue"/>
                 <Setter Property="Cursor" Value="Hand"/>
-            </Trigger>
-            <Trigger Property="Content" Value="">
-                <Setter Property="IsEnabled" Value="False"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -306,8 +324,8 @@
         <Setter Property="Margin" Value="10, 45, 10, 10"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-    </Style> 
-    
+    </Style>
+
     <!--Polygon Styles-->
     <Style x:Key="QuestionPolygon" TargetType="Polygon">
         <Setter Property="Points" Value="0,40 60,10 650,10 710,40 650,70 60,70"/>
@@ -346,6 +364,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!--Fill="DodgerBlue"-->
 </ResourceDictionary>
