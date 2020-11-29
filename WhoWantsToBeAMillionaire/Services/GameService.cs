@@ -10,8 +10,7 @@ namespace WhoWantsToBeAMillionaire.Services
 {
     class GameService
     {
-        // Singleton pattern: Vom utiliza acest design pattern pentru a avea o singura instanta
-        // a acestei clase.
+        // Singleton pattern: Vom utiliza acest design pattern pentru a avea o singura instanta a clasei
         private static GameService instance;
         private GameService() { }
         public static GameService GetInstace()
@@ -22,10 +21,12 @@ namespace WhoWantsToBeAMillionaire.Services
             return instance;
         }
 
-
         public Game Game { get; set; }
+
         public Results Results { get; set; }
+
         public LifelineService LifelineService { get; set; }
+
         public int CurrentQuestionId { get; set; }
 
         public bool Init(string playerName)
@@ -46,10 +47,8 @@ namespace WhoWantsToBeAMillionaire.Services
                     return false;
                 }
 
-                Game.PlayerName = playerName;
-                Results.PlayerName = playerName;
+                Game.PlayerName = Results.PlayerName = playerName;
                 CurrentQuestionId = 0;
-
                 return true;
             }
             catch (Exception)
@@ -61,8 +60,7 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public Question PickNext()
         {
-            // In dependenta de numarul intrebarii, vom extrage o intrebare de dificultatea corespunzatoare
-            if (CurrentQuestionId == 14)
+            if (CurrentQuestionId == 14) // Au fost raspunse deja 15 intrebari
                 return null;
 
             return Game.Questions[++CurrentQuestionId];
@@ -104,6 +102,8 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public void PopulateList(List<Question> AllQuestions, List<Question> FinalQuestionsList, DifficultyLevel difficultyLevel, int maximumQuestions)
         {
+            // Populeaza lista 
+
             List<Question> questionsByDiffLevel = AllQuestions.Where(q => q.DifficultyLevel == difficultyLevel).ToList();
             int questionsCount = questionsByDiffLevel.Count;
             if (questionsCount > maximumQuestions)
@@ -117,7 +117,6 @@ namespace WhoWantsToBeAMillionaire.Services
                 FinalQuestionsList.Add(selectedQ);
 
                 questionsByDiffLevel.Remove(selectedQ);
-                FinalQuestionsList.Remove(selectedQ);
             }
         }
 

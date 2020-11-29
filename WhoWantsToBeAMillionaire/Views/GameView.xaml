@@ -51,49 +51,49 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Prima optiune-->
-                <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Button Style="{StaticResource OptionPolygon}"
+                <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button x:Name="btOption0" Style="{StaticResource OptionPolygon}"
                             Tag="0"
-                            IsEnabled="{Binding ElementName=option0, Path=IsEnabled}"
-                            Click="btOption_Click">
+                            Click="btOption_Click"
+                            IsEnabled="{Binding Op0IsEnabled}">
 
-                        <TextBlock Name="option0" Style="{StaticResource optionText}" 
+                        <TextBlock x:Name="option0" Style="{StaticResource optionText}" 
                                    Text="{Binding CurrentQuestion.Options[0], StringFormat={}A: {0}}"/>
                     </Button>
                 </Grid>
 
                 <!--A doua optiune-->
-                <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Button Style="{StaticResource OptionPolygon}"
+                <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button x:Name="btOption1" Style="{StaticResource OptionPolygon}"
                             Tag="1"
-                            IsEnabled="{Binding ElementName=option1, Path=IsEnabled}"
-                            Click="btOption_Click">
+                            Click="btOption_Click"
+                            IsEnabled="{Binding Op1IsEnabled}">
 
-                        <TextBlock Name="option1" Style="{StaticResource optionText}" 
+                        <TextBlock x:Name="option1" Style="{StaticResource optionText}" 
                                    Text="{Binding CurrentQuestion.Options[1], StringFormat={}B: {0}}"/>
                     </Button>
                 </Grid>
 
                 <!--A treia optiune-->
-                <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Button Style="{StaticResource OptionPolygon}"
+                <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button x:Name="btOption2" Style="{StaticResource OptionPolygon}"
                             Tag="2"
-                            IsEnabled="{Binding ElementName=option2, Path=IsEnabled}"
-                            Click="btOption_Click">
+                            Click="btOption_Click"
+                            IsEnabled="{Binding Op2IsEnabled}">
 
-                        <TextBlock Name="option2" Style="{StaticResource optionText}" 
+                        <TextBlock x:Name="option2" Style="{StaticResource optionText}" 
                                    Text="{Binding CurrentQuestion.Options[2], StringFormat={}C: {0}}"/>
                     </Button>
                 </Grid>
 
                 <!--A patra optiune-->
-                <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Tag="0" VerticalAlignment="Center" >
-                    <Button Style="{StaticResource OptionPolygon}"
+                <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button x:Name="btOption3" Style="{StaticResource OptionPolygon}"
                             Tag="3"
-                            IsEnabled="{Binding ElementName=option3, Path=IsEnabled}"
-                            Click="btOption_Click">
+                            Click="btOption_Click"
+                            IsEnabled="{Binding Op3IsEnabled}">
 
-                        <TextBlock Name="option3" Style="{StaticResource optionText}" 
+                        <TextBlock x:Name="option3" Style="{StaticResource optionText}" 
                                    Text="{Binding CurrentQuestion.Options[3], StringFormat={}D: {0}}"/>
                     </Button>
                 </Grid>

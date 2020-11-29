@@ -43,6 +43,50 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
+        private bool _op0IsEnabled;
+        public bool Op0IsEnabled
+        {
+            get { return _op0IsEnabled; }
+            set
+            {
+                _op0IsEnabled = value;
+                OnPropertyChanged(nameof(Op0IsEnabled));
+            }
+        }
+
+        private bool _op1IsEnabled;
+        public bool Op1IsEnabled
+        {
+            get { return _op1IsEnabled; }
+            set
+            {
+                _op1IsEnabled = value;
+                OnPropertyChanged(nameof(Op1IsEnabled));
+            }
+        }
+
+        private bool _op2IsEnabled;
+        public bool Op2IsEnabled
+        {
+            get { return _op2IsEnabled; }
+            set
+            {
+                _op2IsEnabled = value;
+                OnPropertyChanged(nameof(Op2IsEnabled));
+            }
+        }
+
+        private bool _op3IsEnabled;
+        public bool Op3IsEnabled
+        {
+            get { return _op3IsEnabled; }
+            set
+            {
+                _op3IsEnabled = value;
+                OnPropertyChanged(nameof(Op3IsEnabled));
+            }
+        }
+
         public GameService GameService { get; set; }
 
         public GameView _gameView;
@@ -56,6 +100,8 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public GameViewModel(GameView gameView)
         {
+            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = true;
+
             _gameView = gameView;
 
             // Cream o instanta a clasei GameService, Acolo se contine cea mai mare parte a logicii
@@ -174,8 +220,8 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 SaveAndDisplayResults();
             else
             {
-                btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
                 OptionsAndLifelinesSetIsEnabledPropertyTo(true);
+                btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
                 start = DateTime.Now;
                 _gameView.timer.Content = "00:00";
                 ellapsedTime.Start();
@@ -221,8 +267,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         private void OptionsAndLifelinesSetIsEnabledPropertyTo(bool flag)
         {
             // Dezactiveaza / Activeaza (in dependenta de valoarea flag-ului) optiunile de raspuns si cele ajutatoare.
-            foreach (var grid in _gameView.optionsGrid.Children)
-                (grid as Grid).Children[0].IsEnabled = flag;
+            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = flag;
 
             for (int i = 0; i < 3; i++)
                 (_gameView.lifeLinesGrid.Children[i] as Button).IsEnabled = flag;
@@ -256,32 +301,37 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         public void FiftyFifty()
         {
             start = DateTime.Now;
+            GameService.FiftyFifty();
+            OnPropertyChanged(nameof(CurrentQuestion));
+
             _gameView.FiftyFiftyUsed.Visibility = Visibility.Visible;
             _gameView.btFiftyFifty.IsEnabled = false;
 
-            GameService.FiftyFifty();
-            OnPropertyChanged(nameof(CurrentQuestion));
+            Op0IsEnabled = _gameView.option0.IsEnabled;
+            Op1IsEnabled = _gameView.option1.IsEnabled;
+            Op2IsEnabled = _gameView.option2.IsEnabled;
+            Op3IsEnabled = _gameView.option3.IsEnabled;
         }
 
         public void AskAudience()
         {
             start = DateTime.Now;
-            _gameView.AskAudienceUsed.Visibility = Visibility.Visible;
-            _gameView.btAskAudience.IsEnabled = false;
-
             List<int> results = GameService.AskAudience();
             var window = new AskAudienceView(results);
             window.ShowDialog();
+
+            _gameView.AskAudienceUsed.Visibility = Visibility.Visible;
+            _gameView.btAskAudience.IsEnabled = false;
         }
 
         public void CallFriend()
         {
             start = DateTime.Now;
-            _gameView.PhoneCallUsed.Visibility = Visibility.Visible;
-            _gameView.btPhoneCall.IsEnabled = false;
-
             var window = new PhoneCallView(CurrentQuestion, GameService.Results.PlayerName);
             window.ShowDialog();
+
+            _gameView.PhoneCallUsed.Visibility = Visibility.Visible;
+            _gameView.btPhoneCall.IsEnabled = false;
         }
     }
 }
