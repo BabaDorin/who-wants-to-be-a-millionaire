@@ -165,8 +165,6 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             FiftyFiftyUsed = true;
             FriendCalled = true;
             AudienceAsked = true;
-
-            GameService.GameOver();
         }
 
         public void FiftyFifty()

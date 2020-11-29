@@ -19,6 +19,6 @@ namespace WhoWantsToBeAMillionaire.Models
         public TimeSpan ElapsedTime { get; set; }
         
         // Cat timp s-a scurs in medie pentru fiecare intrebare
-        public TimeSpan MediumTimeSpanPerQuestion { get; set; }
+        public TimeSpan MediumTimeSpanPerQuestion { get; set; }                
     }
 }
