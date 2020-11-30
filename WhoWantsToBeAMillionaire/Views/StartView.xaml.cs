@@ -19,12 +19,17 @@ namespace WhoWantsToBeAMillionaire.Views
     public partial class StartView : UserControl
     {
         private MainWindow _mainWindow;
+        private AudioService _audioService;
+
         public StartView()
         {
             InitializeComponent();
             _mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
 
             _mainWindow.ActivateAdminPanel();
+
+            _audioService = AudioService.GetInstace();
+            _audioService.PlayAudio(_audioService.MainTheme);
         }
 
         private void btStartGame_Click(object sender, RoutedEventArgs e)

@@ -88,6 +88,8 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         }
 
         public GameService GameService { get; set; }
+        
+        private AudioService _audioService { get; set; }
 
         public GameView _gameView;
 
@@ -103,6 +105,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = true;
 
             _gameView = gameView;
+            _audioService = AudioService.GetInstace();
 
             // Cream o instanta a clasei GameService, Acolo se contine cea mai mare parte a logicii
             // din spatele jocului.
@@ -158,6 +161,9 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             ellapsedTime = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background,
                    t_Tick, Dispatcher.CurrentDispatcher); ellapsedTime.IsEnabled = true;
             start = DateTime.Now;
+
+            // Melodia de inceput
+            _audioService.PlayAudio(_audioService.LetsPlay);
         }
 
         private void t_Tick(object sender, EventArgs e)
@@ -191,10 +197,11 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             // Oprim contorizarea timpului si dezactivam butoanele
             ellapsedTime.Stop();
             OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+            _audioService.PlayAudio(_audioService.FinalAnswer);
 
             btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
 
-            await Task.Delay(2000);
+            await Task.Delay(3000);
 
             string feedBack = CheckSubmittedOption(int.Parse(btOption.Tag.ToString()), DateTime.Now.Subtract(start));
             switch (feedBack)
@@ -202,6 +209,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 case "Success!":
                     // Raspuns corect
                     btOption.Style = Application.Current.TryFindResource("RightOptionSelected") as Style;
+                    _audioService.PlayAudio(_audioService.CorrectAnswer);
                     break;
 
                 default:
@@ -212,7 +220,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
 
             // Daca am ajuns pana aici, inseamna ca raspunsul a fost corect.
-            await Task.Delay(2000);
+            await Task.Delay(3000);
 
             // Daca nu mai exista intrebari - afisam rezultatele.
             // Daca mai exista - pregatim terenul pentru urmatoarea intrebare.
@@ -244,6 +252,8 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 return false; // Nu mai sunt intrebari
 
             MarkCurrentPrizeWithinPrizeStack();
+            _audioService.PlayAudioAccordingToPriceRange(GameService.CurrentQuestionId);
+            
             return true;
         }
 
@@ -275,6 +285,8 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public void GameOver()
         {
+            _audioService.PlayAudio(_audioService.WrongAnswer);
+
             // Oprim timer-ul, dezactivam butoanele si afisam eplicatia privind raspunsul corect.
             ellapsedTime.Stop();
             OptionsAndLifelinesSetIsEnabledPropertyTo(false);

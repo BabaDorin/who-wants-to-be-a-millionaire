@@ -63,10 +63,13 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public Question CurrentQuestion{ get; set; }
 
+        private AudioService _audioService;
+
         public PhoneCallViewModel(Question question, string playerName)
         {
             PlayerName = playerName;
             CurrentQuestion = question;
+            _audioService = AudioService.GetInstace();
 
             GridInputVisibility = Visibility.Visible;
             GridDialogVisibility = Visibility.Collapsed;
@@ -76,7 +79,9 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         {
             GridInputVisibility = Visibility.Collapsed;
             GridDialogVisibility = Visibility.Visible;
-            
+
+            _audioService.PlayAudio(_audioService.PhoneAFriend);
+
             // Facem rost de lista de replici
             Conversation = LifelineService.CallAFriend(FriendName, PlayerName, CurrentQuestion);
 

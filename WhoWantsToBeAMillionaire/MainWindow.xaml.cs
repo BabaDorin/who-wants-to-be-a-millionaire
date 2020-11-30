@@ -21,11 +21,14 @@ namespace WhoWantsToBeAMillionaire
 {
     public partial class MainWindow : Window
     {
+        private AudioService _audioService;
+
         public MainWindow()
         {
             InitializeComponent();
-
             UpdateView("Start");
+
+            _audioService = AudioService.GetInstace();
         }
 
         private void btToggleVolume_Click(object sender, RoutedEventArgs e)
@@ -35,7 +38,7 @@ namespace WhoWantsToBeAMillionaire
             else
                 VolumeOff.Visibility = Visibility.Hidden;
 
-            AudioService.ToggleVolume();
+            _audioService.ToggleVolume();
         }
 
         private void btAdminPanel_Click(object sender, RoutedEventArgs e)
