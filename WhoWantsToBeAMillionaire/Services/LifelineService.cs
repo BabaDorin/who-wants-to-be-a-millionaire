@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Printing;
 using System.Text;
+using System.Windows;
 using WhoWantsToBeAMillionaire.Models;
 
 namespace WhoWantsToBeAMillionaire.Services
@@ -23,7 +25,8 @@ namespace WhoWantsToBeAMillionaire.Services
             switch (question.DifficultyLevel)
             {
                 case DifficultyLevel.Easy:
-                    op1 = random.Next(80, 100);  // Optiunea corecta
+                    op1 = random.Next(80, 100); // Optiunea corecta
+                    MessageBox.Show(op1.ToString());
                     op2 = random.Next(0, 100 - op1);
                     op3 = random.Next(0, 100 - (op1 + op2));
                     op4 = 100 - (op1 + op2 + op3);
@@ -51,21 +54,66 @@ namespace WhoWantsToBeAMillionaire.Services
                     break;
             }
 
-            Stack<int> OtherOptions = new Stack<int>();
-            OtherOptions.Push(op2);
-            OtherOptions.Push(op3);
-            OtherOptions.Push(op4);
+            // Acum avem rezultatele sondajului. A ramas sa verificam un caz aparte - cazul in care
+            // a fost interogat publicul dupa ce a fost folosita metoda 50/50.
+            // In acest caz, 2 optiuni vide (sa presupunem ca sunt op3 si op4) vor fi egalate cu 0,
+            // iar diferenta este impartita in mod egal intre op1 si op2.
 
-            int correctOptionId = question.CorrectOptionIndex;
+            if(question.Options.Count(q => q.Length == 0) == 2)
+            {
+                // 50/50 A fost utilizat
+                int diferenta = op3 + op4;
+                op3 = op4 = 0;
+                op1 += diferenta / 2;
+                op2 += diferenta / 2;
 
-            for (int i = 0; i < correctOptionId; i++)
-                results[i] = OtherOptions.Pop();
+                int correctOptionId = question.CorrectOptionIndex;
+                
+                // Avand indicele raspunsului corect, vom itera toti indicii de la 0 la 3 inclusiv:
+                // Daca indicele i curent este indicele raspunsului corect, atunci result[i] = op1,
+                // Daca indicele este al unui raspuns eliminat in urma 50/50, atunci valoarea result[i] va fi 0.
+                // Daca indicele este al unui raspuns valid, result[i] va fi op2.
+                // Intr-un final vom avea urmatoarea imagine:
+                // Raspunsul corect: op1%
+                // Celalalt raspuns: op2%
+                // Raspunsurile eliminate: 0% fiecare.
+                
+                for(int i = 0; i < 4; i++)
+                {
+                    if(i == correctOptionId)
+                        results[i] = op1;
+                    else
+                        if (question.Options[i].Length != 0)
+                            results[i] = op2;
+                }
+            }
+            else
+            {
+                // 50/50 nu a fost utilizat.
+                // Stocam rezultatele sondajului intr-o stiva. 
+                Stack<int> OtherOptions = new Stack<int>();
+                OtherOptions.Push(op2);
+                OtherOptions.Push(op3);
+                OtherOptions.Push(op4);
 
-            results[correctOptionId] = op1;
+                int correctOptionId = question.CorrectOptionIndex;
 
-            for (int i = correctOptionId + 1; i < 4; i++)
-                results[i] = OtherOptions.Pop();
+                // Populam lista results in 3 etape:
+                // Prima etapa: intervalul results[0] - results[correctOptionId-1] este completat cu valori din stiva.
+                for (int i = 0; i < correctOptionId; i++)
+                    results[i] = OtherOptions.Pop();
 
+                // A Doua etapa: in results[correctOptionId] este inserata valoarea ce reprezinta
+                // procentajul din public ce a votat pentru optiunea intr-adevar corecta.
+                results[correctOptionId] = op1;
+
+                // A 3-a etapa: intervalul results[correctOptionId+1] - results[3] este completat cu valorile ramase in stiva. 
+                for (int i = correctOptionId + 1; i < 4; i++)
+                    results[i] = OtherOptions.Pop();
+            }
+            
+            // Intr-un final am obtinut o lista in care pentru Optiunea cu indicele i avem results[i] ce reprezinta
+            // procentajul din public ce a votat pentru optiunea respectia.
             return results;
         }
 

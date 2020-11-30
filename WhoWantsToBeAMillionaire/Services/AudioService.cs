@@ -9,8 +9,8 @@ namespace WhoWantsToBeAMillionaire.Services
 {
     class AudioService
     {
-
         public bool AudioOn { get; set; }
+
         public SoundPlayer MainTheme { get; set; }
         public SoundPlayer LetsPlay { get; set; }
         public SoundPlayer Music1001000 { get; set; }
@@ -21,10 +21,9 @@ namespace WhoWantsToBeAMillionaire.Services
         public SoundPlayer CorrectAnswer { get; set; }
         public SoundPlayer PhoneAFriend { get; set; }
         public SoundPlayer WrongAnswer { get; set; }
+        private SoundPlayer LastSound { get; set; }
 
-        private static string audioDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\", @"Resources\Audio\"));
-        private static SoundPlayer LastSound { get; set; }
-
+        private string audioDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\", @"Resources\Audio\"));
 
         // Implementarea pattern-ului Singleton
         private static AudioService instance;
@@ -67,7 +66,6 @@ namespace WhoWantsToBeAMillionaire.Services
             {
                 soundPlayer.PlayLooping();
             }
-
         }
 
         public void PlayAudioAccordingToPriceRange(int questionId)
@@ -96,9 +94,7 @@ namespace WhoWantsToBeAMillionaire.Services
         public void StopPlaying()
         {
             if(LastSound != null && LastSound != FinalAnswer && LastSound != CorrectAnswer)
-            {
                 LastSound.Stop();
-            }
         }
 
         public void ToggleVolume()
