@@ -15,11 +15,6 @@ namespace WhoWantsToBeAMillionaire.Models
 
     public class Question
     {
-        public Question()
-        {
-
-        }
-
         public string QuestionId { get; set; }
 
         // Intrebarea propriu zisa (Textul intrebarii)

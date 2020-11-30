@@ -26,7 +26,6 @@ namespace WhoWantsToBeAMillionaire.Views
             InitializeComponent();
             DataContext = new ResultsViewModel();
             _viewModel = DataContext as ResultsViewModel;
-            Debug.Write(_viewModel.PrizeWon);
 
             switch (_viewModel.PrizeWon)
             {

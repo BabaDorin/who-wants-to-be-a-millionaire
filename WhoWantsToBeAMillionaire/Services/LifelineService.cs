@@ -235,16 +235,16 @@ namespace WhoWantsToBeAMillionaire.Services
                 $"Multumesc! Urmeaza sa iau o decizie. O Zi buna!",
             };
 
-            string optiuneCorecta = question.Options[question.CorrectOptionIndex];
+            string correctOption = question.Options[question.CorrectOptionIndex];
             List<string> r7_type3 = new List<string>
             {
-                $"Nici nu stam la discutii, raspunsul e {optiuneCorecta}",
-                $"{optiuneCorecta}, 100%",
-                $"Asa intrebari usoare se dau la Vrei sa fii milionar? Raspunsul e {optiuneCorecta}",
-                $"Ai nimerit bine! Raspunsul e {optiuneCorecta}",
-                $"Prea usoara intrebarea, {optiuneCorecta}",
-                $"{optiuneCorecta}, te achiti si cu mine ;)",
-                $"{optiuneCorecta}, altceva?"
+                $"Nici nu stam la discutii, raspunsul e {correctOption}",
+                $"{correctOption}, 100%",
+                $"Asa intrebari usoare se dau la Vrei sa fii milionar? Raspunsul e {correctOption}",
+                $"Ai nimerit bine! Raspunsul e {correctOption}",
+                $"Prea usoara intrebarea, {correctOption}",
+                $"{correctOption}, te achiti si cu mine ;)",
+                $"{correctOption}, altceva?"
             };
 
             List<string> r8_type3 = new List<string>
@@ -258,50 +258,52 @@ namespace WhoWantsToBeAMillionaire.Services
                 $"Nice!",
             };
 
-            List<string> conversatiaFinala = new List<string>();
-            conversatiaFinala.Add(r1[rnd.Next(0, r1.Count)]);
-            conversatiaFinala.Add(r2[rnd.Next(0, r2.Count)]);
-            conversatiaFinala.Add(r3[rnd.Next(0, r3.Count)]);
-            conversatiaFinala.Add(r4[rnd.Next(0, r4.Count)]);
-            conversatiaFinala.Add(r5[rnd.Next(0, r5.Count)]);
-            conversatiaFinala.Add(r6[rnd.Next(0, r6.Count)]);
+            // Construim converatia cu cate o replica de fiecare tip
+            List<string> finalConversation = new List<string>();
+            finalConversation.Add(r1[rnd.Next(0, r1.Count)]);
+            finalConversation.Add(r2[rnd.Next(0, r2.Count)]);
+            finalConversation.Add(r3[rnd.Next(0, r3.Count)]);
+            finalConversation.Add(r4[rnd.Next(0, r4.Count)]);
+            finalConversation.Add(r5[rnd.Next(0, r5.Count)]);
+            finalConversation.Add(r6[rnd.Next(0, r6.Count)]);
 
-            int tipPrieten = 0;
-            int nrAleator = rnd.Next(1, 101);
+            // Alegem tipul de prieten in dependenta de dificultatea intrebarii.
+            int friendType = 0;
+            int randomNumber = rnd.Next(1, 101);
             switch (question.DifficultyLevel)
             {
-                case DifficultyLevel.Easy: // 10 20 70
-                    if (nrAleator <= 10) { tipPrieten = 1;  break; }
-                    if (nrAleator <= 30) { tipPrieten = 2;  break; }
-                    tipPrieten = 3;
+                case DifficultyLevel.Easy: // 10% tip1,  20% tip 2,  70% tip 3
+                    if (randomNumber <= 10) { friendType = 1;  break; }
+                    if (randomNumber <= 30) { friendType = 2;  break; }
+                    friendType = 3;
                     break;
-                case DifficultyLevel.Medium: // 15 25 60
-                    
-                    if (nrAleator <= 15) { tipPrieten = 1; break; }
-                    if (nrAleator <= 40) { tipPrieten = 2; break; }
-                    tipPrieten = 3;
+                case DifficultyLevel.Medium: // 15% tip1,  25% tip 2,  60% tip 3
+
+                    if (randomNumber <= 15) { friendType = 1; break; }
+                    if (randomNumber <= 40) { friendType = 2; break; }
+                    friendType = 3;
                     break;
-                case DifficultyLevel.Hard: // 20 40 40
-                case DifficultyLevel.Einstein: // 20 40 40
-                    if (nrAleator <= 20) { tipPrieten = 1; break; }
-                    if (nrAleator <= 60) { tipPrieten = 2; break; }
-                    tipPrieten = 3;
+                case DifficultyLevel.Hard: // 20% tip1,  40% tip 2,  40% tip 3
+                case DifficultyLevel.Einstein: // 20% tip1,  40% tip 2,  40% tip 3
+                    if (randomNumber <= 20) { friendType = 1; break; }
+                    if (randomNumber <= 60) { friendType = 2; break; }
+                    friendType = 3;
                     break;
             }
 
             List<string> replica7 = new List<string>(); 
             List<string> replica8 = new List<string>(); 
-            switch (tipPrieten)
+            switch (friendType)
             {
                 case 1: replica7 = r7_type1; replica8 = r8_type1; break;
                 case 2: replica7 = r7_type2; replica8 = r8_type2; break;
                 case 3: replica7 = r7_type3; replica8 = r8_type3; break;
             }
 
-            conversatiaFinala.Add(replica7[rnd.Next(0, replica7.Count)]);
-            conversatiaFinala.Add(replica8[rnd.Next(0, replica8.Count)]);
+            finalConversation.Add(replica7[rnd.Next(0, replica7.Count)]);
+            finalConversation.Add(replica8[rnd.Next(0, replica8.Count)]);
 
-            return conversatiaFinala;
+            return finalConversation;
         }
     }
 }
