@@ -87,6 +87,17 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             }
         }
 
+        private bool _btRetreatIsEnabled;
+        public bool BtRetreatIsEnabled
+        {
+            get { return _op3IsEnabled; }
+            set
+            {
+                _btRetreatIsEnabled = value;
+                OnPropertyChanged(nameof(BtRetreatIsEnabled));
+            }
+        }
+
         public GameService GameService { get; set; }
         
         private AudioService _audioService { get; set; }
@@ -113,19 +124,9 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             SecondsPerQuestion = 60; 
 
             // Afisam stiva premiilor
-            var Prizes = new List<string>
-            {
-                "$ 100", "$ 200", "$ 300", "$ 500",
-                "$ 1 000", "$ 2 000", "$ 4 000", "$ 8 000",
-                "$ 16 000", "$ 32 000", "$ 64 000", "$ 125 000",
-                "$ 250 000", "$ 500 000", "$ 1 000 000"
-            };
-            var SafePoints = new List<String> 
-            { 
-                "$ 1 000", "$ 32 000", "$ 1 000 000" 
-            };
-
             PrizeLabels = new List<Label>();
+            var Prizes = Game.PrizeList;
+            var SafePoints = Game.SafePoints;
 
             // Pentru fiecare premiu este creat un label si un row in grid-ul
             // dedicat afisarii premiilor.
@@ -196,7 +197,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         {
             // Oprim contorizarea timpului si dezactivam butoanele
             ellapsedTime.Stop();
-            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+            ButtonsSetIsEnabledTo(false);
             _audioService.PlayAudio(_audioService.FinalAnswer);
 
             btOption.Style = Application.Current.TryFindResource("OptionSelected") as Style;
@@ -228,7 +229,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
                 SaveAndDisplayResults();
             else
             {
-                OptionsAndLifelinesSetIsEnabledPropertyTo(true);
+                ButtonsSetIsEnabledTo(true);
                 btOption.Style = Application.Current.TryFindResource("OptionPolygon") as Style;
                 start = DateTime.Now;
                 _gameView.timer.Content = "00:00";
@@ -274,13 +275,19 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             ((MainWindow)System.Windows.Application.Current.MainWindow).UpdateView("Results");
         }
 
-        private void OptionsAndLifelinesSetIsEnabledPropertyTo(bool flag)
+        private void ButtonsSetIsEnabledTo(bool flag)
         {
             // Dezactiveaza / Activeaza (in dependenta de valoarea flag-ului) optiunile de raspuns si cele ajutatoare.
-            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = flag;
+            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled =  flag;
 
             for (int i = 0; i < 3; i++)
                 (_gameView.lifeLinesGrid.Children[i] as Button).IsEnabled = flag;
+        }
+
+        public void Retreat()
+        {
+            GameService.Retreat();
+            GameOver();
         }
 
         public void GameOver()
@@ -289,7 +296,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
             // Oprim timer-ul, dezactivam butoanele si afisam eplicatia privind raspunsul corect.
             ellapsedTime.Stop();
-            OptionsAndLifelinesSetIsEnabledPropertyTo(false);
+            ButtonsSetIsEnabledTo(false);
 
             _gameView.RowForAdditionalInformation.Height = GridLength.Auto;
             _gameView.panelExplications.Visibility = Visibility.Visible;

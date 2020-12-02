@@ -102,7 +102,8 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public void PopulateList(List<Question> AllQuestions, List<Question> FinalQuestionsList, DifficultyLevel difficultyLevel, int maximumQuestions)
         {
-            // Populeaza lista 
+            // Populeaza lista 'FinalQuestionsList' cu maxim 'maximumQuestions' intrebari de dificultatea
+            // 'difficultyLevel' din lista tuturor intrebarilor 'AllQuestions'
 
             List<Question> questionsByDiffLevel = AllQuestions.Where(q => q.DifficultyLevel == difficultyLevel).ToList();
             int questionsCount = questionsByDiffLevel.Count;
@@ -136,9 +137,9 @@ namespace WhoWantsToBeAMillionaire.Services
             {
                 switch (CurrentQuestionId)
                 {
-                    case 4: Game.PrizeSoFar = "$ 1 000"; break;
-                    case 9: Game.PrizeSoFar = "$ 32 000"; break;
-                    case 14: Game.PrizeSoFar = "$ 1 000 000";break;
+                    case 4: Game.PrizeSoFar = Game.PrizeList[4]; break;
+                    case 9: Game.PrizeSoFar = Game.PrizeList[9]; break;
+                    case 14: Game.PrizeSoFar = Game.PrizeList[14]; break;
                     default: break;
                 }
             }
@@ -158,8 +159,17 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             Results.FinalPrize = Game.PrizeSoFar;
             Results.CorrectAnswers = CurrentQuestionId;
-            if(Game.PrizeSoFar == "$ 1 000 000") Results.CorrectAnswers = CurrentQuestionId + 1;
+            if(Game.PrizeSoFar == Game.PrizeList[14]) Results.CorrectAnswers = CurrentQuestionId + 1;
             DBService.SaveResults(Results);
+        }
+
+        public void Retreat()
+        {
+            // Daca jucatorul decide sa se retraga din joc, atunci premiul lui final va fi cel al utimei intrebari raspunse corect.
+            if (CurrentQuestionId == 0)
+                Game.PrizeSoFar = "$ 0";
+            else
+                Game.PrizeSoFar = Game.PrizeList[CurrentQuestionId - 1];
         }
 
         public List<string> CallAFriend(string friendName)

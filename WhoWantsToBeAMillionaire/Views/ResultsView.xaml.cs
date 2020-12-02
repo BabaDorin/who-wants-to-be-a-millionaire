@@ -15,34 +15,14 @@ using WhoWantsToBeAMillionaire.ViewModels;
 
 namespace WhoWantsToBeAMillionaire.Views
 {
-    /// <summary>
-    /// Interaction logic for ResultsView.xaml
-    /// </summary>
     public partial class ResultsView : UserControl
     {
         private static ResultsViewModel _viewModel;
         public ResultsView()
         {
             InitializeComponent();
-            DataContext = new ResultsViewModel();
+            DataContext = new ResultsViewModel(this);
             _viewModel = DataContext as ResultsViewModel;
-
-            switch (_viewModel.PrizeWon)
-            {
-                case "$ 0": 
-                    mainGrid.Style = Application.Current.TryFindResource("DangerGrid") as Style; 
-                    mainUserControl.Style = Application.Current.TryFindResource("NoWin") as Style; 
-                    break;
-                case "$ 1 000!":
-                case "$ 32 000!":
-                    mainGrid.Style = Application.Current.TryFindResource("SuccessGrid") as Style;
-                    mainUserControl.Style = Application.Current.TryFindResource("Win") as Style;
-                    break;
-                case "$ 1 000 000!":
-                    mainGrid.Style = Application.Current.TryFindResource("SuccessGrid") as Style;
-                    mainUserControl.Style = Application.Current.TryFindResource("BigWin") as Style;
-                    break;
-            }
         }
 
         private void btHome_Click(object sender, RoutedEventArgs e)

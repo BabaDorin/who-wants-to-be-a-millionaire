@@ -57,5 +57,10 @@ namespace WhoWantsToBeAMillionaire.Views
         {
             _viewModel.SaveAndDisplayResults();
         }
+
+        private void btRetreat_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Retreat();
+        }
     }
 }

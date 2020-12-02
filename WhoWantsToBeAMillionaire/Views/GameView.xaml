@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
              mc:Ignorable="d" Height="auto" Width="auto">
-    <!--set height and width to auto when done!-->
-    <!--Height="580" Width="1100"-->
+    <!--Development: Height="580" Width="1100"-->
+    <!--Production: Height="auto" Width="auto"-->
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -124,7 +124,8 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="9*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
             <!--Grid pentru afisarea butoanelor asociate variantelor ajutatoare-->
@@ -162,9 +163,19 @@
             <!--Grid in care vor fi adaugate in mod dinamic premiile-->
             <Grid Grid.Row="1" 
                   Name="prizeStack" 
-                  Margin="10 20 10 40"
+                  Margin="10 20 10 10"
                   Height="auto">
             </Grid>
+
+            <Button Grid.Row="2" x:Name="btRetreat" 
+                    IsEnabled="{Binding BtRetreatIsEnabled}"
+                    Style="{StaticResource EmptyButton}"
+                    Margin="10" 
+                    Foreground="#eca609"
+                    FontWeight="Bold"
+                    FontSize="17"
+                    Content="Ma opresc aici!"
+                    Click="btRetreat_Click"/>
         </Grid>
     </Grid>
 </UserControl>

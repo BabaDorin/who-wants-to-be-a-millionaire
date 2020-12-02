@@ -179,8 +179,7 @@ namespace WhoWantsToBeAMillionaire.Services
             }
             catch (Exception e)
             {
-                MessageBox.Show("Datele nu au putu fi citite din fisierul XML");
-                Debug.WriteLine(e.Message);
+                MessageBox.Show("Datele nu au putu fi citite din fisierul XML, " + e.Message);
                 return new List<T>();
             }
             finally

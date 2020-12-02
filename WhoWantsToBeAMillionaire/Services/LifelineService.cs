@@ -26,7 +26,6 @@ namespace WhoWantsToBeAMillionaire.Services
             {
                 case DifficultyLevel.Easy:
                     op1 = random.Next(80, 100); // Optiunea corecta
-                    MessageBox.Show(op1.ToString());
                     op2 = random.Next(0, 100 - op1);
                     op3 = random.Next(0, 100 - (op1 + op2));
                     op4 = 100 - (op1 + op2 + op3);

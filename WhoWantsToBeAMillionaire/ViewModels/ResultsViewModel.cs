@@ -2,32 +2,49 @@
 using System.Collections.Generic;
 using System.Security.Permissions;
 using System.Text;
+using System.Windows;
+using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
+using WhoWantsToBeAMillionaire.Views;
 
 namespace WhoWantsToBeAMillionaire.ViewModels
 {
     class ResultsViewModel : BaseViewModel
     {
-        public static GameService _gameService;
-        public bool FiftyFiftyUsed { get; set; }
-        public bool AskAudienceUsed { get; set; }
-        public bool PhoneCallUsed { get; set; }
+        private GameService _gameService;
+        private ResultsView _view;
+        
         public string PrizeWon { get; set; }
         public string TotalEllapsedTime { get; set; }
         public string MediumTimeEllapsedPerQuestion { get; set; }
 
 
-        public ResultsViewModel()
+        public ResultsViewModel(ResultsView view)
         {
+            _view = view;
             _gameService = GameService.GetInstace();
 
-            FiftyFiftyUsed = _gameService.Game.FiftyFiftyUsed;
-            AskAudienceUsed = _gameService.Game.AudienceAsked;
-            PhoneCallUsed = _gameService.Game.FriendCalled;
-            PrizeWon = _gameService.Game.PrizeSoFar;
-            if (PrizeWon.Length > 3) PrizeWon += "!";
+            PrizeWon = _gameService.Results.FinalPrize;
+            
             TotalEllapsedTime = _gameService.Results.ElapsedTime.ToString(@"mm\:ss");
             MediumTimeEllapsedPerQuestion = _gameService.Results.MediumTimeSpanPerQuestion.ToString(@"mm\:ss");
+
+            int prizeId = Game.PrizeList.IndexOf(PrizeWon);
+            switch (prizeId)
+            {
+                case -1:
+                    _view.mainGrid.Style = Application.Current.TryFindResource("DangerGrid") as Style;
+                    _view.mainUserControl.Style = Application.Current.TryFindResource("NoWin") as Style;
+                    break;
+                case int n when(n >= 0 && n < 14):
+                    _view.mainGrid.Style = Application.Current.TryFindResource("SuccessGrid") as Style;
+                    _view.mainUserControl.Style = Application.Current.TryFindResource("Win") as Style;
+                    break;
+                case 14:
+                    _view.mainGrid.Style = Application.Current.TryFindResource("SuccessGrid") as Style;
+                    _view.mainUserControl.Style = Application.Current.TryFindResource("BigWin") as Style;
+                    break;
+            }
         }
     }
 }
