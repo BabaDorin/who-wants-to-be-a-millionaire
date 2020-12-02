@@ -40,7 +40,7 @@
                     Text="{Binding CurrentQuestion.QuestionText}"/>
             </Grid>
 
-            <Grid Name="optionsGrid" Grid.Row="3">
+            <Grid Name="optionsGrid" Grid.Row="3" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -162,7 +162,7 @@
             <!--Grid in care vor fi adaugate in mod dinamic premiile-->
             <Grid Grid.Row="1" 
                   Name="prizeStack" 
-                  Margin="0 20 0 40"
+                  Margin="10 20 10 40"
                   Height="auto">
             </Grid>
         </Grid>

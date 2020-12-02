@@ -92,6 +92,15 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             try
             {
+                // Validare intrebari
+                // Este setata doar o conditie de validare: Campul CorrectOptionId sa contina valori din intervalul [0, 3].
+                Question invalidCorrectOptionId = QuestionsList.Where(q => q.CorrectOptionIndex < 0 || q.CorrectOptionIndex > 3).FirstOrDefault();
+                if(invalidCorrectOptionId != null)
+                {
+                    MessageBox.Show(string.Format($"Intrebarea cu ID-ul {invalidCorrectOptionId.QuestionId} contine campuri invalide: {nameof(invalidCorrectOptionId.CorrectOptionIndex)}"));
+                    return false;
+                }
+
                 XmlHelper.ToXmlFile(QuestionsList, xmlQuestionsPath);
                 return true;
             }
@@ -120,24 +129,6 @@ namespace WhoWantsToBeAMillionaire.Services
 
     public class XmlHelper
     {
-        public static bool NewLineOnAttributes { get; set; }
-
-        public static string ToXml(object obj)
-        {
-            Type T = obj.GetType();
-
-            var xs = new XmlSerializer(T);
-            var ws = new XmlWriterSettings { Indent = true, NewLineOnAttributes = NewLineOnAttributes, OmitXmlDeclaration = true };
-
-            var sb = new StringBuilder();
-            using (XmlWriter writer = XmlWriter.Create(sb, ws))
-            {
-                xs.Serialize(writer, obj);
-            }
-
-            return sb.ToString();
-        }
-
         public static T FromXml<T>(string xml)
         {
             XmlSerializer xs = new XmlSerializer(typeof(T));

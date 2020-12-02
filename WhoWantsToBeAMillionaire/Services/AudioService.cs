@@ -72,23 +72,27 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             if(questionId <= 4)
             {
+                LastSound = Music1001000;
                 PlayAudio(Music1001000);
                 return;
             }
 
             if(questionId <= 9)
             {
+                LastSound = Music2k32k;
                 PlayAudio(Music2k32k);
                 return;
             }
 
             if (questionId <= 12)
             {
+                LastSound = Music64k500k;
                 PlayAudio(Music64k500k);
                 return;
             }
 
             PlayAudio(Music500k1kk);
+            LastSound = Music500k1kk;
         }
 
         public void StopPlaying()
