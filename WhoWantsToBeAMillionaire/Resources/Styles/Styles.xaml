@@ -147,6 +147,14 @@
         </Setter>
     </Style>
 
+    <Style x:Key="RightPanelGrid" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="DarkBlue" Opacity="0.4"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <!--Label styles-->
     <Style x:Key="PrizeItemBaseStyle" TargetType="Label">
