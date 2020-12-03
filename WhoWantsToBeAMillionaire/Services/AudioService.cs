@@ -40,7 +40,7 @@ namespace WhoWantsToBeAMillionaire.Services
             FinalAnswer = new SoundPlayer(Path.Combine(audioDirectory, "finalanswer.wav"));
             CorrectAnswer = new SoundPlayer(Path.Combine(audioDirectory, "correctanswer.wav"));
             WrongAnswer = new SoundPlayer(Path.Combine(audioDirectory, "wronganswer.wav"));
-            PhoneAFriend = new SoundPlayer(Path.Combine(audioDirectory, "phoneafriend.wav"));
+            PhoneAFriend = Music500k1kk;
         }
         public static AudioService GetInstace()
         {
@@ -52,12 +52,15 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public void PlayAudio(SoundPlayer soundPlayer)
         {
+            // Oprește sunetul precedent și pornește noua coloană sonoră
             LastSound = soundPlayer;
 
             if (!AudioOn)
                 return;
 
             StopPlaying();
+
+            // Exista sunete one-shot și melodii ce cântă incontinuu pana cand nu sunt oprite.
             if(soundPlayer == LetsPlay || soundPlayer == FinalAnswer || soundPlayer == CorrectAnswer || soundPlayer == WrongAnswer)
             {
                 soundPlayer.Play();
@@ -70,6 +73,7 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public void PlayAudioAccordingToPriceRange(int questionId)
         {
+            // In dependenta de numarul de oridine (questionId) este aleasa melodia corespunzatoare.
             if(questionId <= 4)
             {
                 LastSound = Music1001000;
@@ -97,6 +101,7 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public void StopPlaying()
         {
+            // Opreste ultimul suntet pornit
             if(LastSound != null && LastSound != FinalAnswer && LastSound != CorrectAnswer)
                 LastSound.Stop();
         }

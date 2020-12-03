@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
-        Title="AdminView" Height="600" Width="1100"
+        Title="Panoul de administrare" Height="600" Width="1100"
         WindowStartupLocation="CenterScreen"
-        Closing="Window_Closing">
+        Closing="Window_Closing" Icon="pack://application:,,,/icon.ico">
     <Grid>
         <!--Grid-ul ce reprezinta pagina de logare-->
         <Grid Name="LoginPage" Visibility="{Binding LoginPageVisibility}">
@@ -20,7 +20,7 @@
             </StackPanel>
         </Grid>
 
-        <!--Grid-ul ce reprezinta panelul de administrare-->
+        <!--Grid-ul ce reprezinta panoul de administrare-->
         <Grid Name="AdminPanel" Visibility="{Binding AdminPanelVisibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
@@ -30,7 +30,8 @@
 
             <Label Grid.Row="0" Content="Adauga, modifica sau elimina intrebari." HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                FontSize="20"/>
-
+            
+            <!--Aici vor fi afisate intrebarile-->
             <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="15" InitializingNewItem="QuestionsDataGrid_InitializingNewItem"
         Name="QuestionsDataGrid" RowHeight="30" ColumnWidth="100" ItemsSource="{Binding QuestionsList}" CellEditEnding="QuestionsDataGrid_CellEditEnding"  GridLinesVisibility="Vertical" HeadersVisibility="All"   VerticalAlignment="Center" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue">
                 <DataGrid.Columns>

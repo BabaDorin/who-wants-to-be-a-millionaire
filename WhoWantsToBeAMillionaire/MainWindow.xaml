@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire"
         mc:Ignorable="d"
         FontFamily="Source Sans Pro"
-        Title="MainWindow" Height="630" Width="1140"
+        Title="Who wants to be a Millionaire" Height="630" Width="1140"
         MinWidth="1092" MinHeight="615"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="icon.ico">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/bg.jpg" Stretch="UniformToFill"/>
     </Window.Background>
@@ -17,19 +18,19 @@
             <SolidColorBrush Opacity="0.5" Color="Black"/>
         </Grid.Background>
 
-        <!--Meniul de sus-->
-
-
+        <!--Spatiul in care vor fi randate celelalte ferestre-->
         <ContentControl Name="childWindow" Grid.Row="1" Padding="0, 30, 0, 0">
-
         </ContentControl>
 
+        <!--Meniul de sus-->
         <Grid Height="30" VerticalAlignment="Top" Margin="0 5 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
+            
+            <!--Button-ul pentru activarea / dezactivarea sunetelor-->
             <Button Grid.Column="0" 
                     HorizontalAlignment="Center"
                     Name="btToggleVolume" Style="{StaticResource EmptyButton}"
@@ -37,13 +38,7 @@
                 <Image Source="pack://application:,,,/Resources/Media/volume.png"/>
             </Button>
 
-            <Button Grid.Column="1" Name="btAdminPanel"
-                    HorizontalAlignment="Center"
-                    Style="{StaticResource EmptyButton}"
-                    Click="btAdminPanel_Click">
-                <Image Source="pack://application:,,,/Resources/Media/admin.png"/>
-            </Button>
-
+            <!--In cazul in care sunetul este dezativat, deasupra iconitei va aparea un X rosu-->
             <Image Name="VolumeOff"
                    HorizontalAlignment="Center"
                    Grid.Column="0" 
@@ -52,6 +47,14 @@
                    Width="{Binding ElementName=btToggleVolume, Path=Width}"
                    MouseDown="btToggleVolume_Click"
                    Opacity="0.7" Visibility="Hidden"/>
+            
+            <!--Butonul pentru accesarea panoului de administrare-->
+            <Button Grid.Column="1" Name="btAdminPanel"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource EmptyButton}"
+                    Click="btAdminPanel_Click">
+                <Image Source="pack://application:,,,/Resources/Media/admin.png"/>
+            </Button>
         </Grid>
     </Grid>
 </Window>

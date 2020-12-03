@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Height="400" Width="400"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Icon="pack://application:,,,/icon.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/audiencebg.jpg" Stretch="UniformToFill"/>

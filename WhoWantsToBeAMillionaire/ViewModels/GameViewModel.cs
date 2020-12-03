@@ -90,7 +90,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         private bool _btRetreatIsEnabled;
         public bool BtRetreatIsEnabled
         {
-            get { return _op3IsEnabled; }
+            get { return _btRetreatIsEnabled; }
             set
             {
                 _btRetreatIsEnabled = value;
@@ -113,7 +113,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
 
         public GameViewModel(GameView gameView)
         {
-            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = true;
+            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = BtRetreatIsEnabled = true;
 
             _gameView = gameView;
             _audioService = AudioService.GetInstace();
@@ -278,7 +278,7 @@ namespace WhoWantsToBeAMillionaire.ViewModels
         private void ButtonsSetIsEnabledTo(bool flag)
         {
             // Dezactiveaza / Activeaza (in dependenta de valoarea flag-ului) optiunile de raspuns si cele ajutatoare.
-            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled =  flag;
+            Op0IsEnabled = Op1IsEnabled = Op2IsEnabled = Op3IsEnabled = BtRetreatIsEnabled = flag;
 
             for (int i = 0; i < 3; i++)
                 (_gameView.lifeLinesGrid.Children[i] as Button).IsEnabled = flag;

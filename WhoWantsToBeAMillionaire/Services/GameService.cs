@@ -87,7 +87,7 @@ namespace WhoWantsToBeAMillionaire.Services
 
             // Populam cu intrebari aleatoare daca lista contine mai putin de 15 intrebari,
             Random rnd = new Random();
-            while(gameQuestions.Count < 15)
+            while (gameQuestions.Count < 15)
             {
                 Question selectedQ = allQuestions[rnd.Next(0, allQuestions.Count)];
                 gameQuestions.Add(selectedQ);
@@ -159,7 +159,7 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             Results.FinalPrize = Game.PrizeSoFar;
             Results.CorrectAnswers = CurrentQuestionId;
-            if(Game.PrizeSoFar == Game.PrizeList[14]) Results.CorrectAnswers = CurrentQuestionId + 1;
+            if (Game.PrizeSoFar == Game.PrizeList[14]) Results.CorrectAnswers = CurrentQuestionId + 1;
             DBService.SaveResults(Results);
         }
 
@@ -184,7 +184,7 @@ namespace WhoWantsToBeAMillionaire.Services
             // Verifica daca serviciul este disponibil (nu a fost folosit deja).
             // Exclude 2 raspunsuri incorecte (textul raspunsurilor este marcat ca fiind "", deja 
             // este treaba ViewModel-ului sa dezactiveze butoanele ce contin aceste raspunsuri).
-            
+
             LifelineService.FiftyFifty(Game.Questions[CurrentQuestionId]);
         }
     }

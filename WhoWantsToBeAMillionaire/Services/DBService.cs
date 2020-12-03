@@ -1,15 +1,9 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
-using System.CodeDom;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Threading;
 using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
 using WhoWantsToBeAMillionaire.Models;
 
@@ -22,24 +16,6 @@ namespace WhoWantsToBeAMillionaire.Services
         private static string xmlQuestionsPath = Path.Combine(baseDirectory, @"DB\Questions.xml");
 
         // Metodele ce definesc operatiile CRUD: Create, Read, Update, Delete
-        public static bool AddQuestion(Question question)
-        {
-            Question q = new Question
-            {
-                QuestionId = "skrskr",
-                CorrectOptionIndex = 1,
-                DifficultyLevel = DifficultyLevel.Einstein,
-                Explanations = "iaca",
-                Options = new List<string>
-                {
-                    "1", "2", "3", "4"
-                },
-                QuestionText = "aica"
-            };
-
-            return XmlHelper.AppendToXmlFile(q, xmlQuestionsPath);
-        }
-
         public static void SaveResults(Results results)
         {
             XmlHelper.AppendToXmlFile(results, xmlResultsPath);
@@ -49,27 +25,6 @@ namespace WhoWantsToBeAMillionaire.Services
         {
             List<Question> questionFromXaml = XmlHelper.FromXmlFile<Question>(xmlQuestionsPath);
             return questionFromXaml;
-        }
-
-        public static List<Question> GetTestQuestions()
-        {
-            MessageBox.Show(xmlResultsPath);
-            List<Question> TestQuestions = new List<Question>();
-            for (int i = 0; i < 15; i++)
-            {
-                Question tq = new Question()
-                {
-                    QuestionId = "TestQuestionId" + i,
-                    CorrectOptionIndex = 1,
-                    DifficultyLevel = DifficultyLevel.Easy,
-                    Explanations = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold",
-                    Options = new List<string>() { "op1", "op2", "op3", "op4" },
-                    QuestionText = "Text intrebare " + i
-                };
-                TestQuestions.Add(tq);
-            }
-
-            return TestQuestions;
         }
 
         public static bool RemoveQuestion(string questionId)
@@ -109,22 +64,6 @@ namespace WhoWantsToBeAMillionaire.Services
                 return false;
             }
         }
-
-        public static bool UpdateQuestion(Question question)
-        {
-            try
-            {
-                List<Question> questions = GetQuestions();
-                Question toBeUpdated = questions.First(q => q.QuestionId == question.QuestionId);
-                toBeUpdated = question;
-                XmlHelper.ToXmlFile(questions, xmlQuestionsPath);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
     }
 
     public class XmlHelper
@@ -140,11 +79,19 @@ namespace WhoWantsToBeAMillionaire.Services
 
         public static void ToXmlFile(Object obj, string filePath)
         {
-            var xs = new XmlSerializer(obj.GetType());
-            using (XmlWriter writer = XmlWriter.Create(filePath))
+            try
             {
-                xs.Serialize(writer, obj);
+                var xs = new XmlSerializer(obj.GetType());
+                using (XmlWriter writer = XmlWriter.Create(filePath))
+                {
+                    xs.Serialize(writer, obj);
+                }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
 
         public static bool AppendToXmlFile<T>(T obj, string filePath)
@@ -163,8 +110,9 @@ namespace WhoWantsToBeAMillionaire.Services
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return false;
             }
         }

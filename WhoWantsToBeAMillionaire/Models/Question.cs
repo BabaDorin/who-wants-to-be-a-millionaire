@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace WhoWantsToBeAMillionaire.Models
 {
     public enum DifficultyLevel
     {
         Easy = 0, // 100 - 300                  | 4 intrebari
-        Medium = 1, // 500 - 16 000              | 5 intrebari
+        Medium = 1, // 500 - 16 000             | 5 intrebari
         Hard = 2, // 32 000 - 250 000           | 4 intrebari
         Einstein = 3 // 500 000 - 1 000 000     | 2 intrebari
     }

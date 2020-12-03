@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Printing;
-using System.Text;
-using System.Windows;
 using WhoWantsToBeAMillionaire.Models;
 
 namespace WhoWantsToBeAMillionaire.Services

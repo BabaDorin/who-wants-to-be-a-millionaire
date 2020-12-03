@@ -43,7 +43,6 @@
         <Setter Property="BorderThickness" Value="4"/>
     </Style>
 
-    <!--TextBlock styles-->
     <Style x:Key="reply" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="18"/>
@@ -147,6 +146,13 @@
         </Setter>
     </Style>
 
+    <Style x:Key="RightPanelGrid" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="DarkBlue" Opacity="0.4"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!--Label styles-->
     <Style x:Key="PrizeItemBaseStyle" TargetType="Label">
@@ -216,6 +222,27 @@
     <Style x:Key="EmptyButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" 
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="StartViewButtons" BasedOn="{StaticResource NormalPolygon}" TargetType="Button">
@@ -349,6 +376,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!--Fill="DodgerBlue"-->
 </ResourceDictionary>

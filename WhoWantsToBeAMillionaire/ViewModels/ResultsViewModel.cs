@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Permissions;
-using System.Text;
 using System.Windows;
 using WhoWantsToBeAMillionaire.Models;
 using WhoWantsToBeAMillionaire.Services;
@@ -27,7 +24,10 @@ namespace WhoWantsToBeAMillionaire.ViewModels
             PrizeWon = _gameService.Results.FinalPrize;
             
             TotalEllapsedTime = _gameService.Results.ElapsedTime.ToString(@"mm\:ss");
-            MediumTimeEllapsedPerQuestion = _gameService.Results.MediumTimeSpanPerQuestion.ToString(@"mm\:ss");
+            if (_gameService.Results.CorrectAnswers == 0)
+                MediumTimeEllapsedPerQuestion = TotalEllapsedTime;
+            else
+                MediumTimeEllapsedPerQuestion = TimeSpan.FromSeconds((_gameService.Results.ElapsedTime.Seconds / _gameService.Results.CorrectAnswers)).ToString(@"mm\:ss");
 
             int prizeId = Game.PrizeList.IndexOf(PrizeWon);
             switch (prizeId)

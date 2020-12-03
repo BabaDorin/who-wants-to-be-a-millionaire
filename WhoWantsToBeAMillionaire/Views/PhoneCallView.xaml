@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WhoWantsToBeAMillionaire.Views"
         mc:Ignorable="d"
         Height="700" Width="400"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/icon.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="pack://application:,,,/WhoWantsToBeAMillionaire;component/Resources/Media/phonefriendbg.jpg" Stretch="UniformToFill"/>
