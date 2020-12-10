@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dorin\\Desktop\\repo\\who-wants-to-be-a-millionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj": {}
+    "C:\\Users\\Dorin\\Desktop\\  \\College\\Tehnologii Avansate de Programare\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dorin\\Desktop\\repo\\who-wants-to-be-a-millionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj": {
+    "C:\\Users\\Dorin\\Desktop\\  \\College\\Tehnologii Avansate de Programare\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dorin\\Desktop\\repo\\who-wants-to-be-a-millionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj",
+        "projectUniqueName": "C:\\Users\\Dorin\\Desktop\\  \\College\\Tehnologii Avansate de Programare\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj",
         "projectName": "WhoWantsToBeAMillionaire",
-        "projectPath": "C:\\Users\\Dorin\\Desktop\\repo\\who-wants-to-be-a-millionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj",
+        "projectPath": "C:\\Users\\Dorin\\Desktop\\  \\College\\Tehnologii Avansate de Programare\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire.csproj",
         "packagesPath": "C:\\Users\\Dorin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dorin\\Desktop\\repo\\who-wants-to-be-a-millionaire\\WhoWantsToBeAMillionaire\\obj\\",
+        "outputPath": "C:\\Users\\Dorin\\Desktop\\  \\College\\Tehnologii Avansate de Programare\\WhoWantsToBeAMillionaire\\WhoWantsToBeAMillionaire\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
